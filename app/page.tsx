@@ -81,7 +81,10 @@ export default function Home() {
       </header>
 
       <div className="grid w-full max-w-6xl grid-cols-1 gap-8 md:grid-cols-3">
-        <button className="group relative flex flex-col items-center justify-center overflow-hidden rounded-[2rem] bg-[var(--color-royal-blue)] p-12 text-center text-white shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-royal-blue/50">
+        <button
+          onClick={() => (window.location.href = "/aklatan")}
+          className="group relative flex flex-col items-center justify-center overflow-hidden rounded-[2rem] bg-[var(--color-royal-blue)] p-12 text-center text-white shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-royal-blue/50"
+        >
           <Book
             size={72}
             strokeWidth={1.5}

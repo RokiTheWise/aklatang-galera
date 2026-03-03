@@ -1,88 +1,154 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowLeft, Search, ExternalLink, Globe } from "lucide-react";
+import { ArrowLeft, Search, ExternalLink, Globe, MapPin } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 
-// Simplified Categories: Just All or Local
-const categoryMap: Record<string, { tagalog: string; english: string }> = {
-  all: { tagalog: "Lahat", english: "All" },
-  local: { tagalog: "Lokal", english: "Local" },
-};
-
-const categoryIds = ["all", "local"];
-
-// Updated Data Structure with `isLocal` flag and `logoUrl`
 const openDatabases = [
   {
     id: 1,
     name: "DOAJ",
     isLocal: false,
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/1/11/DOAJ_logo.svg", // Replace with your own local images later
     link: "https://doaj.org/",
+    logoUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/1/11/DOAJ_logo.svg",
     desc: {
-      tagalog:
-        "Directory of Open Access Journals. Libreng peer-reviewed scientific at scholarly articles.",
-      english:
-        "Directory of Open Access Journals. Free peer-reviewed scientific and scholarly articles.",
+      tagalog: "Libreng peer-reviewed scientific at scholarly articles.",
+      english: "Free peer-reviewed scientific and scholarly articles.",
     },
   },
   {
     id: 2,
     name: "arXiv",
     isLocal: false,
+    link: "https://arxiv.org/",
     logoUrl:
       "https://upload.wikimedia.org/wikipedia/commons/b/b2/ArXiv_logo_2022.svg",
-    link: "https://arxiv.org/",
     desc: {
       tagalog:
-        "Open-access archive para sa computer science, mathematics, at physics research.",
-      english:
-        "Open-access archive for computer science, mathematics, and physics research.",
+        "Open-access archive para sa physics, math, at computer science.",
+      english: "Open-access archive for physics, math, and computer science.",
     },
   },
   {
     id: 3,
-    name: "Philippine E-Journals",
+    name: "Archīum Ateneo",
     isLocal: true,
-    logoUrl: "https://ejournals.ph/images/pej-logo.png",
-    link: "https://ejournals.ph/",
+    link: "https://archium.ateneo.edu",
+    logoUrl:
+      "https://upload.wikimedia.org/wikipedia/en/2/2a/Ateneo_de_Manila_University_seal.svg",
     desc: {
-      tagalog:
-        "Koleksyon ng mga academic publications mula sa iba't ibang unibersidad sa Pilipinas.",
-      english:
-        "Collection of academic publications from various universities in the Philippines.",
+      tagalog: "Institutional repository ng Ateneo de Manila University.",
+      english: "Ateneo de Manila University's institutional repository.",
     },
   },
   {
     id: 4,
-    name: "Project Gutenberg",
-    isLocal: false,
+    name: "BAHÁNDÌAN",
+    isLocal: true,
+    link: "https://repository.cpu.edu.ph/",
     logoUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/d/d4/Project_Gutenberg_logo.svg",
-    link: "https://www.gutenberg.org/",
+      "https://upload.wikimedia.org/wikipedia/en/2/23/Central_Philippine_University_seal.svg",
     desc: {
-      tagalog:
-        "Mahigit 70,000 libreng e-books, kabilang ang mga classic literature at history books.",
-      english:
-        "Over 70,000 free e-books, including classic literature and history books.",
+      tagalog: "Digital repository ng Central Philippine University.",
+      english: "Central Philippine University's digital repository.",
     },
   },
   {
     id: 5,
-    name: "PubMed Central",
-    isLocal: false,
+    name: "Tuklas",
+    isLocal: true,
+    link: "https://tuklas.up.edu.ph/",
     logoUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/f/fb/US-NLM-PubMed-Logo.svg",
-    link: "https://www.ncbi.nlm.nih.gov/pmc/",
+      "https://upload.wikimedia.org/wikipedia/en/3/3d/University_of_the_Philippines_Seal.svg",
     desc: {
-      tagalog:
-        "Libreng digital archive ng biomedical at life sciences journal literature.",
-      english:
-        "Free digital archive of biomedical and life sciences journal literature.",
+      tagalog: "Discovery service ng mga aklatan ng UP System.",
+      english: "The UP System libraries' discovery service.",
+    },
+  },
+  {
+    id: 6,
+    name: "Plaridel Journal",
+    isLocal: true,
+    link: "https://www.plarideljournal.org/",
+    logoUrl:
+      "https://www.plarideljournal.org/wp-content/uploads/2015/12/logo-plaridel.png",
+    desc: {
+      tagalog: "Journal ng komunikasyon, media, at lipunan sa Pilipinas.",
+      english: "Philippine journal of communication, media, and society.",
+    },
+  },
+  {
+    id: 7,
+    name: "TechnoAklatan",
+    isLocal: true,
+    link: "https://nlpdl.nlp.gov.ph/TechnoAklatan.htm",
+    logoUrl: "https://web.nlp.gov.ph/nlp/sites/default/files/nlp-logo.png",
+    desc: {
+      tagalog: "Digital na koleksyon ng Pambansang Aklatan ng Pilipinas.",
+      english: "National Library of the Philippines digital collection.",
+    },
+  },
+  {
+    id: 8,
+    name: "Google Scholar",
+    isLocal: false,
+    link: "https://scholar.google.com/",
+    logoUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/2/28/Google_Scholar_logo.svg",
+    desc: {
+      tagalog: "Malawak na paghahanap ng iskolaryong literatura.",
+      english: "Broad search for scholarly literature.",
+    },
+  },
+  {
+    id: 9,
+    name: "PhilSSJ",
+    isLocal: true,
+    link: "https://philssj.org/index.php/main",
+    logoUrl:
+      "https://philssj.org/public/journals/1/pageHeaderLogoImage_en_US.png",
+    desc: {
+      tagalog: "Philippine Social Science Journal para sa mga mananaliksik.",
+      english: "Philippine Social Science Journal for researchers.",
+    },
+  },
+  {
+    id: 10,
+    name: "BISIG (PUP)",
+    isLocal: true,
+    link: "https://publishing.pup.edu.ph/ojs/index.php/BSG",
+    logoUrl:
+      "https://upload.wikimedia.org/wikipedia/en/d/d4/Polytechnic_University_of_the_Philippines_official_logo.svg",
+    desc: {
+      tagalog: "PUP Journal ng Negosyo at Gobyerno.",
+      english: "PUP Journal of Business and Government.",
+    },
+  },
+  {
+    id: 11,
+    name: "PLOS",
+    isLocal: false,
+    link: "https://plos.org/our-journals/",
+    logoUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/4/4e/PLOS_Logo.svg",
+    desc: {
+      tagalog: "Open access na mga journal sa agham at medisina.",
+      english: "Open access science journals.",
+    },
+  },
+  {
+    id: 12,
+    name: "Taylor & Francis",
+    isLocal: false,
+    link: "https://www.tandfonline.com/openaccess",
+    logoUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/4/4c/Taylor_%26_Francis_logo.svg",
+    desc: {
+      tagalog: "Koleksyon ng mga open access na pananaliksik sa buong mundo.",
+      english: "Collection of open access research.",
     },
   },
 ];
@@ -90,7 +156,7 @@ const openDatabases = [
 export default function Aklatan() {
   const { language, setLanguage } = useLanguage();
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [onlyLocal, setOnlyLocal] = useState(false);
 
   const ui = {
     tagalog: {
@@ -100,7 +166,10 @@ export default function Aklatan() {
       searchPlaceholder: "Maghanap ng database, journal, o paksa...",
       visit: "Puntahan",
       emptyTitle: "Walang nahanap na database.",
-      emptyDesc: "Subukan ang ibang keyword o kategorya.",
+      emptyDesc: "Subukan ang ibang keyword.",
+      results: "resulta",
+      all: "Lahat",
+      local: "Lokal",
     },
     english: {
       back: "Back",
@@ -109,146 +178,157 @@ export default function Aklatan() {
       searchPlaceholder: "Search for a database, journal, or topic...",
       visit: "Visit",
       emptyTitle: "No databases found.",
-      emptyDesc: "Try a different keyword or category.",
+      emptyDesc: "Try a different keyword.",
+      results: "results",
+      all: "All",
+      local: "Local",
     },
   };
 
   const t = ui[language];
 
-  // Filter logic: Check search text AND if the "local" toggle is active
-  const filteredDatabases = openDatabases.filter((db) => {
-    const currentDesc = db.desc[language].toLowerCase();
-    const matchesSearch =
-      db.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      currentDesc.includes(searchQuery.toLowerCase());
-
-    const matchesCategory =
-      selectedCategory === "all" ||
-      (selectedCategory === "local" && db.isLocal);
-
-    return matchesSearch && matchesCategory;
-  });
+  const filtered = openDatabases.filter(
+    (db) =>
+      (db.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        db.desc[language].toLowerCase().includes(searchQuery.toLowerCase())) &&
+      (!onlyLocal || db.isLocal),
+  );
 
   return (
-    <main className="flex min-h-screen flex-col items-center bg-[var(--color-bright-snow)] p-6 md:p-12 relative">
-      {/* Top Navigation Bar */}
-      <div className="absolute top-6 left-6 right-6 flex items-center justify-between z-50">
-        {/* Back Button */}
+    <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-white to-[#f0f9ff] p-6 md:p-12 relative">
+      {/* PERSISTENT TOP NAV: Back + Language */}
+      <div className="w-full max-w-6xl flex items-center justify-between z-50 mb-10 mx-auto">
         <Link
           href="/"
-          className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-[var(--color-aklatang-navy)] shadow-sm transition-transform hover:-translate-x-1 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--color-royal-blue)]"
+          className="flex items-center gap-2 rounded-full bg-white px-5 py-2 text-sm font-bold text-slate-800 shadow-sm transition-transform hover:-translate-x-1 hover:shadow-md"
         >
           <ArrowLeft size={18} />
           {t.back}
         </Link>
 
-        {/* Language Toggle */}
-        <nav className="flex items-center gap-2 rounded-full border border-[var(--color-aklatang-navy)]/10 bg-white/50 px-4 py-2 backdrop-blur-md">
-          <Globe size={16} className="text-[var(--color-aklatang-navy)]/60" />
+        <div className="flex items-center gap-1 bg-white/40 border border-slate-200 p-1 rounded-xl shadow-sm backdrop-blur-sm">
           <button
             onClick={() => setLanguage("tagalog")}
-            className={`text-sm transition-colors ${
+            className={`px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all ${
               language === "tagalog"
-                ? "font-bold text-[var(--color-royal-blue)]"
-                : "font-medium text-[var(--color-aklatang-navy)]/60 hover:text-[var(--color-royal-blue)]"
+                ? "bg-blue-600 text-white shadow-md"
+                : "text-slate-500 hover:bg-white/60"
             }`}
           >
-            Tagalog
+            PH
           </button>
-          <span className="text-[var(--color-aklatang-navy)]/30">|</span>
           <button
             onClick={() => setLanguage("english")}
-            className={`text-sm transition-colors ${
+            className={`px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all ${
               language === "english"
-                ? "font-bold text-[var(--color-royal-blue)]"
-                : "font-medium text-[var(--color-aklatang-navy)]/60 hover:text-[var(--color-royal-blue)]"
+                ? "bg-blue-600 text-white shadow-md"
+                : "text-slate-500 hover:bg-white/60"
             }`}
           >
-            English
+            EN
           </button>
-        </nav>
+        </div>
       </div>
 
-      {/* Header with Logo */}
-      <header className="flex w-full max-w-6xl flex-col items-center justify-center mt-16 mb-10 text-center">
+      {/* COMPACT HEADER LOGO */}
+      <header className="flex flex-col items-center text-center mb-8 max-w-3xl">
         <Image
           src="/aklatang-galera-logo.png"
           alt="Aklatang Galera Logo"
-          width={180}
-          height={100}
+          width={130}
+          height={60}
           priority
-          className="mb-6 object-contain drop-shadow-sm"
+          className="mb-3 object-contain opacity-90"
         />
-        <h1 className="text-4xl font-black uppercase tracking-tight text-[var(--color-aklatang-navy)]">
+        <h1 className="text-3xl font-black uppercase tracking-tight text-slate-900">
           {t.title}
         </h1>
-        <p className="mt-2 text-lg font-medium text-[var(--color-aklatang-navy)]/60">
+        <p className="mt-1 text-base font-medium text-slate-500">
           {t.subtitle}
         </p>
       </header>
 
-      {/* Search and Filter Section */}
-      <div className="w-full max-w-6xl mb-12 flex flex-col items-center gap-6">
-        <div className="relative w-full max-w-3xl shadow-sm rounded-2xl overflow-hidden">
+      {/* SEARCH BAR  */}
+      <div className="w-full max-w-2xl mb-12">
+        <div className="relative shadow-sm rounded-2xl overflow-hidden border border-slate-200 bg-white">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-6">
-            <Search className="h-6 w-6 text-[var(--color-aklatang-navy)]/40" />
+            <Search className="h-5 w-5 text-slate-400" />
           </div>
           <input
             type="text"
-            className="block w-full border-2 border-transparent bg-white py-5 pl-16 pr-6 text-lg font-medium text-[var(--color-aklatang-navy)] placeholder-[var(--color-aklatang-navy)]/40 outline-none transition-colors focus:border-[var(--color-royal-blue)]"
+            className="block w-full py-4 pl-14 pr-6 text-md font-medium text-slate-900 placeholder-slate-400 outline-none transition-colors focus:ring-2 focus:ring-blue-500/10"
             placeholder={t.searchPlaceholder}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
+      </div>
 
-        {/* Simplified Category Pills */}
-        <div className="flex flex-wrap gap-3">
-          {categoryIds.map((catId) => (
-            <button
-              key={catId}
-              onClick={() => setSelectedCategory(catId)}
-              className={`rounded-full px-8 py-2.5 text-sm font-bold transition-all ${
-                selectedCategory === catId
-                  ? "bg-[var(--color-royal-blue)] text-white shadow-md"
-                  : "bg-white text-[var(--color-aklatang-navy)]/70 hover:bg-[var(--color-royal-blue)]/10 hover:text-[var(--color-royal-blue)]"
-              }`}
-            >
-              {categoryMap[catId][language]}
-            </button>
-          ))}
+      {/* TOOLBAR */}
+      <div className="w-full max-w-6xl flex items-center justify-between mb-8 border-b border-slate-200 pb-4">
+        <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+          {filtered.length} {t.results}
+        </div>
+
+        <div className="flex bg-slate-200/50 p-1 rounded-xl">
+          <button
+            onClick={() => setOnlyLocal(false)}
+            className={`px-6 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              !onlyLocal
+                ? "bg-white text-blue-600 shadow-sm"
+                : "text-slate-500 hover:text-slate-700"
+            }`}
+          >
+            {t.all}
+          </button>
+          <button
+            onClick={() => setOnlyLocal(true)}
+            className={`px-6 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              onlyLocal
+                ? "bg-white text-blue-600 shadow-sm"
+                : "text-slate-500 hover:text-slate-700"
+            }`}
+          >
+            {t.local}
+          </button>
         </div>
       </div>
 
-      {/* Dynamic Resources Grid */}
+      {/* GRID */}
       <div className="grid w-full max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {filteredDatabases.length > 0 ? (
-          filteredDatabases.map((db) => (
+        {filtered.length > 0 ? (
+          filtered.map((db) => (
             <a
               key={db.id}
               href={db.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col justify-between rounded-3xl border border-[var(--color-aklatang-navy)]/5 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:border-[var(--color-royal-blue)]/30 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-[var(--color-royal-blue)]/50"
+              className="group flex flex-col justify-between rounded-3xl bg-white p-8 shadow-sm border border-slate-100 transition-all hover:-translate-y-1 hover:shadow-xl"
             >
               <div>
-                {/* Logo Image */}
-                <div className="mb-6 flex h-16 w-full items-center justify-start">
-                  <img
-                    src={db.logoUrl}
-                    alt={`${db.name} logo`}
-                    className="max-h-full max-w-[150px] object-contain opacity-80 transition-opacity group-hover:opacity-100"
-                  />
+                <div className="mb-6 flex items-center justify-between">
+                  <div className="h-10 w-28 relative">
+                    <img
+                      src={db.logoUrl}
+                      alt={db.name}
+                      className="h-full w-full object-contain object-left"
+                    />
+                  </div>
+                  {db.isLocal && (
+                    <span className="flex items-center gap-1 rounded-full bg-emerald-50 px-3 py-1 text-[10px] font-bold text-emerald-600 uppercase tracking-wider">
+                      <MapPin size={10} />
+                      LOKAL
+                    </span>
+                  )}
                 </div>
-
-                <h2 className="mb-2 text-2xl font-bold text-[var(--color-aklatang-navy)]">
+                <h2 className="mb-2 text-xl font-bold text-slate-900">
                   {db.name}
                 </h2>
-                <p className="text-sm font-medium text-[var(--color-aklatang-navy)]/60 leading-relaxed">
+                <p className="text-sm font-medium text-slate-500 leading-relaxed">
                   {db.desc[language]}
                 </p>
               </div>
-              <div className="mt-8 flex items-center text-sm font-bold text-[var(--color-royal-blue)]">
+              <div className="mt-8 flex items-center text-sm font-bold text-blue-600">
                 {t.visit}{" "}
                 <ExternalLink
                   size={16}
@@ -258,10 +338,10 @@ export default function Aklatan() {
             </a>
           ))
         ) : (
-          <div className="col-span-full py-12 text-center text-[var(--color-aklatang-navy)]/50">
-            <Search size={48} className="mx-auto mb-4 opacity-20" />
-            <p className="text-xl font-bold">{t.emptyTitle}</p>
-            <p className="text-sm mt-2">{t.emptyDesc}</p>
+          <div className="col-span-full py-20 text-center">
+            <Search size={48} className="mx-auto mb-4 text-slate-200" />
+            <p className="text-xl font-bold text-slate-400">{t.emptyTitle}</p>
+            <p className="text-sm text-slate-400">{t.emptyDesc}</p>
           </div>
         )}
       </div>

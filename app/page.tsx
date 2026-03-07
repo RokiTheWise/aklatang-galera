@@ -18,17 +18,17 @@ export default function Home() {
         aklatan: {
           title: "Digital na Aklatan",
           desc: "Research, e-books, at mga learning resources para sa lahat.",
-          cta: "Mag-browse ng resources",
+          cta: "I-browse",
         },
         hanapbuhay: {
           title: "Hanapbuhay",
           desc: "Skills training, community projects, at mga trabaho.",
-          cta: "Tingnan ang mga oportunidad",
+          cta: "Tingnan",
         },
         serbisyo: {
           title: "Serbisyong Pampubliko",
           desc: "Forms, scholarships, at mga programa ng gobyerno.",
-          cta: "Buksan ang mga serbisyo",
+          cta: "Buksan",
         },
       },
     },
@@ -41,17 +41,17 @@ export default function Home() {
         aklatan: {
           title: "Digital Library",
           desc: "Research, e-books, and learning resources for everyone.",
-          cta: "Browse resources",
+          cta: "Browse",
         },
         hanapbuhay: {
           title: "Livelihood",
           desc: "Skills training, community projects, and jobs.",
-          cta: "View opportunities",
+          cta: "View",
         },
         serbisyo: {
           title: "Public Services",
           desc: "Forms, scholarships, and government programs.",
-          cta: "Open services",
+          cta: "Open",
         },
       },
     },

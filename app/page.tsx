@@ -129,7 +129,7 @@ export default function Home() {
           title={t.sections.serbisyo.title}
           description={t.sections.serbisyo.desc}
           icon={Landmark}
-          href="/serbisyo"
+          href="https://elgu-puerto-galera-oriental-mindoro.e.gov.ph/elgu-service"
           baseColorClass="bg-cyan-600"
           buttonText={t.btnText}
           bgImage="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000"

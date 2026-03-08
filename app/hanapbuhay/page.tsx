@@ -253,14 +253,14 @@ const categories = [
   {
     key: "jobs" as Category,
     icon: Briefcase,
-    color: "#0d2645",
-    bg: "rgba(13,38,69,0.07)",
+    color: "#0891b2",
+    bg: "rgba(8,145,178,0.07)",
   },
   {
     key: "skills" as Category,
     icon: GraduationCap,
-    color: "#0891b2",
-    bg: "rgba(8,145,178,0.07)",
+    color: "#7c3aed",
+    bg: "rgba(124,58,237,0.07)",
   },
   {
     key: "entrepreneurship" as Category,

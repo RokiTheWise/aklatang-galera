@@ -19,8 +19,7 @@ const openDatabases = [
     name: "Archīum Ateneo",
     isLocal: true,
     link: "https://archium.ateneo.edu",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/en/2/2a/Ateneo_de_Manila_University_seal.svg",
+    logoUrl: "/ateneo-logo.png",
     desc: {
       tagalog: "Institutional repository ng Ateneo de Manila University.",
       english: "Ateneo de Manila University's institutional repository.",
@@ -31,8 +30,7 @@ const openDatabases = [
     name: "arXiv",
     isLocal: false,
     link: "https://arxiv.org/",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/b/b2/ArXiv_logo_2022.svg",
+    logoUrl: "/arxiv-logo.png",
     desc: {
       tagalog:
         "Open-access archive para sa physics, math, at computer science.",
@@ -44,8 +42,7 @@ const openDatabases = [
     name: "BAHÁNDÌAN",
     isLocal: true,
     link: "https://repository.cpu.edu.ph/",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/en/2/23/Central_Philippine_University_seal.svg",
+    logoUrl: "/bahandian-logo.svg",
     desc: {
       tagalog: "Digital repository ng Central Philippine University.",
       english: "Central Philippine University's digital repository.",
@@ -56,8 +53,7 @@ const openDatabases = [
     name: "BISIG (PUP)",
     isLocal: true,
     link: "https://publishing.pup.edu.ph/ojs/index.php/BSG",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/en/d/d4/Polytechnic_University_of_the_Philippines_official_logo.svg",
+    logoUrl: "/pup-logo.png",
     desc: {
       tagalog: "PUP Journal ng Negosyo at Gobyerno.",
       english: "PUP Journal of Business and Government.",
@@ -68,8 +64,7 @@ const openDatabases = [
     name: "DOAJ",
     isLocal: false,
     link: "https://doaj.org/",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/1/11/DOAJ_logo.svg",
+    logoUrl: "doaj-logo.svg",
     desc: {
       tagalog: "Libreng peer-reviewed scientific at scholarly articles.",
       english: "Free peer-reviewed scientific and scholarly articles.",

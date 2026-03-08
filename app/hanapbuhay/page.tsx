@@ -268,12 +268,6 @@ const categories = [
     color: "#059669",
     bg: "rgba(5,150,105,0.07)",
   },
-  {
-    key: "local" as Category,
-    icon: MapPin,
-    color: "#d97706",
-    bg: "rgba(217,119,6,0.07)",
-  },
 ];
 
 const categoryColor: Record<Category, string> = {

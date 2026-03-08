@@ -8,16 +8,21 @@ import {
   MapPin,
   List,
   BookOpen,
+  BookMarked,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 
+type ResourceType = "research" | "ebooks";
+
 const openDatabases = [
+  // ── Research / Journals ──────────────────────────────────────────────────
   {
     id: 1,
     name: "Archīum Ateneo",
     isLocal: true,
+    resourceType: "research" as ResourceType,
     link: "https://archium.ateneo.edu",
     logoUrl: "/ateneo-logo.png",
     desc: {
@@ -29,6 +34,7 @@ const openDatabases = [
     id: 2,
     name: "arXiv",
     isLocal: false,
+    resourceType: "research" as ResourceType,
     link: "https://arxiv.org/",
     logoUrl: "/arxiv-logo.png",
     desc: {
@@ -41,6 +47,7 @@ const openDatabases = [
     id: 3,
     name: "BAHÁNDÌAN",
     isLocal: true,
+    resourceType: "research" as ResourceType,
     link: "https://repository.cpu.edu.ph/",
     logoUrl: "/bahandian-logo.svg",
     desc: {
@@ -52,6 +59,7 @@ const openDatabases = [
     id: 4,
     name: "BISIG (PUP)",
     isLocal: true,
+    resourceType: "research" as ResourceType,
     link: "https://publishing.pup.edu.ph/ojs/index.php/BSG",
     logoUrl: "/pup-logo.png",
     desc: {
@@ -63,6 +71,7 @@ const openDatabases = [
     id: 5,
     name: "DOAJ",
     isLocal: false,
+    resourceType: "research" as ResourceType,
     link: "https://doaj.org/",
     logoUrl: "doaj-logo.svg",
     desc: {
@@ -74,6 +83,7 @@ const openDatabases = [
     id: 6,
     name: "Google Scholar",
     isLocal: false,
+    resourceType: "research" as ResourceType,
     link: "https://scholar.google.com/",
     logoUrl: "google-scholar-logo.png",
     desc: {
@@ -85,6 +95,7 @@ const openDatabases = [
     id: 7,
     name: "Philippine Social Science Journal",
     isLocal: true,
+    resourceType: "research" as ResourceType,
     link: "https://philssj.org/index.php/main",
     logoUrl: "phil-ssj-logo.png",
     desc: {
@@ -96,6 +107,7 @@ const openDatabases = [
     id: 8,
     name: "Plaridel Journal",
     isLocal: true,
+    resourceType: "research" as ResourceType,
     link: "https://www.plarideljournal.org/",
     logoUrl: "plaridel-logo.png",
     desc: {
@@ -107,6 +119,7 @@ const openDatabases = [
     id: 9,
     name: "PLOS",
     isLocal: false,
+    resourceType: "research" as ResourceType,
     link: "https://plos.org/our-journals/",
     logoUrl: "plos-logo.png",
     desc: {
@@ -118,6 +131,7 @@ const openDatabases = [
     id: 10,
     name: "Taylor & Francis",
     isLocal: false,
+    resourceType: "research" as ResourceType,
     link: "https://www.tandfonline.com/openaccess",
     logoUrl: "taylor-and-francis-logo.png",
     desc: {
@@ -127,24 +141,82 @@ const openDatabases = [
   },
   {
     id: 11,
-    name: "TechnoAklatan",
-    isLocal: true,
-    link: "https://nlpdl.nlp.gov.ph/TechnoAklatan.htm",
-    logoUrl: "nlp-logo.png",
-    desc: {
-      tagalog: "Digital na koleksyon ng Pambansang Aklatan ng Pilipinas.",
-      english: "National Library of the Philippines digital collection.",
-    },
-  },
-  {
-    id: 12,
     name: "Tuklas",
     isLocal: true,
+    resourceType: "research" as ResourceType,
     link: "https://tuklas.up.edu.ph/",
     logoUrl: "tuklas-logo.png",
     desc: {
       tagalog: "Discovery service ng mga aklatan ng UP System.",
       english: "The UP System libraries' discovery service.",
+    },
+  },
+
+  // ── E-Books ───────────────────────────────────────────────────────────────
+  {
+    id: 12,
+    name: "Aklatang Bayan Online",
+    isLocal: true,
+    resourceType: "ebooks" as ResourceType,
+    link: "https://sentrofilipino.upd.edu.ph/publikasyon/aklatang-bayan/online-downloadable-e-books/",
+    logoUrl: "swf-logo.png",
+    desc: {
+      tagalog:
+        "Isang open-access na repository ng mga aklat at pananaliksik na nakasulat sa wikang Filipino mula sa UP Sentro ng Wikang Filipino.",
+      english:
+        "An open-access repository of books and research papers written in the Filipino language by the UP Sentro ng Wikang Filipino.",
+    },
+  },
+  {
+    id: 13,
+    name: "Open Library",
+    isLocal: false,
+    resourceType: "ebooks" as ResourceType,
+    link: "https://openlibrary.org/",
+    logoUrl:
+      "https://openlibrary.org/static/images/openlibrary-logo-tighter.svg",
+    desc: {
+      tagalog:
+        "Libre at borrowable na digital na mga libro mula sa Internet Archive.",
+      english: "Free and borrowable digital books from the Internet Archive.",
+    },
+  },
+  {
+    id: 14,
+    name: "Project Gutenberg",
+    isLocal: false,
+    resourceType: "ebooks" as ResourceType,
+    link: "https://www.gutenberg.org/",
+    logoUrl: "https://www.gutenberg.org/gutenberg/pg-logo-129x80.png",
+    desc: {
+      tagalog: "Mahigit 70,000 libreng klasikong libro sa public domain.",
+      english: "Over 70,000 free classic books in the public domain.",
+    },
+  },
+  {
+    id: 15,
+    name: "Standard Ebooks",
+    isLocal: false,
+    resourceType: "ebooks" as ResourceType,
+    link: "https://standardebooks.org/ebooks",
+    logoUrl: "https://standardebooks.org/images/logo.svg",
+    desc: {
+      tagalog:
+        "Mga maayos na na-format na libreng ebook — public domain classics.",
+      english:
+        "Beautifully formatted free ebooks — polished public domain classics.",
+    },
+  },
+  {
+    id: 16,
+    name: "TechnoAklatan",
+    isLocal: true,
+    resourceType: "ebooks" as ResourceType,
+    link: "https://nlpdl.nlp.gov.ph/TechnoAklatan.htm",
+    logoUrl: "nlp-logo.png",
+    desc: {
+      tagalog: "Digital na koleksyon ng Pambansang Aklatan ng Pilipinas.",
+      english: "National Library of the Philippines digital collection.",
     },
   },
 ];
@@ -157,6 +229,7 @@ export default function Aklatan() {
   const [searchQuery, setSearchQuery] = useState("");
   const [browseQuery, setBrowseQuery] = useState("");
   const [onlyLocal, setOnlyLocal] = useState(false);
+  const [activeType, setActiveType] = useState<ResourceType | "all">("all");
 
   const ui = {
     tagalog: {
@@ -181,6 +254,9 @@ export default function Aklatan() {
       visit: "Puntahan",
       emptyTitle: "Walang nahanap na database.",
       emptyDesc: "Subukan ang ibang keyword.",
+      typeAll: "Lahat",
+      typeResearch: "Pananaliksik",
+      typeEbooks: "E-Books",
     },
     english: {
       back: "Back",
@@ -204,6 +280,9 @@ export default function Aklatan() {
       visit: "Visit",
       emptyTitle: "No databases found.",
       emptyDesc: "Try a different keyword.",
+      typeAll: "All",
+      typeResearch: "Research",
+      typeEbooks: "E-Books",
     },
   };
   const t = ui[language];
@@ -212,7 +291,8 @@ export default function Aklatan() {
     (db) =>
       (db.name.toLowerCase().includes(browseQuery.toLowerCase()) ||
         db.desc[language].toLowerCase().includes(browseQuery.toLowerCase())) &&
-      (!onlyLocal || db.isLocal),
+      (!onlyLocal || db.isLocal) &&
+      (activeType === "all" || db.resourceType === activeType),
   );
 
   const handleSemanticSearch = () => {
@@ -229,6 +309,13 @@ export default function Aklatan() {
     (e.currentTarget.style.borderColor = "#06b6d4");
   const onBlurSky = (e: React.FocusEvent<HTMLInputElement>) =>
     (e.currentTarget.style.borderColor = "#bae6fd");
+
+  const researchCount = openDatabases.filter(
+    (d) => d.resourceType === "research",
+  ).length;
+  const ebooksCount = openDatabases.filter(
+    (d) => d.resourceType === "ebooks",
+  ).length;
 
   return (
     <div className="min-h-screen w-screen flex flex-col md:flex-row bg-white">
@@ -289,6 +376,50 @@ export default function Aklatan() {
               {t.subtitle}
             </p>
           </div>
+
+          {/* Resource type legend */}
+          <div className="flex flex-col gap-2.5">
+            {[
+              {
+                type: "research" as ResourceType,
+                icon: Search,
+                label: t.typeResearch,
+                count: researchCount,
+                color: "#06b6d4",
+                bg: "rgba(6,182,212,0.15)",
+              },
+              {
+                type: "ebooks" as ResourceType,
+                icon: BookMarked,
+                label: t.typeEbooks,
+                count: ebooksCount,
+                color: "#2dd4bf",
+                bg: "rgba(45,212,191,0.15)",
+              },
+            ].map((item) => (
+              <div key={item.type} className="flex items-center gap-2.5">
+                <div
+                  className="flex items-center justify-center w-6 h-6 rounded-lg shrink-0"
+                  style={{ backgroundColor: item.bg }}
+                >
+                  <item.icon size={12} style={{ color: item.color }} />
+                </div>
+                <span
+                  className="text-xs font-semibold"
+                  style={{ color: "rgba(186,230,253,0.75)" }}
+                >
+                  {item.label}
+                </span>
+                <span
+                  className="ml-auto text-[10px] font-bold tabular-nums"
+                  style={{ color: "rgba(186,230,253,0.4)" }}
+                >
+                  {item.count}
+                </span>
+              </div>
+            ))}
+          </div>
+
           <div
             className="rounded-xl px-4 py-3 text-xs leading-relaxed"
             style={{
@@ -402,7 +533,6 @@ export default function Aklatan() {
                 <p className="text-sm text-slate-500">{t.idleSub}</p>
               </div>
 
-              {/* Search input */}
               <div className="relative mb-3">
                 <Search
                   size={16}
@@ -439,7 +569,6 @@ export default function Aklatan() {
                 {t.hint}
               </p>
 
-              {/* Powered by */}
               <div className="flex items-center justify-center gap-1.5 mt-2">
                 <span
                   className="text-[10px] font-bold uppercase tracking-widest"
@@ -458,7 +587,6 @@ export default function Aklatan() {
                 </a>
               </div>
 
-              {/* Switch nudge */}
               <div
                 className="mt-10 pt-8 border-t text-center"
                 style={skyBorder}
@@ -485,6 +613,7 @@ export default function Aklatan() {
               className="px-6 lg:px-8 pt-5 pb-4 flex flex-col sm:flex-row gap-3 items-start sm:items-center border-b"
               style={skyBorder}
             >
+              {/* Search */}
               <div className="relative flex-1 max-w-md">
                 <Search
                   size={14}
@@ -501,7 +630,36 @@ export default function Aklatan() {
                   onBlur={onBlurSky}
                 />
               </div>
-              <div className="flex items-center gap-3">
+
+              <div className="flex items-center gap-2 flex-wrap">
+                {/* Resource type filter */}
+                <div className="flex bg-white border border-sky-100 p-1 rounded-xl">
+                  {[
+                    { val: "all" as const, label: t.typeAll, icon: null },
+                    {
+                      val: "research" as const,
+                      label: t.typeResearch,
+                      icon: Search,
+                    },
+                    {
+                      val: "ebooks" as const,
+                      label: t.typeEbooks,
+                      icon: BookMarked,
+                    },
+                  ].map(({ val, label, icon: Icon }) => (
+                    <button
+                      key={val}
+                      onClick={() => setActiveType(val)}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${activeType === val ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
+                      style={activeType === val ? navyBg : {}}
+                    >
+                      {Icon && <Icon size={11} />}
+                      {label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Local toggle */}
                 <div className="flex bg-white border border-sky-100 p-1 rounded-xl">
                   {([false, true] as const).map((local) => (
                     <button
@@ -514,6 +672,7 @@ export default function Aklatan() {
                     </button>
                   ))}
                 </div>
+
                 <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 whitespace-nowrap">
                   {filtered.length} {t.results}
                 </p>
@@ -541,18 +700,48 @@ export default function Aklatan() {
                               className="h-full w-full object-contain object-left"
                             />
                           </div>
-                          {db.isLocal && (
+                          <div className="flex flex-col items-end gap-1.5 shrink-0">
+                            {/* Resource type badge */}
                             <span
-                              className="flex items-center gap-1 shrink-0 rounded-full px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider"
-                              style={{
-                                backgroundColor: "rgba(16,185,129,0.08)",
-                                color: "#059669",
-                                border: "1px solid rgba(16,185,129,0.2)",
-                              }}
+                              className="flex items-center gap-1 rounded-full px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider"
+                              style={
+                                db.resourceType === "ebooks"
+                                  ? {
+                                      backgroundColor: "rgba(45,212,191,0.1)",
+                                      color: "#0d9488",
+                                      border: "1px solid rgba(45,212,191,0.25)",
+                                    }
+                                  : {
+                                      backgroundColor: "rgba(6,182,212,0.1)",
+                                      color: "#0369a1",
+                                      border: "1px solid rgba(6,182,212,0.25)",
+                                    }
+                              }
                             >
-                              <MapPin size={8} /> Lokal
+                              {db.resourceType === "ebooks" ? (
+                                <>
+                                  <BookMarked size={8} /> {t.typeEbooks}
+                                </>
+                              ) : (
+                                <>
+                                  <Search size={8} /> {t.typeResearch}
+                                </>
+                              )}
                             </span>
-                          )}
+                            {/* Local badge */}
+                            {db.isLocal && (
+                              <span
+                                className="flex items-center gap-1 rounded-full px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider"
+                                style={{
+                                  backgroundColor: "rgba(16,185,129,0.08)",
+                                  color: "#059669",
+                                  border: "1px solid rgba(16,185,129,0.2)",
+                                }}
+                              >
+                                <MapPin size={8} /> Lokal
+                              </span>
+                            )}
+                          </div>
                         </div>
                         <h2 className="mb-1.5 text-base font-bold text-slate-900">
                           {db.name}

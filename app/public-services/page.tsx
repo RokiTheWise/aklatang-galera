@@ -38,7 +38,7 @@ const resources: Resource[] = [
     featured: true,
     name: "eLGU Puerto Galera",
     link: "https://elgu-puerto-galera-oriental-mindoro.e.gov.ph/elgu-service",
-    logoUrl: "https://www.dict.gov.ph/wp-content/uploads/2021/05/elgu-logo.png",
+    logoUrl: "/elgu-logo.png",
     tags: ["Business Permit (BPLS)", "Civil Registry", "Cedula / CTC"],
     desc: {
       tagalog:
@@ -52,9 +52,8 @@ const resources: Resource[] = [
     category: "egovernment",
     featured: false,
     name: "eSEC Portal",
-    link: "https://esec.sec.gov.ph/",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/en/2/25/Securities_and_Exchange_Commission_%28Philippines%29_seal.svg",
+    link: "https://esecure.sec.gov.ph/",
+    logoUrl: "sec-logo.png",
     desc: {
       tagalog: "Online na pagpapatala ng negosyo at korporasyon sa SEC.",
       english: "Online business and corporation registration with the SEC.",
@@ -66,8 +65,7 @@ const resources: Resource[] = [
     featured: false,
     name: "LTO Online Portal",
     link: "https://portal.lto.gov.ph/",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/en/b/b2/Land_Transportation_Office_%28Philippines%29_logo.svg",
+    logoUrl: "lto-logo.svg",
     desc: {
       tagalog:
         "I-renew ang lisensya, rehistro, at iba pang serbisyo ng LTO online.",
@@ -81,8 +79,7 @@ const resources: Resource[] = [
     featured: false,
     name: "My.SSS Portal",
     link: "https://www.sss.gov.ph/",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/en/b/b2/Social_Security_System_%28Philippines%29.svg",
+    logoUrl: "sss-logo.svg",
     desc: {
       tagalog:
         "I-check ang SSS contributions, mag-apply ng benefits, at marami pa.",
@@ -95,8 +92,7 @@ const resources: Resource[] = [
     featured: false,
     name: "Pag-IBIG Fund Online",
     link: "https://www.pagibigfundservices.com/",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/en/0/09/Pag-IBIG_Fund_logo.png",
+    logoUrl: "pag-ibig-logo.svg",
     desc: {
       tagalog:
         "Mag-contribute, mag-apply ng loan, at ma-access ang Pag-IBIG services online.",
@@ -109,9 +105,8 @@ const resources: Resource[] = [
     category: "egovernment",
     featured: false,
     name: "PhilHealth Member Portal",
-    link: "https://memberinquiry.philhealth.gov.ph/",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/en/5/58/PhilHealth_Logo.svg",
+    link: "https://memberinquiry.philhealth.gov.ph/member/",
+    logoUrl: "philhealth-logo.svg",
     desc: {
       tagalog: "I-verify ang PhilHealth contributions at i-download ang MDR.",
       english: "Verify PhilHealth contributions and download your MDR.",
@@ -123,8 +118,7 @@ const resources: Resource[] = [
     featured: false,
     name: "PhilSys Registration",
     link: "https://philsys.gov.ph/",
-    logoUrl:
-      "https://philsys.gov.ph/wp-content/uploads/2022/01/PhilSys-Logo-Horizontal.png",
+    logoUrl: "philsys-logo.png",
     desc: {
       tagalog:
         "Mag-apply at i-track ang iyong Philippine National ID (PhilSys).",
@@ -139,8 +133,7 @@ const resources: Resource[] = [
     featured: false,
     name: "Ateneo de Manila Scholarships",
     link: "https://www.ateneo.edu/college/scholarships/programs",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/en/2/2a/Ateneo_de_Manila_University_seal.svg",
+    logoUrl: "ateneo-logo.png",
     desc: {
       tagalog:
         "Mga scholarship at financial aid programs ng Ateneo de Manila University.",
@@ -154,8 +147,7 @@ const resources: Resource[] = [
     featured: false,
     name: "CHED UniFAST Scholarships",
     link: "https://unifast.gov.ph/",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/en/1/19/Commission_on_Higher_Education_%28Philippines%29_seal.svg",
+    logoUrl: "ched-logo.png",
     desc: {
       tagalog:
         "TES, StuFAPs, at iba pang scholarship programs ng CHED para sa mga Pilipino.",
@@ -169,8 +161,7 @@ const resources: Resource[] = [
     featured: false,
     name: "De La Salle University Scholarships",
     link: "https://www.dlsu.edu.ph/admission/scholarship/",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/en/0/0d/De_La_Salle_University_Seal.svg",
+    logoUrl: "dlsu-logo.png",
     desc: {
       tagalog:
         "Mga iskolarship at financial assistance ng De La Salle University.",
@@ -184,8 +175,7 @@ const resources: Resource[] = [
     featured: false,
     name: "DOST-SEI Scholarships",
     link: "https://www.sei.dost.gov.ph/index.php/programs/scholarships",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/8/82/DOST_seal.svg",
+    logoUrl: "dost-logo.png",
     desc: {
       tagalog:
         "Mga scholarship ng DOST para sa mga nag-aaral ng agham at teknolohiya.",
@@ -199,7 +189,7 @@ const resources: Resource[] = [
     featured: false,
     name: "OWWA Scholarships",
     link: "https://owwa.gov.ph/index.php/programs-services/educational-assistance",
-    logoUrl: "https://upload.wikimedia.org/wikipedia/en/e/e6/OWWA_Logo.png",
+    logoUrl: "owwa-logo.svg",
     desc: {
       tagalog: "Educational assistance para sa mga anak ng OFWs mula sa OWWA.",
       english: "Educational assistance for children of OFWs from OWWA.",
@@ -211,8 +201,7 @@ const resources: Resource[] = [
     featured: false,
     name: "University of Santo Tomas Scholarships",
     link: "https://ofad.ust.edu.ph/scholarships/",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/en/e/e6/University_of_Santo_Tomas_seal.svg",
+    logoUrl: "ust-logo.svg",
     desc: {
       tagalog:
         "Mga scholarship at tuition discount ng Unibersidad ng Santo Tomas.",
@@ -226,8 +215,7 @@ const resources: Resource[] = [
     featured: false,
     name: "University of the Philippines Scholarships",
     link: "https://upd.edu.ph/students/scholarships-and-grants/",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/en/3/3d/University_of_the_Philippines_Seal.svg",
+    logoUrl: "up-logo.png",
     desc: {
       tagalog:
         "Scholarship at financial assistance mula sa UP para sa mga Pilipino.",
@@ -241,9 +229,9 @@ const resources: Resource[] = [
     id: 15,
     category: "transparency",
     featured: false,
-    name: "Bids and Awards Committee",
+    name: "Philippine Government Procurement System (PhilGEPS)",
     link: "https://www.philgeps.gov.ph/",
-    logoUrl: "https://www.philgeps.gov.ph/images/philgeps_logo_white.png",
+    logoUrl: "philgeps-logo.png",
     desc: {
       tagalog:
         "Opisyal na procurement at bidding portal ng gobyerno ng Pilipinas.",
@@ -257,8 +245,7 @@ const resources: Resource[] = [
     featured: false,
     name: "COA Transparency Portal",
     link: "https://www.coa.gov.ph/",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/9/93/Commission_on_Audit_seal.svg",
+    logoUrl: "coa-logo.png",
     desc: {
       tagalog: "Mga ulat at audit ng Commission on Audit ng Pilipinas.",
       english:
@@ -271,8 +258,7 @@ const resources: Resource[] = [
     featured: false,
     name: "PIO Puerto Galera",
     link: "https://www.facebook.com/PIOPuertoGalera",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+    logoUrl: "piopg-logo.jpg",
     desc: {
       tagalog:
         "Opisyal na pahayag at balita mula sa Public Information Office ng Puerto Galera.",
@@ -286,8 +272,7 @@ const resources: Resource[] = [
     featured: false,
     name: "Sangguniang Bayan ng Puerto Galera",
     link: "https://www.facebook.com/SangguniangBayanPuertoGalera",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+    logoUrl: "sbpg-logo.jpeg",
     desc: {
       tagalog:
         "Mga ordinansa, resolusyon, at opisyal na aksyon ng Sangguniang Bayan.",

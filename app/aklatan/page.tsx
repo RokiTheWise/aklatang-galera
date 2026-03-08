@@ -169,6 +169,58 @@ const openDatabases = [
   },
   {
     id: 13,
+    name: "Canvas.ph Art and Stories",
+    isLocal: true,
+    resourceType: "ebooks" as ResourceType,
+    link: "https://www.canvas.ph/art-and-stories",
+    logoUrl: "https://www.canvas.ph/favicon.ico",
+    desc: {
+      tagalog:
+        "Mga kwento at sining para sa mga batang Pilipino mula sa Canvas.ph.",
+      english: "Stories and art for Filipino children from Canvas.ph.",
+    },
+  },
+  {
+    id: 14,
+    name: "eBooks for Students",
+    isLocal: false,
+    resourceType: "ebooks" as ResourceType,
+    link: "https://ebooksforstudents.org/",
+    logoUrl: "ebook-logo.png",
+    desc: {
+      tagalog: "Libreng ebook para sa mga estudyante sa iba't ibang paksa.",
+      english: "Free ebooks for students across a wide range of subjects.",
+    },
+  },
+  {
+    id: 15,
+    name: "Filipinas Heritage Library",
+    isLocal: true,
+    resourceType: "ebooks" as ResourceType,
+    link: "https://www.filipinaslibrary.org.ph/search-collection/?keywords=read+online",
+    logoUrl: "fillib-logo.jpg",
+    desc: {
+      tagalog:
+        "Digital na koleksyon ng Ayala Foundation tungkol sa kasaysayan at kulturang Pilipino.",
+      english:
+        "Ayala Foundation's digital collection on Philippine history and culture.",
+    },
+  },
+  {
+    id: 16,
+    name: "Free Children's Stories",
+    isLocal: false,
+    resourceType: "ebooks" as ResourceType,
+    link: "https://www.freechildrenstories.com/",
+    logoUrl: "https://www.freechildrenstories.com/favicon.ico",
+    desc: {
+      tagalog:
+        "Libreng mga kwento para sa mga bata — maikling pagbabasa online.",
+      english: "Free stories for children — short reads available online.",
+    },
+  },
+  {
+    id: 17,
     name: "Open Library",
     isLocal: false,
     resourceType: "ebooks" as ResourceType,
@@ -177,12 +229,25 @@ const openDatabases = [
       "https://openlibrary.org/static/images/openlibrary-logo-tighter.svg",
     desc: {
       tagalog:
-        "Libre at borrowable na digital na mga libro mula sa Internet Archive.",
+        "Libre at mahihiram na digital na mga libro mula sa Internet Archive.",
       english: "Free and borrowable digital books from the Internet Archive.",
     },
   },
   {
-    id: 14,
+    id: 18,
+    name: "Planet eBook",
+    isLocal: false,
+    resourceType: "ebooks" as ResourceType,
+    link: "https://www.planetebook.com/",
+    logoUrl: "https://www.planetebook.com/favicon.ico",
+    desc: {
+      tagalog:
+        "Libreng klasikong literatura sa PDF format para sa mga mambabasa.",
+      english: "Free classic literature in PDF format for readers.",
+    },
+  },
+  {
+    id: 19,
     name: "Project Gutenberg",
     isLocal: false,
     resourceType: "ebooks" as ResourceType,
@@ -194,7 +259,7 @@ const openDatabases = [
     },
   },
   {
-    id: 15,
+    id: 20,
     name: "Standard Ebooks",
     isLocal: false,
     resourceType: "ebooks" as ResourceType,
@@ -208,7 +273,7 @@ const openDatabases = [
     },
   },
   {
-    id: 16,
+    id: 21,
     name: "TechnoAklatan",
     isLocal: true,
     resourceType: "ebooks" as ResourceType,
@@ -613,7 +678,6 @@ export default function Aklatan() {
               className="px-6 lg:px-8 pt-5 pb-4 flex flex-col sm:flex-row gap-3 items-start sm:items-center border-b"
               style={skyBorder}
             >
-              {/* Search */}
               <div className="relative flex-1 max-w-md">
                 <Search
                   size={14}
@@ -701,7 +765,6 @@ export default function Aklatan() {
                             />
                           </div>
                           <div className="flex flex-col items-end gap-1.5 shrink-0">
-                            {/* Resource type badge */}
                             <span
                               className="flex items-center gap-1 rounded-full px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider"
                               style={
@@ -728,7 +791,6 @@ export default function Aklatan() {
                                 </>
                               )}
                             </span>
-                            {/* Local badge */}
                             {db.isLocal && (
                               <span
                                 className="flex items-center gap-1 rounded-full px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider"

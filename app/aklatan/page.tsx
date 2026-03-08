@@ -1,7 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowLeft, Search, ExternalLink, MapPin, List } from "lucide-react";
+import {
+  ArrowLeft,
+  Search,
+  ExternalLink,
+  MapPin,
+  List,
+  BookOpen,
+} from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
@@ -9,14 +16,14 @@ import { useLanguage } from "@/context/LanguageContext";
 const openDatabases = [
   {
     id: 1,
-    name: "DOAJ",
-    isLocal: false,
-    link: "https://doaj.org/",
+    name: "Archīum Ateneo",
+    isLocal: true,
+    link: "https://archium.ateneo.edu",
     logoUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/1/11/DOAJ_logo.svg",
+      "https://upload.wikimedia.org/wikipedia/en/2/2a/Ateneo_de_Manila_University_seal.svg",
     desc: {
-      tagalog: "Libreng peer-reviewed scientific at scholarly articles.",
-      english: "Free peer-reviewed scientific and scholarly articles.",
+      tagalog: "Institutional repository ng Ateneo de Manila University.",
+      english: "Ateneo de Manila University's institutional repository.",
     },
   },
   {
@@ -34,18 +41,6 @@ const openDatabases = [
   },
   {
     id: 3,
-    name: "Archīum Ateneo",
-    isLocal: true,
-    link: "https://archium.ateneo.edu",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/en/2/2a/Ateneo_de_Manila_University_seal.svg",
-    desc: {
-      tagalog: "Institutional repository ng Ateneo de Manila University.",
-      english: "Ateneo de Manila University's institutional repository.",
-    },
-  },
-  {
-    id: 4,
     name: "BAHÁNDÌAN",
     isLocal: true,
     link: "https://repository.cpu.edu.ph/",
@@ -57,66 +52,7 @@ const openDatabases = [
     },
   },
   {
-    id: 5,
-    name: "Tuklas",
-    isLocal: true,
-    link: "https://tuklas.up.edu.ph/",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/en/3/3d/University_of_the_Philippines_Seal.svg",
-    desc: {
-      tagalog: "Discovery service ng mga aklatan ng UP System.",
-      english: "The UP System libraries' discovery service.",
-    },
-  },
-  {
-    id: 6,
-    name: "Plaridel Journal",
-    isLocal: true,
-    link: "https://www.plarideljournal.org/",
-    logoUrl:
-      "https://www.plarideljournal.org/wp-content/uploads/2015/12/logo-plaridel.png",
-    desc: {
-      tagalog: "Journal ng komunikasyon, media, at lipunan sa Pilipinas.",
-      english: "Philippine journal of communication, media, and society.",
-    },
-  },
-  {
-    id: 7,
-    name: "TechnoAklatan",
-    isLocal: true,
-    link: "https://nlpdl.nlp.gov.ph/TechnoAklatan.htm",
-    logoUrl: "https://web.nlp.gov.ph/nlp/sites/default/files/nlp-logo.png",
-    desc: {
-      tagalog: "Digital na koleksyon ng Pambansang Aklatan ng Pilipinas.",
-      english: "National Library of the Philippines digital collection.",
-    },
-  },
-  {
-    id: 8,
-    name: "Google Scholar",
-    isLocal: false,
-    link: "https://scholar.google.com/",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/2/28/Google_Scholar_logo.svg",
-    desc: {
-      tagalog: "Malawak na paghahanap ng iskolaryong literatura.",
-      english: "Broad search for scholarly literature.",
-    },
-  },
-  {
-    id: 9,
-    name: "PhilSSJ",
-    isLocal: true,
-    link: "https://philssj.org/index.php/main",
-    logoUrl:
-      "https://philssj.org/public/journals/1/pageHeaderLogoImage_en_US.png",
-    desc: {
-      tagalog: "Philippine Social Science Journal para sa mga mananaliksik.",
-      english: "Philippine Social Science Journal for researchers.",
-    },
-  },
-  {
-    id: 10,
+    id: 4,
     name: "BISIG (PUP)",
     isLocal: true,
     link: "https://publishing.pup.edu.ph/ojs/index.php/BSG",
@@ -128,7 +64,55 @@ const openDatabases = [
     },
   },
   {
-    id: 11,
+    id: 5,
+    name: "DOAJ",
+    isLocal: false,
+    link: "https://doaj.org/",
+    logoUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/1/11/DOAJ_logo.svg",
+    desc: {
+      tagalog: "Libreng peer-reviewed scientific at scholarly articles.",
+      english: "Free peer-reviewed scientific and scholarly articles.",
+    },
+  },
+  {
+    id: 6,
+    name: "Google Scholar",
+    isLocal: false,
+    link: "https://scholar.google.com/",
+    logoUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/2/28/Google_Scholar_logo.svg",
+    desc: {
+      tagalog: "Malawak na paghahanap ng iskolaryong literatura.",
+      english: "Broad search for scholarly literature.",
+    },
+  },
+  {
+    id: 7,
+    name: "PhilSSJ",
+    isLocal: true,
+    link: "https://philssj.org/index.php/main",
+    logoUrl:
+      "https://philssj.org/public/journals/1/pageHeaderLogoImage_en_US.png",
+    desc: {
+      tagalog: "Philippine Social Science Journal para sa mga mananaliksik.",
+      english: "Philippine Social Science Journal for researchers.",
+    },
+  },
+  {
+    id: 8,
+    name: "Plaridel Journal",
+    isLocal: true,
+    link: "https://www.plarideljournal.org/",
+    logoUrl:
+      "https://www.plarideljournal.org/wp-content/uploads/2015/12/logo-plaridel.png",
+    desc: {
+      tagalog: "Journal ng komunikasyon, media, at lipunan sa Pilipinas.",
+      english: "Philippine journal of communication, media, and society.",
+    },
+  },
+  {
+    id: 9,
     name: "PLOS",
     isLocal: false,
     link: "https://plos.org/our-journals/",
@@ -140,7 +124,7 @@ const openDatabases = [
     },
   },
   {
-    id: 12,
+    id: 10,
     name: "Taylor & Francis",
     isLocal: false,
     link: "https://www.tandfonline.com/openaccess",
@@ -151,6 +135,29 @@ const openDatabases = [
       english: "Collection of open access research.",
     },
   },
+  {
+    id: 11,
+    name: "TechnoAklatan",
+    isLocal: true,
+    link: "https://nlpdl.nlp.gov.ph/TechnoAklatan.htm",
+    logoUrl: "https://web.nlp.gov.ph/nlp/sites/default/files/nlp-logo.png",
+    desc: {
+      tagalog: "Digital na koleksyon ng Pambansang Aklatan ng Pilipinas.",
+      english: "National Library of the Philippines digital collection.",
+    },
+  },
+  {
+    id: 12,
+    name: "Tuklas",
+    isLocal: true,
+    link: "https://tuklas.up.edu.ph/",
+    logoUrl:
+      "https://upload.wikimedia.org/wikipedia/en/3/3d/University_of_the_Philippines_Seal.svg",
+    desc: {
+      tagalog: "Discovery service ng mga aklatan ng UP System.",
+      english: "The UP System libraries' discovery service.",
+    },
+  },
 ];
 
 type SearchMode = "semantic" | "browse";
@@ -159,6 +166,7 @@ export default function Aklatan() {
   const { language, setLanguage } = useLanguage();
   const [searchMode, setSearchMode] = useState<SearchMode>("semantic");
   const [searchQuery, setSearchQuery] = useState("");
+  const [browseQuery, setBrowseQuery] = useState("");
   const [onlyLocal, setOnlyLocal] = useState(false);
 
   const ui = {
@@ -169,13 +177,14 @@ export default function Aklatan() {
         "Maghanap ng scholarly articles gamit ang Semantic Scholar, o i-browse ang aming koleksyon ng libreng databases.",
       sideNote: "Lahat ng resources dito ay libre at publicly accessible.",
       modeSemanticLabel: "Smart Search",
-      modeSemanticDesc: "Hanapin ang scholarly articles via Semantic Scholar",
       modeBrowseLabel: "Browse Databases",
-      modeBrowseDesc: "Piliin mula sa aming listahan ng mga resources",
-      semanticPlaceholder: "I-type ang iyong paksa o research question...",
-      semanticBtn: "Hanapin sa Semantic Scholar",
-      semanticHint:
-        "Ire-redirect ka sa semanticscholar.org para sa mga resulta.",
+      placeholder: "I-type ang iyong paksa o research question...",
+      searchBtn: "Hanapin sa Semantic Scholar",
+      hint: "Ire-redirect ka sa semanticscholar.org para sa mga resulta.",
+      poweredBy: "Powered by Semantic Scholar",
+      switchToBrowse: "Gusto mong piliin mismo ang database?",
+      idleHint: "I-type ang iyong paksa para magsimula.",
+      idleSub: "Mula sa milyun-milyong scholarly papers.",
       browsePlaceholder: "I-filter ang mga database...",
       results: "resulta",
       all: "Lahat",
@@ -188,15 +197,17 @@ export default function Aklatan() {
       back: "Back",
       headline: "Digital Library",
       subtitle:
-        "Search millions of scholarly articles via Semantic Scholar, or manually browse our curated list of free databases.",
+        "Search scholarly articles via Semantic Scholar, or browse our curated list of free databases.",
       sideNote: "All resources listed here are free and publicly accessible.",
       modeSemanticLabel: "Smart Search",
-      modeSemanticDesc: "Find scholarly articles via Semantic Scholar",
       modeBrowseLabel: "Browse Databases",
-      modeBrowseDesc: "Pick from our curated list of resources",
-      semanticPlaceholder: "Type your topic or research question...",
-      semanticBtn: "Search Semantic Scholar",
-      semanticHint: "You'll be redirected to semanticscholar.org for results.",
+      placeholder: "Type your topic or research question...",
+      searchBtn: "Search Semantic Scholar",
+      hint: "You'll be redirected to semanticscholar.org for results.",
+      poweredBy: "Powered by Semantic Scholar",
+      switchToBrowse: "Prefer to pick a database yourself?",
+      idleHint: "Type a topic above to get started.",
+      idleSub: "Searching across millions of scholarly papers.",
       browsePlaceholder: "Filter databases...",
       results: "results",
       all: "All",
@@ -206,13 +217,12 @@ export default function Aklatan() {
       emptyDesc: "Try a different keyword.",
     },
   };
-
   const t = ui[language];
 
   const filtered = openDatabases.filter(
     (db) =>
-      (db.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        db.desc[language].toLowerCase().includes(searchQuery.toLowerCase())) &&
+      (db.name.toLowerCase().includes(browseQuery.toLowerCase()) ||
+        db.desc[language].toLowerCase().includes(browseQuery.toLowerCase())) &&
       (!onlyLocal || db.isLocal),
   );
 
@@ -224,11 +234,16 @@ export default function Aklatan() {
     );
   };
 
+  const navyBg = { backgroundColor: "#0d2645" } as const;
+  const skyBorder = { borderColor: "#e0f2fe" } as const;
+  const onFocusSky = (e: React.FocusEvent<HTMLInputElement>) =>
+    (e.currentTarget.style.borderColor = "#06b6d4");
+  const onBlurSky = (e: React.FocusEvent<HTMLInputElement>) =>
+    (e.currentTarget.style.borderColor = "#bae6fd");
+
   return (
     <div className="min-h-screen w-screen flex flex-col md:flex-row bg-white">
-      {/* =============================================
-          LEFT PANEL — deep navy, matches homepage
-          ============================================= */}
+      {/* ── LEFT PANEL ── */}
       <aside
         className="relative flex flex-col w-full md:w-[32%] lg:w-[30%] shrink-0 md:h-screen md:sticky md:top-0 py-8 px-7 md:py-10 md:px-9 overflow-hidden"
         style={{ backgroundColor: "#0d2645" }}
@@ -237,28 +252,24 @@ export default function Aklatan() {
           className="absolute inset-0 pointer-events-none"
           style={{
             opacity: 0.045,
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}
         />
-        {/* Teal glow */}
         <div
           className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full pointer-events-none blur-3xl"
           style={{ backgroundColor: "rgba(45,212,191,0.12)" }}
         />
 
-        {/* Back */}
         <div className="relative z-10 mb-8">
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider transition-opacity hover:opacity-70"
             style={{ color: "rgba(6,182,212,0.7)" }}
           >
-            <ArrowLeft size={14} />
-            {t.back}
+            <ArrowLeft size={14} /> {t.back}
           </Link>
         </div>
 
-        {/* Logo */}
         <div className="relative z-10 mb-8">
           <Image
             src="/aklatang-galera-logo.png"
@@ -270,7 +281,6 @@ export default function Aklatan() {
           />
         </div>
 
-        {/* Identity */}
         <div className="relative z-10 flex-1 flex flex-col justify-center gap-5">
           <div>
             <div
@@ -290,7 +300,6 @@ export default function Aklatan() {
               {t.subtitle}
             </p>
           </div>
-
           <div
             className="rounded-xl px-4 py-3 text-xs leading-relaxed"
             style={{
@@ -301,33 +310,19 @@ export default function Aklatan() {
           >
             {t.sideNote}
           </div>
-
-          {/* Wave pip row */}
           <div className="flex gap-1.5">
-            <div
-              className="w-2 h-2 rounded-full"
-              style={{ backgroundColor: "#1a56db" }}
-            />
-            <div
-              className="w-2 h-2 rounded-full"
-              style={{ backgroundColor: "#06b6d4" }}
-            />
-            <div
-              className="w-2 h-2 rounded-full"
-              style={{ backgroundColor: "#2dd4bf" }}
-            />
-            <div
-              className="w-2 h-2 rounded-full"
-              style={{ backgroundColor: "#4ade80" }}
-            />
-            <div
-              className="w-2 h-2 rounded-full"
-              style={{ backgroundColor: "#f59e0b" }}
-            />
+            {["#1a56db", "#06b6d4", "#2dd4bf", "#4ade80", "#f59e0b"].map(
+              (c) => (
+                <div
+                  key={c}
+                  className="w-2 h-2 rounded-full"
+                  style={{ backgroundColor: c }}
+                />
+              ),
+            )}
           </div>
         </div>
 
-        {/* Dev credit */}
         <div
           className="relative z-10 pt-6 mt-6 border-t"
           style={{ borderColor: "rgba(255,255,255,0.07)" }}
@@ -348,9 +343,7 @@ export default function Aklatan() {
         </div>
       </aside>
 
-      {/* =============================================
-          RIGHT PANEL
-          ============================================= */}
+      {/* ── RIGHT PANEL ── */}
       <main
         className="flex-1 flex flex-col min-h-screen"
         style={{ backgroundColor: "#f0f9ff" }}
@@ -364,57 +357,33 @@ export default function Aklatan() {
           }}
         >
           <div className="flex items-center justify-between gap-3">
-            {/* Mode switcher */}
             <div className="flex bg-white border border-sky-100 p-1 rounded-xl">
               <button
                 onClick={() => setSearchMode("semantic")}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                  searchMode === "semantic"
-                    ? "text-white shadow-sm"
-                    : "text-slate-400 hover:bg-sky-50"
-                }`}
-                style={
-                  searchMode === "semantic"
-                    ? { backgroundColor: "#0d2645" }
-                    : {}
-                }
+                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${searchMode === "semantic" ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
+                style={searchMode === "semantic" ? navyBg : {}}
               >
-                <Search size={12} />
-                {t.modeSemanticLabel}
+                <Search size={12} /> {t.modeSemanticLabel}
               </button>
               <button
                 onClick={() => {
                   setSearchMode("browse");
-                  setSearchQuery("");
+                  setBrowseQuery("");
                 }}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                  searchMode === "browse"
-                    ? "text-white shadow-sm"
-                    : "text-slate-400 hover:bg-sky-50"
-                }`}
-                style={
-                  searchMode === "browse" ? { backgroundColor: "#0d2645" } : {}
-                }
+                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${searchMode === "browse" ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
+                style={searchMode === "browse" ? navyBg : {}}
               >
-                <List size={12} />
-                {t.modeBrowseLabel}
+                <List size={12} /> {t.modeBrowseLabel}
               </button>
             </div>
 
-            {/* Language toggle */}
             <div className="flex items-center gap-1 bg-white border border-sky-100 p-1 rounded-xl shrink-0">
               {(["tagalog", "english"] as const).map((lang) => (
                 <button
                   key={lang}
                   onClick={() => setLanguage(lang)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-all ${
-                    language === lang
-                      ? "text-white shadow-sm"
-                      : "text-slate-400 hover:bg-sky-50"
-                  }`}
-                  style={
-                    language === lang ? { backgroundColor: "#0d2645" } : {}
-                  }
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-all ${language === lang ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
+                  style={language === lang ? navyBg : {}}
                 >
                   <span>{lang === "tagalog" ? "🇵🇭" : "🇬🇧"}</span>
                   {lang === "tagalog" ? "FIL" : "ENG"}
@@ -424,7 +393,7 @@ export default function Aklatan() {
           </div>
         </div>
 
-        {/* ── SEMANTIC SEARCH MODE ── */}
+        {/* ── SMART SEARCH MODE ── */}
         {searchMode === "semantic" && (
           <div className="flex-1 flex flex-col items-center justify-center px-6 lg:px-8 py-16">
             <div className="w-full max-w-xl">
@@ -433,58 +402,87 @@ export default function Aklatan() {
                   className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-4"
                   style={{ backgroundColor: "rgba(13,38,69,0.07)" }}
                 >
-                  <Search size={24} style={{ color: "#0d2645" }} />
+                  <BookOpen
+                    size={26}
+                    style={{ color: "#0d2645", opacity: 0.5 }}
+                  />
                 </div>
                 <h2 className="text-xl font-extrabold text-slate-900 mb-1">
                   {t.modeSemanticLabel}
                 </h2>
-                <p className="text-sm text-slate-500">{t.modeSemanticDesc}</p>
+                <p className="text-sm text-slate-500">{t.idleSub}</p>
               </div>
 
+              {/* Search input */}
               <div className="relative mb-3">
+                <Search
+                  size={16}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
+                />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSemanticSearch()}
-                  placeholder={t.semanticPlaceholder}
-                  className="w-full rounded-2xl border bg-white px-5 py-4 pr-36 text-sm font-medium text-slate-800 placeholder-slate-400 shadow-sm outline-none transition-all"
+                  placeholder={t.placeholder}
+                  className="w-full rounded-2xl border bg-white pl-11 pr-5 py-4 text-sm font-medium text-slate-800 placeholder-slate-400 shadow-sm outline-none transition-all"
                   style={{ borderColor: "#bae6fd" }}
-                  onFocus={(e) =>
-                    (e.currentTarget.style.borderColor = "#06b6d4")
-                  }
-                  onBlur={(e) =>
-                    (e.currentTarget.style.borderColor = "#bae6fd")
-                  }
+                  onFocus={onFocusSky}
+                  onBlur={onBlurSky}
                 />
-                <button
-                  onClick={handleSemanticSearch}
-                  disabled={!searchQuery.trim()}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-bold uppercase tracking-wide transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90"
-                  style={{ backgroundColor: "#0d2645", color: "white" }}
-                >
-                  Search
-                  <ExternalLink size={11} />
-                </button>
               </div>
 
-              <p className="text-center text-[11px] text-slate-400 leading-relaxed">
-                {t.semanticHint}
+              <button
+                onClick={handleSemanticSearch}
+                disabled={!searchQuery.trim()}
+                className="w-full flex items-center justify-center gap-2 rounded-2xl py-3 text-sm font-bold transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90"
+                style={navyBg}
+              >
+                <span
+                  style={{ color: "white" }}
+                  className="flex items-center gap-2"
+                >
+                  {t.searchBtn} <ExternalLink size={14} />
+                </span>
+              </button>
+
+              <p className="text-center text-[11px] text-slate-400 leading-relaxed mt-3">
+                {t.hint}
               </p>
 
-              <div className="mt-10 pt-8 border-t border-sky-100 text-center">
+              {/* Powered by */}
+              <div className="flex items-center justify-center gap-1.5 mt-2">
+                <span
+                  className="text-[10px] font-bold uppercase tracking-widest"
+                  style={{ color: "rgba(13,38,69,0.3)" }}
+                >
+                  {t.poweredBy}
+                </span>
+                <a
+                  href="https://www.semanticscholar.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[10px] font-bold underline underline-offset-2 transition-opacity hover:opacity-60"
+                  style={{ color: "rgba(13,38,69,0.4)" }}
+                >
+                  semanticscholar.org ↗
+                </a>
+              </div>
+
+              {/* Switch nudge */}
+              <div
+                className="mt-10 pt-8 border-t text-center"
+                style={skyBorder}
+              >
                 <p className="text-xs text-slate-400 mb-3">
-                  {language === "tagalog"
-                    ? "Gusto mong piliin mismo ang database?"
-                    : "Prefer to pick a database yourself?"}
+                  {t.switchToBrowse}
                 </p>
                 <button
                   onClick={() => setSearchMode("browse")}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold transition-opacity hover:opacity-70"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold transition-opacity hover:opacity-60"
                   style={{ color: "#0d2645" }}
                 >
-                  <List size={13} />
-                  {t.modeBrowseLabel} →
+                  <List size={12} /> {t.modeBrowseLabel} →
                 </button>
               </div>
             </div>
@@ -496,44 +494,36 @@ export default function Aklatan() {
           <>
             <div
               className="px-6 lg:px-8 pt-5 pb-4 flex flex-col sm:flex-row gap-3 items-start sm:items-center border-b"
-              style={{ borderColor: "#e0f2fe" }}
+              style={skyBorder}
             >
               <div className="relative flex-1 max-w-md">
-                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
-                  <Search size={14} className="text-slate-400" />
-                </div>
+                <Search
+                  size={14}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
+                />
                 <input
                   type="text"
+                  placeholder={t.browsePlaceholder}
+                  value={browseQuery}
+                  onChange={(e) => setBrowseQuery(e.target.value)}
                   className="w-full rounded-xl border bg-white py-2.5 pl-10 pr-4 text-sm font-medium text-slate-800 placeholder-slate-400 outline-none transition-all"
                   style={{ borderColor: "#bae6fd" }}
-                  onFocus={(e) =>
-                    (e.currentTarget.style.borderColor = "#06b6d4")
-                  }
-                  onBlur={(e) =>
-                    (e.currentTarget.style.borderColor = "#bae6fd")
-                  }
-                  placeholder={t.browsePlaceholder}
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onFocus={onFocusSky}
+                  onBlur={onBlurSky}
                 />
               </div>
-
               <div className="flex items-center gap-3">
                 <div className="flex bg-white border border-sky-100 p-1 rounded-xl">
-                  <button
-                    onClick={() => setOnlyLocal(false)}
-                    className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${!onlyLocal ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
-                    style={!onlyLocal ? { backgroundColor: "#0d2645" } : {}}
-                  >
-                    {t.all}
-                  </button>
-                  <button
-                    onClick={() => setOnlyLocal(true)}
-                    className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${onlyLocal ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
-                    style={onlyLocal ? { backgroundColor: "#0d2645" } : {}}
-                  >
-                    {t.local}
-                  </button>
+                  {([false, true] as const).map((local) => (
+                    <button
+                      key={String(local)}
+                      onClick={() => setOnlyLocal(local)}
+                      className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${onlyLocal === local ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
+                      style={onlyLocal === local ? navyBg : {}}
+                    >
+                      {local ? t.local : t.all}
+                    </button>
+                  ))}
                 </div>
                 <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 whitespace-nowrap">
                   {filtered.length} {t.results}
@@ -551,11 +541,11 @@ export default function Aklatan() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group flex flex-col justify-between rounded-2xl bg-white border p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-                      style={{ borderColor: "#e0f2fe" }}
+                      style={skyBorder}
                     >
                       <div>
                         <div className="mb-5 flex items-start justify-between gap-2">
-                          <div className="h-8 w-28 relative">
+                          <div className="h-8 w-28">
                             <img
                               src={db.logoUrl}
                               alt={db.name}
@@ -571,8 +561,7 @@ export default function Aklatan() {
                                 border: "1px solid rgba(16,185,129,0.2)",
                               }}
                             >
-                              <MapPin size={8} />
-                              Lokal
+                              <MapPin size={8} /> Lokal
                             </span>
                           )}
                         </div>
@@ -583,11 +572,7 @@ export default function Aklatan() {
                           {db.desc[language]}
                         </p>
                       </div>
-
-                      <div
-                        className="mt-5 pt-4 border-t"
-                        style={{ borderColor: "#e0f2fe" }}
-                      >
+                      <div className="mt-5 pt-4 border-t" style={skyBorder}>
                         <div
                           className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wide transition-all duration-200 group-hover:gap-2.5"
                           style={{
@@ -595,7 +580,7 @@ export default function Aklatan() {
                             color: "#ffffff",
                           }}
                         >
-                          {t.visit}
+                          {t.visit}{" "}
                           <ExternalLink
                             size={11}
                             className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"

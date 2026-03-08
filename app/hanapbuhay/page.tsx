@@ -35,8 +35,7 @@ const resources: Resource[] = [
     free: true,
     name: "Canva for Business",
     link: "https://www.canva.com/",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/0/08/Canva_icon_2021.svg",
+    logoUrl: "canva-logo.png",
     desc: {
       tagalog: "Libreng marketing materials para sa iyong negosyo.",
       english: "Free marketing materials and graphics for your business.",
@@ -47,7 +46,7 @@ const resources: Resource[] = [
     category: "skills",
     free: true,
     name: "Coursera",
-    link: "https://www.coursera.org/",
+    link: "https://www.coursera.org/courses?query=free",
     logoUrl:
       "https://upload.wikimedia.org/wikipedia/commons/9/97/Coursera-Logo_600x600.svg",
     desc: {
@@ -60,8 +59,8 @@ const resources: Resource[] = [
     category: "entrepreneurship",
     free: true,
     name: "DTI NEGOSYO Center",
-    link: "https://www.dti.gov.ph/negosyo/",
-    logoUrl: "https://upload.wikimedia.org/wikipedia/en/f/fc/DTI_PH_Logo.png",
+    link: "https://www.dti.gov.ph/",
+    logoUrl: "dti-logo.png",
     desc: {
       tagalog: "Tulong sa pagpapatala at pagpapalago ng negosyo mula sa DTI.",
       english: "Business registration and growth support from DTI.",
@@ -73,7 +72,7 @@ const resources: Resource[] = [
     free: true,
     name: "DTI Oriental Mindoro",
     link: "https://www.facebook.com/DTI.OrientalMindoro",
-    logoUrl: "https://upload.wikimedia.org/wikipedia/en/f/fc/DTI_PH_Logo.png",
+    logoUrl: "dti-ormin-logo.jpg",
     desc: {
       tagalog:
         "Mga programa at balita para sa mga negosyante sa Oriental Mindoro.",
@@ -125,8 +124,7 @@ const resources: Resource[] = [
     free: true,
     name: "JobStreet Philippines",
     link: "https://www.jobstreet.com.ph/",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/a/a3/JobStreet_Logo.svg",
+    logoUrl: "/jobstreet-logo.png",
     desc: {
       tagalog: "Isa sa pinakamalaking job site sa Pilipinas at Asya.",
       english: "One of the largest job sites in the Philippines and Asia.",
@@ -150,8 +148,7 @@ const resources: Resource[] = [
     free: true,
     name: "Khan Academy",
     link: "https://www.khanacademy.org/",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/9/97/KA_Horizontal_Reversed.png",
+    logoUrl: "/khan-logo.png",
     desc: {
       tagalog: "Libreng pag-aaral sa math, agham, at marami pa.",
       english: "Free learning in math, science, and more.",
@@ -189,7 +186,7 @@ const resources: Resource[] = [
     free: true,
     name: "OnlineJobs.ph",
     link: "https://www.onlinejobs.ph/",
-    logoUrl: "https://www.onlinejobs.ph/favicon.ico",
+    logoUrl: "onlinejobs-logo.jpg",
     desc: {
       tagalog: "Platform para sa mga remote at online na trabaho.",
       english: "Platform for remote and online work opportunities.",
@@ -199,10 +196,9 @@ const resources: Resource[] = [
     id: 14,
     category: "jobs",
     free: true,
-    name: "OR Mindoro Gov Careers",
+    name: "OrMin Goverment Careers",
     link: "https://ormindoro.gov.ph/careers/",
-    logoUrl:
-      "https://ormindoro.gov.ph/wp-content/uploads/2021/10/or-mindoro-logo.png",
+    logoUrl: "ormin-logo.png",
     desc: {
       tagalog: "Mga bakanteng posisyon sa gobyerno ng Oriental Mindoro.",
       english: "Open government positions in Oriental Mindoro.",
@@ -212,14 +208,13 @@ const resources: Resource[] = [
     id: 15,
     category: "jobs",
     free: true,
-    name: "PESO Job Portal",
-    link: "https://www.phil-jobnet.dole.gov.ph/",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/en/2/29/Department_of_Labor_and_Employment_%28DOLE%29.svg",
+    name: "Civil Service Commission Jobs Opportunities",
+    link: "https://csc.gov.ph/career/",
+    logoUrl: "csc-logo.png",
     desc: {
       tagalog:
-        "Opisyal na job portal ng DOLE — libre para sa lahat ng Pilipino.",
-      english: "DOLE's official job portal — free for all Filipinos.",
+        "Opisyal na job portal ng CSC — libre para sa lahat ng Pilipino.",
+      english: "CSC's official job portal — free for all Filipinos.",
     },
   },
   {
@@ -228,7 +223,7 @@ const resources: Resource[] = [
     free: true,
     name: "Resume.com",
     link: "https://www.resume.com/",
-    logoUrl: "https://www.resume.com/favicon.ico",
+    logoUrl: "resume-logo.png",
     desc: {
       tagalog: "Gumawa ng propesyonal na resume nang libre.",
       english: "Build a professional resume for free.",
@@ -239,8 +234,8 @@ const resources: Resource[] = [
     category: "skills",
     free: true,
     name: "TESDA Online Program",
-    link: "https://top.tesda.gov.ph/",
-    logoUrl: "https://upload.wikimedia.org/wikipedia/en/3/3b/TESDA_logo.png",
+    link: "https://e-tesda.gov.ph/course/",
+    logoUrl: "tesda-logo.jpg",
     desc: {
       tagalog: "Libreng online na mga kurso mula sa TESDA — may sertipiko.",
       english: "Free online courses from TESDA — with certificates.",

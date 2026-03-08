@@ -75,8 +75,7 @@ const openDatabases = [
     name: "Google Scholar",
     isLocal: false,
     link: "https://scholar.google.com/",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/2/28/Google_Scholar_logo.svg",
+    logoUrl: "google-scholar-logo.png",
     desc: {
       tagalog: "Malawak na paghahanap ng iskolaryong literatura.",
       english: "Broad search for scholarly literature.",
@@ -84,11 +83,10 @@ const openDatabases = [
   },
   {
     id: 7,
-    name: "PhilSSJ",
+    name: "Philippine Social Science Journal",
     isLocal: true,
     link: "https://philssj.org/index.php/main",
-    logoUrl:
-      "https://philssj.org/public/journals/1/pageHeaderLogoImage_en_US.png",
+    logoUrl: "phil-ssj-logo.png",
     desc: {
       tagalog: "Philippine Social Science Journal para sa mga mananaliksik.",
       english: "Philippine Social Science Journal for researchers.",
@@ -99,8 +97,7 @@ const openDatabases = [
     name: "Plaridel Journal",
     isLocal: true,
     link: "https://www.plarideljournal.org/",
-    logoUrl:
-      "https://www.plarideljournal.org/wp-content/uploads/2015/12/logo-plaridel.png",
+    logoUrl: "plaridel-logo.png",
     desc: {
       tagalog: "Journal ng komunikasyon, media, at lipunan sa Pilipinas.",
       english: "Philippine journal of communication, media, and society.",
@@ -111,8 +108,7 @@ const openDatabases = [
     name: "PLOS",
     isLocal: false,
     link: "https://plos.org/our-journals/",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/4/4e/PLOS_Logo.svg",
+    logoUrl: "plos-logo.png",
     desc: {
       tagalog: "Open access na mga journal sa agham at medisina.",
       english: "Open access science journals.",
@@ -123,8 +119,7 @@ const openDatabases = [
     name: "Taylor & Francis",
     isLocal: false,
     link: "https://www.tandfonline.com/openaccess",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/4/4c/Taylor_%26_Francis_logo.svg",
+    logoUrl: "taylor-and-francis-logo.png",
     desc: {
       tagalog: "Koleksyon ng mga open access na pananaliksik sa buong mundo.",
       english: "Collection of open access research.",
@@ -135,7 +130,7 @@ const openDatabases = [
     name: "TechnoAklatan",
     isLocal: true,
     link: "https://nlpdl.nlp.gov.ph/TechnoAklatan.htm",
-    logoUrl: "https://web.nlp.gov.ph/nlp/sites/default/files/nlp-logo.png",
+    logoUrl: "nlp-logo.png",
     desc: {
       tagalog: "Digital na koleksyon ng Pambansang Aklatan ng Pilipinas.",
       english: "National Library of the Philippines digital collection.",
@@ -146,8 +141,7 @@ const openDatabases = [
     name: "Tuklas",
     isLocal: true,
     link: "https://tuklas.up.edu.ph/",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/en/3/3d/University_of_the_Philippines_Seal.svg",
+    logoUrl: "tuklas-logo.png",
     desc: {
       tagalog: "Discovery service ng mga aklatan ng UP System.",
       english: "The UP System libraries' discovery service.",

@@ -16,7 +16,7 @@ import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 
 // ─── Resource Data ────────────────────────────────────────────────────────────
-type Category = "jobs" | "skills" | "entrepreneurship" | "local";
+type Category = "jobs" | "skills" | "entrepreneurship";
 
 interface Resource {
   id: number;
@@ -69,7 +69,7 @@ const resources: Resource[] = [
   },
   {
     id: 4,
-    category: "local",
+    category: "entrepreneurship",
     free: true,
     name: "DTI Oriental Mindoro",
     link: "https://www.facebook.com/DTI.OrientalMindoro",
@@ -197,7 +197,7 @@ const resources: Resource[] = [
   },
   {
     id: 14,
-    category: "local",
+    category: "jobs",
     free: true,
     name: "OR Mindoro Gov Careers",
     link: "https://ormindoro.gov.ph/careers/",
@@ -280,19 +280,16 @@ const categoryColor: Record<Category, string> = {
   jobs: "#0d2645",
   skills: "#0891b2",
   entrepreneurship: "#059669",
-  local: "#d97706",
 };
 const categoryBg: Record<Category, string> = {
   jobs: "rgba(13,38,69,0.08)",
   skills: "rgba(8,145,178,0.08)",
   entrepreneurship: "rgba(5,150,105,0.08)",
-  local: "rgba(217,119,6,0.08)",
 };
 const categoryBorder: Record<Category, string> = {
   jobs: "rgba(13,38,69,0.15)",
   skills: "rgba(8,145,178,0.15)",
   entrepreneurship: "rgba(5,150,105,0.15)",
-  local: "rgba(217,119,6,0.15)",
 };
 
 export default function Hanapbuhay() {

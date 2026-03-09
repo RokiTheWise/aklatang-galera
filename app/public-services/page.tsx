@@ -146,7 +146,7 @@ const resources: Resource[] = [
     category: "scholarships",
     featured: false,
     name: "CHED UniFAST Scholarships",
-    link: "https://unifast.gov.ph/",
+    link: "https://ched.gov.ph/merit-scholarship/",
     logoUrl: "ched-logo.png",
     desc: {
       tagalog:
@@ -174,7 +174,7 @@ const resources: Resource[] = [
     category: "scholarships",
     featured: false,
     name: "DOST-SEI Scholarships",
-    link: "https://www.sei.dost.gov.ph/index.php/programs/scholarships",
+    link: "https://www.science-scholarships.ph/",
     logoUrl: "dost-logo.png",
     desc: {
       tagalog:
@@ -188,7 +188,7 @@ const resources: Resource[] = [
     category: "scholarships",
     featured: false,
     name: "OWWA Scholarships",
-    link: "https://owwa.gov.ph/index.php/programs-services/educational-assistance",
+    link: "https://scholarship.owwa.gov.ph/",
     logoUrl: "owwa-logo.svg",
     desc: {
       tagalog: "Educational assistance para sa mga anak ng OFWs mula sa OWWA.",

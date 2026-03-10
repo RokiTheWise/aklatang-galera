@@ -385,14 +385,16 @@ export default function Hanapbuhay() {
 
         {/* Logo */}
         <div className="relative z-10 mb-8">
-          <Image
-            src="/aklatang-galera-logo.png"
-            alt="Aklatang Galera Logo"
-            width={160}
-            height={73}
-            priority
-            className="drop-shadow-md brightness-0 invert opacity-95"
-          />
+          <a href="/">
+            <Image
+              src="/aklatang-galera-logo.png"
+              alt="Aklatang Galera Logo"
+              width={160}
+              height={73}
+              priority
+              className="drop-shadow-md brightness-0 invert opacity-95"
+            />
+          </a>
         </div>
 
         {/* Identity */}

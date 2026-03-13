@@ -802,7 +802,7 @@ export default function Aklatan() {
                                   border: "1px solid rgba(16,185,129,0.2)",
                                 }}
                               >
-                                <MapPin size={8} /> Lokal
+                                <MapPin size={8} /> {t.local}
                               </span>
                             )}
                           </div>

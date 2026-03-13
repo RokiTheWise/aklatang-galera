@@ -350,7 +350,7 @@ export default function PublicServices() {
       availableServices: "Mga serbisyo:",
     },
     english: {
-      back: "Back",
+      back: "Back to Home",
       headline: "Public Services",
       subtitle:
         "E-government portals, scholarships, and official news — for every Galeran.",

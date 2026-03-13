@@ -309,7 +309,7 @@ export default function Hanapbuhay() {
       freeTag: "Libre",
     },
     english: {
-      back: "Back",
+      back: "Back to Home",
       headline: "Livelihood",
       subtitle: "Jobs, training, and business resources — for every Galeran.",
       sideNote: "All resources here are free or government-subsidized.",

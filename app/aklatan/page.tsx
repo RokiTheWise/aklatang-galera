@@ -324,7 +324,7 @@ export default function Aklatan() {
       typeEbooks: "E-Books",
     },
     english: {
-      back: "Back",
+      back: "Back to Home",
       headline: "Digital Library",
       subtitle:
         "Search scholarly articles via Semantic Scholar, or browse our curated list of free databases.",

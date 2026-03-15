@@ -244,8 +244,7 @@ const openDatabases = [
     desc: {
       tagalog:
         "Ang pinakamalaking aggregator sa mundo ng mga open access na research papers.",
-      english:
-        "The world's largest aggregator of open access research papers.",
+      english: "The world's largest aggregator of open access research papers.",
     },
   },
   {
@@ -532,13 +531,22 @@ export default function Aklatan() {
   };
   const t = ui[language];
 
-  const filtered = openDatabases.filter(
-    (db) =>
-      (db.name.toLowerCase().includes(browseQuery.toLowerCase()) ||
-        db.desc[language].toLowerCase().includes(browseQuery.toLowerCase())) &&
-      (!onlyLocal || db.isLocal) &&
-      (activeType === "all" || db.resourceType === activeType),
-  );
+  const filtered = openDatabases
+    .filter(
+      (db) =>
+        (db.name.toLowerCase().includes(browseQuery.toLowerCase()) ||
+          db.desc[language]
+            .toLowerCase()
+            .includes(browseQuery.toLowerCase())) &&
+        (!onlyLocal || db.isLocal) &&
+        (activeType === "all" || db.resourceType === activeType),
+    )
+    .sort((a, b) => {
+      if (a.resourceType !== b.resourceType) {
+        return a.resourceType === "research" ? -1 : 1;
+      }
+      return a.name.localeCompare(b.name);
+    });
 
   const handleSemanticSearch = () => {
     if (!searchQuery.trim()) return;

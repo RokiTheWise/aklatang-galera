@@ -649,22 +649,22 @@ export default function Aklatan() {
                   setActiveType(item.type);
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
-                className="flex items-center gap-2.5 group w-full text-left transition-all hover:bg-white/5 p-1 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20"
+                className={`flex items-center gap-2.5 w-full text-left p-2 -ml-2 rounded-xl transition-all duration-300 group outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 ${activeType === item.type ? "" : "hover:bg-white/5"}`}
+                style={activeType === item.type ? { backgroundColor: item.bg.replace("0.15", "0.2") } : {}}
               >
                 <div
-                  className="flex items-center justify-center w-6 h-6 rounded-lg shrink-0 transition-transform group-hover:scale-110"
+                  className="flex items-center justify-center w-7 h-7 rounded-lg shrink-0 transition-transform group-hover:scale-110"
                   style={{ backgroundColor: item.bg }}
                 >
-                  <item.icon size={12} style={{ color: item.color }} />
+                  <item.icon size={13} style={{ color: item.color }} />
                 </div>
                 <span
-                  className="text-xs font-semibold transition-colors group-hover:text-cyan-400"
-                  style={{ color: "rgba(186,230,253,0.75)" }}
+                  className={`text-xs font-semibold transition-colors ${activeType === item.type ? "text-white" : "text-rgba(186,230,253,0.75)"} group-hover:text-white`}
                 >
                   {item.label}
                 </span>
                 <span
-                  className="ml-auto text-[10px] font-bold tabular-nums"
+                  className="ml-auto text-[10px] font-bold tabular-nums opacity-60 group-hover:opacity-100"
                   style={{ color: "rgba(186,230,253,0.4)" }}
                 >
                   {item.count}
@@ -899,51 +899,72 @@ export default function Aklatan() {
                 )}
               </div>
 
-              <div className="flex items-center gap-2 flex-wrap">
+              <div className="flex items-center gap-2 flex-wrap no-scrollbar pb-0.5">
                 {/* Resource type filter */}
-                <div className="flex bg-white border border-sky-100 p-1 rounded-xl">
-                  {[
-                    { val: "all" as const, label: t.typeAll, icon: null },
-                    {
-                      val: "research" as const,
-                      label: t.typeResearch,
-                      icon: Search,
-                    },
-                    {
-                      val: "ebooks" as const,
-                      label: t.typeEbooks,
-                      icon: BookMarked,
-                    },
-                  ].map(({ val, label, icon: Icon }) => (
-                    <button
-                      key={val}
-                      onClick={() => setActiveType(val)}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 ${activeType === val ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
-                      style={activeType === val ? navyBg : {}}
-                    >
-                      {Icon && <Icon size={11} />}
-                      {label}
-                    </button>
-                  ))}
-                </div>
+                {[
+                  { val: "all" as const, label: t.typeAll, icon: null, color: "#0d2645", bg: "rgba(13,38,69,0.3)" },
+                  {
+                    val: "research" as const,
+                    label: t.typeResearch,
+                    icon: Search,
+                    color: "#06b6d4",
+                    bg: "rgba(6,182,212,0.3)"
+                  },
+                  {
+                    val: "ebooks" as const,
+                    label: t.typeEbooks,
+                    icon: BookMarked,
+                    color: "#2dd4bf",
+                    bg: "rgba(45,212,191,0.3)"
+                  },
+                ].map(({ val, label, icon: Icon, color, bg }) => (
+                  <button
+                    key={val}
+                    onClick={() => setActiveType(val)}
+                    className={`shrink-0 flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold border transition-all shadow-sm outline-none active:scale-[0.98] ${activeType === val ? "text-white focus-visible:ring-2 focus-visible:ring-offset-1" : "bg-white text-slate-500 hover:bg-sky-50"}`}
+                    style={
+                      activeType === val
+                        ? {
+                            backgroundColor: color,
+                            borderColor: color,
+                            boxShadow: `0 4px 12px ${bg}`,
+                          }
+                        : { borderColor: "#e0f2fe" }
+                    }
+                  >
+                    {Icon && <Icon size={11} />}
+                    {label}
+                  </button>
+                ))}
 
                 {/* Local toggle */}
-                <div className="flex bg-white border border-sky-100 p-1 rounded-xl">
-                  {([false, true] as const).map((local) => (
-                    <button
-                      key={String(local)}
-                      onClick={() => setOnlyLocal(local)}
-                      className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 ${onlyLocal === local ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
-                      style={onlyLocal === local ? navyBg : {}}
-                    >
-                      {local ? t.local : t.all}
-                    </button>
-                  ))}
-                </div>
+                <div className="h-4 w-px bg-slate-200 mx-1 shrink-0" />
+                {([false, true] as const).map((local) => (
+                  <button
+                    key={String(local)}
+                    onClick={() => setOnlyLocal(local)}
+                    className={`shrink-0 px-3.5 py-1.5 rounded-lg text-xs font-bold border transition-all shadow-sm outline-none active:scale-[0.98] ${onlyLocal === local ? "text-white focus-visible:ring-2 focus-visible:ring-offset-1" : "bg-white text-slate-500 hover:bg-sky-50"}`}
+                    style={
+                      onlyLocal === local
+                        ? {
+                            backgroundColor: "#059669",
+                            borderColor: "#059669",
+                            boxShadow: `0 4px 12px rgba(5,150,105,0.3)`,
+                          }
+                        : { borderColor: "#e0f2fe" }
+                    }
+                  >
+                    {local ? (
+                      <span className="flex items-center gap-1"><MapPin size={11} /> {t.local}</span>
+                    ) : t.all}
+                  </button>
+                ))}
 
-                <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 whitespace-nowrap">
-                  {filtered.length} {t.results}
-                </p>
+                <div className="ml-auto shrink-0 px-3 py-1.5 bg-slate-100 rounded-lg">
+                  <p className="text-[10px] font-black uppercase tracking-tighter text-slate-500 whitespace-nowrap">
+                    {filtered.length} {t.results}
+                  </p>
+                </div>
               </div>
             </div>
 

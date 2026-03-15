@@ -368,8 +368,8 @@ const categories = [
 ];
 
 const categoryColor: Record<Category, string> = {
-  jobs: "#0d2645",
-  skills: "#0891b2",
+  jobs: "#0891b2",
+  skills: "#7c3aed",
   entrepreneurship: "#059669",
 };
 const categoryBg: Record<Category, string> = {
@@ -545,7 +545,12 @@ export default function Hanapbuhay() {
                     setActiveCategory(cat.key);
                     window.scrollTo({ top: 0, behavior: "smooth" });
                   }}
-                  className={`flex items-center gap-2.5 w-full text-left p-2 -ml-2 rounded-xl transition-all duration-300 group outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 ${activeCategory === cat.key ? "bg-white/10" : "hover:bg-white/5"}`}
+                  className={`flex items-center gap-2.5 w-full text-left p-2 -ml-2 rounded-xl transition-all duration-300 group outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 ${activeCategory === cat.key ? "" : "hover:bg-white/5"}`}
+                  style={
+                    activeCategory === cat.key
+                      ? { backgroundColor: cat.bg.replace("0.07", "0.2") }
+                      : {}
+                  }
                 >
                   <div
                     className="flex items-center justify-center w-7 h-7 rounded-lg shrink-0 transition-transform group-hover:scale-110"

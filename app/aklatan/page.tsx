@@ -947,16 +947,16 @@ export default function Aklatan() {
               </div>
             </div>
 
-            <div className="flex-1 px-6 lg:px-8 py-6">
+            <div className="flex-1 px-6 lg:px-8 py-8 animate-in slide-in-from-right duration-500">
               {filtered.length > 0 ? (
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                   {filtered.map((db) => (
                     <a
                       key={db.id}
                       href={db.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group relative flex flex-col justify-between rounded-2xl bg-white border p-6 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20"
+                      className="group relative flex flex-col justify-between rounded-3xl bg-white border p-7 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20"
                       style={skyBorder}
                     >
                       {/* Vertical Accent Bar */}
@@ -970,8 +970,8 @@ export default function Aklatan() {
                         }}
                       />
                       <div>
-                        <div className="mb-5 flex items-start justify-between gap-2">
-                          <div className="h-8 w-28">
+                        <div className="mb-6 flex items-start justify-between gap-4">
+                          <div className="h-10 w-32 shrink-0">
                             <img
                               src={db.logoUrl}
                               alt={db.name}
@@ -980,7 +980,7 @@ export default function Aklatan() {
                           </div>
                           <div className="flex flex-col items-end gap-1.5 shrink-0">
                             <span
-                              className="flex items-center gap-1 rounded-full px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider"
+                              className="flex items-center gap-1 rounded-full px-3 py-1 text-[9px] font-black uppercase tracking-widest shadow-sm"
                               style={
                                 db.resourceType === "ebooks"
                                   ? {
@@ -997,38 +997,31 @@ export default function Aklatan() {
                             >
                               {db.resourceType === "ebooks" ? (
                                 <>
-                                  <BookMarked size={8} /> {t.typeEbooks}
+                                  <BookMarked size={9} /> {t.typeEbooks}
                                 </>
                               ) : (
                                 <>
-                                  <Search size={8} /> {t.typeResearch}
+                                  <Search size={9} /> {t.typeResearch}
                                 </>
                               )}
                             </span>
                             {db.isLocal && (
-                              <span
-                                className="flex items-center gap-1 rounded-full px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider"
-                                style={{
-                                  backgroundColor: "rgba(16,185,129,0.08)",
-                                  color: "#059669",
-                                  border: "1px solid rgba(16,185,129,0.2)",
-                                }}
-                              >
-                                <MapPin size={8} /> {t.local}
+                              <span className="flex items-center gap-1 rounded-full px-3 py-1 text-[9px] font-black uppercase tracking-widest bg-emerald-50 text-emerald-600 border border-emerald-100 shadow-sm">
+                                <MapPin size={9} /> {t.local}
                               </span>
                             )}
                           </div>
                         </div>
-                        <h2 className="mb-1.5 text-base font-bold text-slate-900">
+                        <h2 className="mb-2 text-lg font-black text-slate-900 leading-snug">
                           {db.name}
                         </h2>
-                        <p className="text-xs text-slate-500 leading-relaxed">
+                        <p className="text-sm text-slate-500 leading-relaxed font-medium">
                           {db.desc[language]}
                         </p>
                       </div>
-                      <div className="mt-5 pt-4 border-t" style={skyBorder}>
+                      <div className="mt-6 pt-5 border-t border-slate-50 flex items-center justify-between">
                         <div
-                          className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wide transition-all duration-200 group-hover:gap-2.5"
+                          className="inline-flex items-center gap-2 rounded-2xl px-5 py-2.5 text-xs font-black uppercase tracking-widest transition-all duration-300 group-hover:gap-3 group-hover:shadow-lg group-hover:shadow-sky-900/10 active:scale-95"
                           style={{
                             backgroundColor: "#0d2645",
                             color: "#ffffff",
@@ -1036,29 +1029,42 @@ export default function Aklatan() {
                         >
                           {t.visit}{" "}
                           <ExternalLink
-                            size={11}
-                            className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                            size={12}
+                            className="transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                           />
+                        </div>
+
+                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                          <div className="flex gap-1">
+                            {[1, 2, 3].map((i) => (
+                              <div
+                                key={i}
+                                className="w-1 h-1 rounded-full bg-slate-200"
+                              />
+                            ))}
+                          </div>
                         </div>
                       </div>
                     </a>
                   ))}
                 </div>
               ) : (
-                <div className="flex flex-col items-center justify-center py-32 text-center">
+                <div className="flex flex-col items-center justify-center py-40 text-center animate-in fade-in slide-in-from-bottom duration-700">
                   <div
-                    className="mb-4 rounded-full p-5"
-                    style={{ backgroundColor: "rgba(13,38,69,0.05)" }}
+                    className="mb-6 rounded-full p-8 shadow-inner relative overflow-hidden"
+                    style={{ backgroundColor: "rgba(13,38,69,0.03)" }}
                   >
                     <Search
-                      size={28}
-                      style={{ color: "#0d2645", opacity: 0.3 }}
+                      size={40}
+                      className="relative z-10"
+                      style={{ color: "#0d2645", opacity: 0.2 }}
                     />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-sky-50 to-transparent animate-pulse" />
                   </div>
-                  <p className="text-base font-bold text-slate-400">
+                  <p className="text-xl font-black text-slate-400 tracking-tight">
                     {t.emptyTitle}
                   </p>
-                  <p className="text-sm text-slate-300 mt-1 mb-6">
+                  <p className="text-base text-slate-300 mt-2 max-w-xs mx-auto font-medium">
                     {t.emptyDesc}
                   </p>
                   <button
@@ -1067,7 +1073,7 @@ export default function Aklatan() {
                       setActiveType("all");
                       setOnlyLocal(false);
                     }}
-                    className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all hover:bg-slate-100 ring-1 ring-slate-200 outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 active:scale-[0.98]"
+                    className="mt-8 flex items-center gap-2 px-5 py-2.5 rounded-2xl text-xs font-black uppercase tracking-widest transition-all hover:bg-slate-100 ring-1 ring-slate-200 outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 active:scale-[0.98]"
                     style={{ color: "#0d2645" }}
                   >
                     <X size={14} /> {t.clearFilters}

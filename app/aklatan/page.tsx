@@ -736,12 +736,23 @@ export default function Aklatan() {
           }}
         >
           <div className="flex items-center justify-between gap-3">
-            <div className="flex bg-white border border-sky-100 p-1 rounded-xl">
+            {/* ── Mode Slider Toggle ── */}
+            <div className="relative flex items-center rounded-2xl border border-slate-200 bg-white shadow-sm p-1">
               <button
                 onClick={() => setSearchMode("semantic")}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 ${searchMode === "semantic" ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
-                style={searchMode === "semantic" ? navyBg : {}}
+                className="relative z-10 flex items-center gap-1.5 px-4 py-1.5 text-xs font-black uppercase tracking-widest transition-colors duration-200 select-none whitespace-nowrap"
+                style={{
+                  color: searchMode === "semantic" ? "white" : "#94a3b8",
+                }}
               >
+                {searchMode === "semantic" && (
+                  <motion.div
+                    layoutId="modePill"
+                    transition={{ type: "spring", damping: 18, stiffness: 280 }}
+                    className="absolute inset-0 rounded-xl -z-10"
+                    style={{ backgroundColor: "#0d2645" }}
+                  />
+                )}
                 <Search size={12} /> {t.modeSemanticLabel}
               </button>
               <button
@@ -749,9 +760,17 @@ export default function Aklatan() {
                   setSearchMode("browse");
                   setBrowseQuery("");
                 }}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 ${searchMode === "browse" ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
-                style={searchMode === "browse" ? navyBg : {}}
+                className="relative z-10 flex items-center gap-1.5 px-4 py-1.5 text-xs font-black uppercase tracking-widest transition-colors duration-200 select-none whitespace-nowrap"
+                style={{ color: searchMode === "browse" ? "white" : "#94a3b8" }}
               >
+                {searchMode === "browse" && (
+                  <motion.div
+                    layoutId="modePill"
+                    transition={{ type: "spring", damping: 18, stiffness: 280 }}
+                    className="absolute inset-0 rounded-xl -z-10"
+                    style={{ backgroundColor: "#0d2645" }}
+                  />
+                )}
                 <List size={12} /> {t.modeBrowseLabel}
               </button>
             </div>

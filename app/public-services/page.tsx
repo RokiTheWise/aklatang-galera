@@ -453,7 +453,7 @@ const categories = [
   {
     key: "egovernment" as Category,
     icon: Landmark,
-    color: "#2dd4bf",
+    color: "#21b8a4",
     bg: "rgba(45,212,191,0.07)",
   },
   {
@@ -471,7 +471,7 @@ const categories = [
 ];
 
 const categoryColor: Record<Category, string> = {
-  egovernment: "#2dd4bf",
+  egovernment: "#21b8a4",
   scholarships: "#7c3aed",
   transparency: "#0891b2",
 };
@@ -948,17 +948,19 @@ export default function PublicServices() {
                             }}
                           />
                         </div>
-                        <span
-                          className="flex items-center gap-1 shrink-0 rounded-full px-3 py-1 text-[9px] font-black uppercase tracking-widest shadow-sm"
-                          style={{
-                            backgroundColor: bg,
-                            color,
-                            border: `1px solid ${border}`,
-                          }}
-                        >
-                          <CatIcon size={9} />
-                          {t.categories[resource.category]}
-                        </span>
+                        <div className="flex flex-col items-end gap-1.5 shrink-0 -translate-x-3">
+                          <span
+                            className="flex items-center gap-1 shrink-0 rounded-full px-3 py-1 text-[9px] font-black uppercase tracking-widest shadow-sm"
+                            style={{
+                              backgroundColor: bg,
+                              color,
+                              border: `1px solid ${border}`,
+                            }}
+                          >
+                            <CatIcon size={9} />
+                            {t.categories[resource.category]}
+                          </span>
+                        </div>
                       </div>
                       <h2 className="mb-2 text-lg font-black text-slate-900 leading-snug">
                         {resource.name}

@@ -378,7 +378,7 @@ const categoryBg: Record<Category, string> = {
   entrepreneurship: "rgba(5,150,105,0.08)",
 };
 const categoryBorder: Record<Category, string> = {
-  jobs: "rgba(13,38,69,0.15)",
+  jobs: "rgba(45,212,191,0.08)",
   skills: "rgba(8,145,178,0.15)",
   entrepreneurship: "rgba(5,150,105,0.15)",
 };

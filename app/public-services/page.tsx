@@ -307,17 +307,17 @@ const categories = [
 ];
 
 const categoryColor: Record<Category, string> = {
-  egovernment: "#0d2645",
+  egovernment: "#2dd4bf",
   scholarships: "#7c3aed",
   transparency: "#0891b2",
 };
 const categoryBg: Record<Category, string> = {
-  egovernment: "rgba(13,38,69,0.08)",
+  egovernment: "rgba(45,212,191,0.08)",
   scholarships: "rgba(124,58,237,0.08)",
   transparency: "rgba(8,145,178,0.08)",
 };
 const categoryBorder: Record<Category, string> = {
-  egovernment: "rgba(13,38,69,0.15)",
+  egovernment: "rgba(45,212,191,0.15)",
   scholarships: "rgba(124,58,237,0.15)",
   transparency: "rgba(8,145,178,0.15)",
 };

@@ -89,7 +89,7 @@ export default function Home() {
         />
 
         {/* Logo area */}
-        <div className="relative z-10 mb-10 animate-in fade-in slide-in-from-top duration-700">
+        <div className="relative z-10 mb-10">
           <Image
             src="/aklatang-galera-logo.png"
             alt="Logo"
@@ -102,7 +102,7 @@ export default function Home() {
 
         {/* Identity block */}
         <div className="relative z-10 flex-1 flex flex-col justify-center gap-8">
-          <div className="animate-in fade-in slide-in-from-left duration-700 delay-150">
+          <div>
             <div
               className="w-10 h-1 mb-6 rounded-full"
               style={{ backgroundColor: "#f59e0b" }}
@@ -112,7 +112,7 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="animate-in fade-in slide-in-from-left duration-700 delay-300">
+          <div>
             <div className="flex items-center gap-2 mb-3">
               <Sparkles size={14} className="text-cyan-400" />
               <p
@@ -131,7 +131,7 @@ export default function Home() {
           </div>
 
           {/* Color pips */}
-          <div className="flex gap-2 animate-in fade-in slide-in-from-bottom duration-700 delay-500">
+          <div className="flex gap-2">
             {["#1a56db", "#06b6d4", "#2dd4bf", "#4ade80", "#f59e0b"].map(
               (color, i) => (
                 <div
@@ -139,7 +139,6 @@ export default function Home() {
                   className="w-2.5 h-2.5 rounded-full shadow-lg"
                   style={{
                     backgroundColor: color,
-                    animationDelay: `${600 + i * 100}ms`,
                   }}
                 />
               ),
@@ -148,7 +147,7 @@ export default function Home() {
         </div>
 
         {/* Developer credit */}
-        <div className="relative z-10 pt-8 mt-8 border-t border-white/10 animate-in fade-in slide-in-from-bottom duration-700 delay-700">
+        <div className="relative z-10 pt-8 mt-8 border-t border-white/10">
           <p
             className="text-[11px] font-bold"
             style={{ color: "rgba(6,182,212,0.5)" }}
@@ -179,7 +178,7 @@ export default function Home() {
 
         {/* Header: Language Toggle */}
         <div className="relative z-30 shrink-0 flex justify-end pt-6 px-6 lg:px-10 pb-4">
-          <div className="flex items-center gap-1.5 bg-white border-2 border-slate-100 p-1.5 rounded-2xl shadow-sm animate-in fade-in slide-in-from-right duration-700">
+          <div className="flex items-center gap-1.5 bg-white border-2 border-slate-100 p-1.5 rounded-2xl shadow-sm">
             {(["tagalog", "english"] as const).map((lang) => (
               <button
                 key={lang}
@@ -202,7 +201,7 @@ export default function Home() {
 
         {/* Content Area: Cards Grid */}
         <div className="flex-1 min-h-0 flex flex-col px-6 lg:px-10 pt-2 pb-8 gap-4 overflow-y-auto no-scrollbar md:overflow-hidden">
-          <div className="flex-[1.3] min-h-0 animate-in fade-in slide-in-from-bottom duration-700 delay-300">
+          <div className="flex-[1.3] min-h-0">
             <MenuCard
               featured
               title={t.sections.aklatan.title}
@@ -217,7 +216,7 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col md:flex-row gap-4 flex-1 min-h-0">
-            <div className="flex-1 min-h-0 animate-in fade-in slide-in-from-left duration-700 delay-500">
+            <div className="flex-1 min-h-0">
               <MenuCard
                 title={t.sections.hanapbuhay.title}
                 description={t.sections.hanapbuhay.desc}
@@ -229,7 +228,7 @@ export default function Home() {
                 bgImage="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1000"
               />
             </div>
-            <div className="flex-1 min-h-0 animate-in fade-in slide-in-from-right duration-700 delay-500">
+            <div className="flex-1 min-h-0">
               <MenuCard
                 title={t.sections.serbisyo.title}
                 description={t.sections.serbisyo.desc}

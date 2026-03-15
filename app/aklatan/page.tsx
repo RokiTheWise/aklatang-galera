@@ -982,7 +982,7 @@ export default function Aklatan() {
               </div>
             </div>
 
-            <div className="flex-1 px-6 lg:px-8 py-8 animate-in slide-in-from-right duration-500">
+            <div className="flex-1 px-6 lg:px-8 py-8">
               {filtered.length > 0 ? (
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                   {filtered.map((db) => (
@@ -1084,7 +1084,7 @@ export default function Aklatan() {
                   ))}
                 </div>
               ) : (
-                <div className="flex flex-col items-center justify-center py-40 text-center animate-in fade-in slide-in-from-bottom duration-700">
+                <div className="flex flex-col items-center justify-center py-40 text-center">
                   <div
                     className="mb-6 rounded-full p-8 shadow-inner relative overflow-hidden"
                     style={{ backgroundColor: "rgba(13,38,69,0.03)" }}
@@ -1094,7 +1094,7 @@ export default function Aklatan() {
                       className="relative z-10"
                       style={{ color: "#0d2645", opacity: 0.2 }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-sky-50 to-transparent animate-pulse" />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-sky-50 to-transparent" />
                   </div>
                   <p className="text-xl font-black text-slate-400 tracking-tight">
                     {t.emptyTitle}

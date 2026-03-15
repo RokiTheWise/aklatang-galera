@@ -173,7 +173,7 @@ const openDatabases = [
     isLocal: true,
     resourceType: "research" as ResourceType,
     link: "https://www.herdin.ph/",
-    logoUrl: "/DOST-PCHRD-logo.png",
+    logoUrl: "/herdin-logo.png",
     desc: {
       tagalog:
         "Pangunahing database para sa health at medical research sa Pilipinas, pinamamahalaan ng DOST-PCHRD.",

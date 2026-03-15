@@ -373,8 +373,8 @@ const categoryColor: Record<Category, string> = {
   entrepreneurship: "#059669",
 };
 const categoryBg: Record<Category, string> = {
-  jobs: "rgba(13,38,69,0.08)",
-  skills: "rgba(8,145,178,0.08)",
+  jobs: "rgba(45,212,191,0.08)",
+  skills: "rgba(124,58,237,0.07)",
   entrepreneurship: "rgba(5,150,105,0.08)",
 };
 const categoryBorder: Record<Category, string> = {

@@ -601,7 +601,7 @@ export default function Aklatan() {
           </a>
         </div>
 
-        <div className="relative z-10 flex-1 flex flex-col justify-center gap-5">
+        <div className="relative z-10 flex-1 flex flex-col justify-start md:justify-center gap-4 md:gap-5 py-4 md:py-0">
           <div>
             <div
               className="w-7 h-0.5 mb-5 rounded-full"
@@ -621,7 +621,7 @@ export default function Aklatan() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-2.5">
+          <div className="hidden md:flex flex-col gap-2.5">
             {[
               {
                 type: "research" as ResourceType,
@@ -681,7 +681,7 @@ export default function Aklatan() {
           </div>
 
           <div
-            className="rounded-xl px-4 py-3 text-xs leading-relaxed"
+            className="hidden md:block rounded-xl px-4 py-3 text-xs leading-relaxed"
             style={{
               backgroundColor: "rgba(6,182,212,0.08)",
               color: "rgba(186,230,253,0.7)",
@@ -690,7 +690,7 @@ export default function Aklatan() {
           >
             {t.sideNote}
           </div>
-          <div className="flex gap-1.5">
+          <div className="hidden md:flex gap-1.5">
             {["#1a56db", "#06b6d4", "#2dd4bf", "#4ade80", "#f59e0b"].map(
               (c) => (
                 <div
@@ -704,7 +704,7 @@ export default function Aklatan() {
         </div>
 
         <div
-          className="relative z-10 pt-6 mt-6 border-t"
+          className="relative z-10 hidden md:block pt-6 mt-6 border-t"
           style={{ borderColor: "rgba(255,255,255,0.07)" }}
         >
           <p className="text-[10px]" style={{ color: "rgba(6,182,212,0.4)" }}>
@@ -735,7 +735,7 @@ export default function Aklatan() {
             borderColor: "#e0f2fe",
           }}
         >
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center justify-between gap-2">
             {/* ── Mode Slider Toggle ── */}
             <div className="relative flex items-center rounded-2xl border border-slate-200 bg-white shadow-sm p-1">
               <button
@@ -805,7 +805,7 @@ export default function Aklatan() {
 
         {/* ── SMART SEARCH MODE ── */}
         {searchMode === "semantic" && (
-          <div className="flex-1 flex flex-col items-center justify-center px-6 lg:px-8 py-16">
+          <div className="flex-1 flex flex-col items-center justify-center px-5 lg:px-8 py-10 md:py-16">
             <div className="w-full max-w-xl">
               <div className="mb-8 text-center">
                 <div
@@ -907,7 +907,7 @@ export default function Aklatan() {
         {searchMode === "browse" && (
           <>
             <div
-              className="px-6 lg:px-8 pt-5 pb-4 flex flex-col sm:flex-row gap-3 items-start sm:items-center border-b"
+              className="px-4 md:px-6 lg:px-8 pt-4 pb-3 md:pt-5 md:pb-4 flex flex-col sm:flex-row gap-3 items-start sm:items-center border-b"
               style={skyBorder}
             >
               <div className="relative flex-1 max-w-md">
@@ -935,7 +935,7 @@ export default function Aklatan() {
                 )}
               </div>
 
-              <div className="flex items-center gap-2 flex-wrap no-scrollbar pb-0.5">
+              <div className="flex items-center gap-2 flex-wrap overflow-x-auto no-scrollbar pb-0.5">
                 {[
                   {
                     val: "all" as const,
@@ -1011,7 +1011,7 @@ export default function Aklatan() {
               </div>
             </div>
 
-            <div className="flex-1 px-6 lg:px-8 py-8">
+            <div className="flex-1 px-4 md:px-6 lg:px-8 py-5 md:py-8">
               {filtered.length > 0 ? (
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                   {filtered.map((db) => (
@@ -1020,7 +1020,7 @@ export default function Aklatan() {
                       href={db.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group relative flex flex-col justify-between rounded-3xl bg-white border p-7 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20"
+                      className="group relative flex flex-col justify-between rounded-3xl bg-white border p-5 md:p-7 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20"
                       style={skyBorder}
                     >
                       <div

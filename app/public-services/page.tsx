@@ -576,6 +576,7 @@ export default function PublicServices() {
         className="relative flex flex-col w-full md:w-[32%] lg:w-[30%] shrink-0 md:h-screen md:sticky md:top-0 py-8 px-7 md:py-10 md:px-9 overflow-hidden"
         style={{ backgroundColor: "#0d2645" }}
       >
+        {" "}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -587,7 +588,6 @@ export default function PublicServices() {
           className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full pointer-events-none blur-3xl"
           style={{ backgroundColor: "rgba(45,212,191,0.12)" }}
         />
-
         <div className="relative z-10 mb-8">
           <Link
             href="/"
@@ -609,8 +609,7 @@ export default function PublicServices() {
             />
           </a>
         </div>
-
-        <div className="relative z-10 flex-1 flex flex-col justify-center gap-5">
+        <div className="relative z-10 flex-1 flex flex-col justify-start md:justify-center gap-4 md:gap-5 py-4 md:py-0">
           <div>
             <div
               className="w-7 h-0.5 mb-5 rounded-full"
@@ -630,7 +629,7 @@ export default function PublicServices() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-2.5">
+          <div className="hidden md:flex flex-col gap-2.5">
             {categories.map((cat) => {
               const count = resources.filter(
                 (r) => r.category === cat.key,
@@ -687,9 +686,8 @@ export default function PublicServices() {
             {t.sideNote}
           </div>
         </div>
-
         <div
-          className="relative z-10 pt-6 mt-6 border-t"
+          className="relative z-10 hidden md:block pt-6 mt-6 border-t"
           style={{ borderColor: "rgba(255,255,255,0.07)" }}
         >
           <p className="text-[10px]" style={{ color: "rgba(6,182,212,0.4)" }}>
@@ -713,6 +711,7 @@ export default function PublicServices() {
         className="flex-1 flex flex-col min-h-screen"
         style={{ backgroundColor: "#f0f9ff" }}
       >
+        {" "}
         <div
           className="sticky top-0 z-40 backdrop-blur-sm border-b px-6 lg:px-8 py-4"
           style={{
@@ -720,8 +719,8 @@ export default function PublicServices() {
             borderColor: "#e0f2fe",
           }}
         >
-          <div className="flex items-center gap-3">
-            <div className="relative flex-1 max-w-sm group">
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="relative flex-1 min-w-0 max-w-sm group">
               <Search
                 size={14}
                 className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none transition-colors group-focus-within:text-cyan-600"
@@ -773,7 +772,7 @@ export default function PublicServices() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 mt-3 overflow-x-auto pb-0.5 no-scrollbar">
+          <div className="flex items-center gap-2 mt-2 md:mt-3 overflow-x-auto pb-0.5 no-scrollbar">
             <button
               onClick={() => setActiveCategory("all")}
               className={`shrink-0 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 active:scale-[0.98] ${activeCategory === "all" ? "text-white" : "bg-white text-slate-400 hover:bg-sky-50 border"}`}
@@ -809,14 +808,13 @@ export default function PublicServices() {
             </div>
           </div>
         </div>
-
-        <div className="flex-1 px-6 lg:px-8 py-8 flex flex-col gap-8">
+        <div className="flex-1 px-4 md:px-6 lg:px-8 py-5 md:py-8 flex flex-col gap-6 md:gap-8">
           {showFeatured && featuredResource && (
             <a
               href={featuredResource.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex flex-col md:flex-row gap-6 rounded-[32px] p-8 md:p-10 overflow-hidden transition-all duration-500 hover:shadow-[0_20px_50px_rgba(13,38,69,0.15)] hover:-translate-y-1 active:scale-[0.99] border"
+              className="group relative flex flex-col md:flex-row gap-4 md:gap-6 rounded-[24px] md:rounded-[32px] p-6 md:p-10 overflow-hidden transition-all duration-500 hover:shadow-[0_20px_50px_rgba(13,38,69,0.15)] hover:-translate-y-1 active:scale-[0.99] border"
               style={{
                 backgroundColor: "#0d2645",
                 borderColor: "rgba(255,255,255,0.07)",
@@ -913,7 +911,7 @@ export default function PublicServices() {
                     href={resource.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative flex flex-col justify-between rounded-3xl bg-white border p-7 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20"
+                    className="group relative flex flex-col justify-between rounded-3xl bg-white border p-5 md:p-7 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20"
                     style={skyBorder}
                   >
                     <div

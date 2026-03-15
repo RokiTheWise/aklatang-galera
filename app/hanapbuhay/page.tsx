@@ -220,7 +220,7 @@ const resources: Resource[] = [
   },
   {
     id: 16,
-    category: "entrepreneurship",
+    category: "jobs",
     free: true,
     name: "Resume.com",
     link: "https://www.resume.com/",
@@ -240,6 +240,107 @@ const resources: Resource[] = [
     desc: {
       tagalog: "Libreng online na mga kurso mula sa TESDA — may sertipiko.",
       english: "Free online courses from TESDA — with certificates.",
+    },
+  },
+  {
+    id: 18,
+    category: "jobs",
+    free: true,
+    name: "PhilJobNet",
+    link: "https://philjobnet.gov.ph/",
+    logoUrl: "/pej-logo.jpeg",
+    desc: {
+      tagalog: "Ang opisyal na job portal ng gobyerno ng Pilipinas (DOLE).",
+      english: "The official job portal of the Philippine government (DOLE).",
+    },
+  },
+  {
+    id: 19,
+    category: "jobs",
+    free: true,
+    name: "Indeed Philippines",
+    link: "https://ph.indeed.com/",
+    logoUrl: "/indeed-logo.png",
+    desc: {
+      tagalog: "Isang malawak na aggregator ng mga trabaho sa bansa.",
+      english: "A massive aggregator of job listings across the country.",
+    },
+  },
+  {
+    id: 22,
+    category: "skills",
+    free: true,
+    name: "UPOU MODeL",
+    link: "https://model.upou.edu.ph/",
+    logoUrl: "/up-logo.png",
+    desc: {
+      tagalog: "Libreng self-paced online courses mula sa UP Open University.",
+      english: "Free self-paced online courses from the UP Open University.",
+    },
+  },
+  {
+    id: 23,
+    category: "skills",
+    free: true,
+    name: "DICT ICT Trainings",
+    link: "https://dict.gov.ph/trainings",
+    logoUrl: "/dict-logo.png",
+    desc: {
+      tagalog:
+        "Libreng training sa IT, cybersecurity, at freelancing mula sa DICT.",
+      english: "Free training in IT, cybersecurity, and freelancing from DICT.",
+    },
+  },
+  {
+    id: 24,
+    category: "entrepreneurship",
+    free: true,
+    name: "SEC Philippines",
+    link: "https://www.sec.gov.ph/",
+    logoUrl: "/sec-logo.png",
+    desc: {
+      tagalog:
+        "Opisyal na website para sa pagpaparehistro ng korporasyon at partnership.",
+      english: "Official site for registering corporations and partnerships.",
+    },
+  },
+  {
+    id: 25,
+    category: "entrepreneurship",
+    free: true,
+    name: "BIR for Small Business",
+    link: "https://www.bir.gov.ph/",
+    logoUrl: "/bir-logo.png",
+    desc: {
+      tagalog:
+        "Gabay para sa pagpaparehistro ng buwis para sa mga bagong negosyo.",
+      english: "Tax registration guides and updates for new businesses.",
+    },
+  },
+  {
+    id: 26,
+    category: "entrepreneurship",
+    free: true,
+    name: "Go Negosyo",
+    link: "https://www.gonegosyo.ph/",
+    logoUrl: "/gonegosyo-logo.png",
+    desc: {
+      tagalog:
+        "Libreng mentorship at resources para sa mga nagnanais mag-negosyo.",
+      english: "Free mentorship and resources for aspiring entrepreneurs.",
+    },
+  },
+  {
+    id: 27,
+    category: "entrepreneurship",
+    free: true,
+    name: "IPOPHL",
+    link: "https://www.ipophil.gov.ph/",
+    logoUrl: "/ipophil-logo.png",
+    desc: {
+      tagalog:
+        "Protektahan ang iyong brand o imbensyon sa pamamagitan ng Trademark at Patent.",
+      english: "Protect your brand or invention through Trademark and Patents.",
     },
   },
 ];

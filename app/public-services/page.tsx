@@ -127,6 +127,73 @@ const resources: Resource[] = [
       english: "Apply for and track your Philippine National ID (PhilSys).",
     },
   },
+  {
+    id: 19,
+    category: "egovernment",
+    featured: false,
+    name: "eGovPH Super App",
+    link: "https://e.gov.ph/",
+    logoUrl: "/egov-logo.png",
+    desc: {
+      tagalog:
+        "Ang one-stop-shop app para sa lahat ng serbisyo ng gobyerno ng Pilipinas.",
+      english:
+        "The single operating system app for all Philippine government services.",
+    },
+  },
+  {
+    id: 20,
+    category: "egovernment",
+    featured: false,
+    name: "DFA Passport Appointment",
+    link: "https://www.passport.gov.ph/",
+    logoUrl: "/dfa-logo.png",
+    desc: {
+      tagalog: "Opisyal na portal para sa passport appointments at renewals.",
+      english:
+        "Official portal for scheduling passport applications and renewals.",
+    },
+  },
+  {
+    id: 21,
+    category: "egovernment",
+    featured: false,
+    name: "BIR ORUS",
+    link: "https://orus.bir.gov.ph/",
+    logoUrl: "/bir-logo.png",
+    desc: {
+      tagalog:
+        "Online portal para sa registration at updates ng Taxpayer Identification Number (TIN).",
+      english:
+        "Online registration and update system for Taxpayer Identification Numbers.",
+    },
+  },
+  {
+    id: 22,
+    category: "egovernment",
+    featured: false,
+    name: "PSA Helpline",
+    link: "https://psahelpline.ph/",
+    logoUrl: "/psa-logo.png",
+    desc: {
+      tagalog: "Mag-order ng Birth, Marriage, at Death Certificates online.",
+      english:
+        "Order Birth, Marriage, and Death Certificates for nationwide delivery.",
+    },
+  },
+  {
+    id: 23,
+    category: "egovernment",
+    featured: false,
+    name: "DTI BNRS",
+    link: "https://bnrs.dti.gov.ph/",
+    logoUrl: "/dti-logo.png",
+    desc: {
+      tagalog: "I-rehistro ang pangalan ng iyong negosyo online sa DTI.",
+      english:
+        "Register your sole proprietorship business name online with DTI.",
+    },
+  },
 
   // ── Scholarships ──────────────────────────────────────────────────────────
   {
@@ -225,6 +292,63 @@ const resources: Resource[] = [
         "UP scholarships and financial assistance programs for Filipino students.",
     },
   },
+  {
+    id: 24,
+    category: "scholarships",
+    featured: false,
+    name: "SM Foundation Scholarship",
+    link: "https://www.sm-foundation.org/what_we_do/college-scholarship-program/",
+    logoUrl: "/sm-logo.svg",
+    desc: {
+      tagalog:
+        "Full tuition at allowance para sa mga kwalipikadong public SHS graduates.",
+      english:
+        "Full tuition and monthly stipends for qualified public high school graduates.",
+    },
+  },
+  {
+    id: 25,
+    category: "scholarships",
+    featured: false,
+    name: "Gokongwei Brothers Foundation",
+    link: "https://www.gokongweibrothersfoundation.org/programs/scholarships",
+    logoUrl: "/gokongwei-logo.jpg",
+    desc: {
+      tagalog:
+        "Suportang pinansyal para sa mga mahuhusay na mag-aaral sa STEM courses.",
+      english:
+        "Financial support for outstanding students pursuing STEM-related degrees.",
+    },
+  },
+  {
+    id: 26,
+    category: "scholarships",
+    featured: false,
+    name: "Megaworld Foundation",
+    link: "https://www.megaworldfoundation.com/scholarship_program",
+    logoUrl: "/mf-logo.png",
+    desc: {
+      tagalog:
+        "Scholarship program para sa mga deserving na estudyante sa kolehiyo.",
+      english:
+        "Educational assistance program for deserving college students nationwide.",
+    },
+  },
+
+  {
+    id: 28,
+    category: "scholarships",
+    featured: false,
+    name: "Aboitiz Future Leaders Scholarship Program",
+    link: "https://sites.google.com/aboitiz.com/aboitiz-future-leaders-scholar/home?authuser=0/",
+    logoUrl: "/aboitiz-logo.svg",
+    desc: {
+      tagalog:
+        "Full tuition at allowance para sa mga sophomore (88% GWA) sa Engineering, Business, at Data Science.",
+      english:
+        "Full tuition and allowances for sophomores (88% GWA) in Engineering, Business, and Data Science.",
+    },
+  },
 
   // ── Transparency & News ───────────────────────────────────────────────────
   {
@@ -280,6 +404,46 @@ const resources: Resource[] = [
         "Mga ordinansa, resolusyon, at opisyal na aksyon ng Sangguniang Bayan.",
       english:
         "Ordinances, resolutions, and official actions of the Municipal Council.",
+    },
+  },
+  {
+    id: 29,
+    category: "transparency",
+    featured: false,
+    name: "Official Gazette",
+    link: "https://www.officialgazette.gov.ph/",
+    logoUrl: "/og-logo.png",
+    desc: {
+      tagalog:
+        "Ang opisyal na journal ng Republika ng Pilipinas para sa mga bagong batas.",
+      english:
+        "The official journal of the Republic of the Philippines for new laws and issuances.",
+    },
+  },
+  {
+    id: 30,
+    category: "transparency",
+    featured: false,
+    name: "FOI Philippines",
+    link: "https://www.foi.gov.ph/",
+    logoUrl: "/foi-logo.png",
+    desc: {
+      tagalog: "Portal para sa paghiling ng pampublikong impormasyon at datos.",
+      english:
+        "Official portal for requesting public data and government documents.",
+    },
+  },
+  {
+    id: 31,
+    category: "transparency",
+    featured: false,
+    name: "OGP Philippines",
+    link: "https://ogp.dbm.gov.ph/",
+    logoUrl: "/ogp-logo.jpg",
+    desc: {
+      tagalog: "Inisyatibo para sa mas bukas at tapat na pamamahala sa bansa.",
+      english:
+        "Initiative for a more open, accountable, and transparent governance.",
     },
   },
 ];
@@ -773,7 +937,7 @@ export default function PublicServices() {
 
                     <div>
                       <div className="mb-6 flex items-start justify-between gap-4">
-                        <div className="h-10 w-32 shrink-0">
+                        <div className="h-10 w-32 shrink-0 ">
                           <img
                             src={resource.logoUrl}
                             alt={resource.name}

@@ -815,7 +815,7 @@ export default function Aklatan() {
               <button
                 onClick={handleSemanticSearch}
                 disabled={!searchQuery.trim()}
-                className="w-full flex items-center justify-center gap-2 rounded-2xl py-3 text-sm font-bold transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90 active:scale-[0.98] outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20"
+                className="w-full flex items-center justify-center gap-2 rounded-2xl py-3 text-sm font-bold transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98] outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20"
                 style={navyBg}
               >
                 <span
@@ -956,7 +956,7 @@ export default function Aklatan() {
                       href={db.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group relative flex flex-col justify-between rounded-2xl bg-white border p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20"
+                      className="group relative flex flex-col justify-between rounded-2xl bg-white border p-6 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20"
                       style={skyBorder}
                     >
                       {/* Vertical Accent Bar */}

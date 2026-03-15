@@ -9,6 +9,7 @@ import {
   List,
   BookOpen,
   BookMarked,
+  X,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -485,6 +486,7 @@ export default function Aklatan() {
       visit: "Puntahan",
       emptyTitle: "Walang nahanap na database.",
       emptyDesc: "Subukan ang ibang keyword.",
+      clearFilters: "I-clear lahat ng filter",
       typeAll: "Lahat",
       typeResearch: "Pananaliksik",
       typeEbooks: "E-Books",
@@ -511,6 +513,7 @@ export default function Aklatan() {
       visit: "Visit",
       emptyTitle: "No databases found.",
       emptyDesc: "Try a different keyword.",
+      clearFilters: "Clear all filters",
       typeAll: "All",
       typeResearch: "Research",
       typeEbooks: "E-Books",
@@ -639,15 +642,23 @@ export default function Aklatan() {
                 bg: "rgba(45,212,191,0.15)",
               },
             ].map((item) => (
-              <div key={item.type} className="flex items-center gap-2.5">
+              <button
+                key={item.type}
+                onClick={() => {
+                  setSearchMode("browse");
+                  setActiveType(item.type);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="flex items-center gap-2.5 group w-full text-left transition-all hover:bg-white/5 p-1 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20"
+              >
                 <div
-                  className="flex items-center justify-center w-6 h-6 rounded-lg shrink-0"
+                  className="flex items-center justify-center w-6 h-6 rounded-lg shrink-0 transition-transform group-hover:scale-110"
                   style={{ backgroundColor: item.bg }}
                 >
                   <item.icon size={12} style={{ color: item.color }} />
                 </div>
                 <span
-                  className="text-xs font-semibold"
+                  className="text-xs font-semibold transition-colors group-hover:text-cyan-400"
                   style={{ color: "rgba(186,230,253,0.75)" }}
                 >
                   {item.label}
@@ -658,7 +669,7 @@ export default function Aklatan() {
                 >
                   {item.count}
                 </span>
-              </div>
+              </button>
             ))}
           </div>
 
@@ -722,7 +733,7 @@ export default function Aklatan() {
             <div className="flex bg-white border border-sky-100 p-1 rounded-xl">
               <button
                 onClick={() => setSearchMode("semantic")}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${searchMode === "semantic" ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
+                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 ${searchMode === "semantic" ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
                 style={searchMode === "semantic" ? navyBg : {}}
               >
                 <Search size={12} /> {t.modeSemanticLabel}
@@ -732,7 +743,7 @@ export default function Aklatan() {
                   setSearchMode("browse");
                   setBrowseQuery("");
                 }}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${searchMode === "browse" ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
+                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 ${searchMode === "browse" ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
                 style={searchMode === "browse" ? navyBg : {}}
               >
                 <List size={12} /> {t.modeBrowseLabel}
@@ -744,10 +755,10 @@ export default function Aklatan() {
                 <button
                   key={lang}
                   onClick={() => setLanguage(lang)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-all ${language === lang ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-all outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 ${language === lang ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
                   style={language === lang ? navyBg : {}}
                 >
-                  <span>{lang === "tagalog" ? "🇵🇭" : "🇬🇧"}</span>
+                  <span>{lang === "tagalog" ? "🇵🇭" : "🇺🇸"}</span>
                   {lang === "tagalog" ? "FIL" : "ENG"}
                 </button>
               ))}
@@ -786,17 +797,25 @@ export default function Aklatan() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSemanticSearch()}
                   placeholder={t.placeholder}
-                  className="w-full rounded-2xl border bg-white pl-11 pr-5 py-4 text-sm font-medium text-slate-800 placeholder-slate-400 shadow-sm outline-none transition-all"
+                  className="w-full rounded-2xl border bg-white pl-11 pr-12 py-4 text-sm font-medium text-slate-800 placeholder-slate-400 shadow-sm outline-none transition-all ring-offset-2 focus:ring-2 focus:ring-cyan-500/20"
                   style={{ borderColor: "#bae6fd" }}
                   onFocus={onFocusSky}
                   onBlur={onBlurSky}
                 />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors p-1 rounded-full hover:bg-slate-100"
+                  >
+                    <X size={16} />
+                  </button>
+                )}
               </div>
 
               <button
                 onClick={handleSemanticSearch}
                 disabled={!searchQuery.trim()}
-                className="w-full flex items-center justify-center gap-2 rounded-2xl py-3 text-sm font-bold transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90"
+                className="w-full flex items-center justify-center gap-2 rounded-2xl py-3 text-sm font-bold transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90 active:scale-[0.98] outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20"
                 style={navyBg}
               >
                 <span
@@ -838,7 +857,7 @@ export default function Aklatan() {
                 </p>
                 <button
                   onClick={() => setSearchMode("browse")}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold transition-opacity hover:opacity-60"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold transition-opacity hover:opacity-60 outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 rounded-lg p-1"
                   style={{ color: "#0d2645" }}
                 >
                   <List size={12} /> {t.modeBrowseLabel} →
@@ -865,11 +884,19 @@ export default function Aklatan() {
                   placeholder={t.browsePlaceholder}
                   value={browseQuery}
                   onChange={(e) => setBrowseQuery(e.target.value)}
-                  className="w-full rounded-xl border bg-white py-2.5 pl-10 pr-4 text-sm font-medium text-slate-800 placeholder-slate-400 outline-none transition-all"
+                  className="w-full rounded-xl border bg-white py-2.5 pl-10 pr-10 text-sm font-medium text-slate-800 placeholder-slate-400 outline-none transition-all ring-offset-2 focus:ring-2 focus:ring-cyan-500/20"
                   style={{ borderColor: "#bae6fd" }}
                   onFocus={onFocusSky}
                   onBlur={onBlurSky}
                 />
+                {browseQuery && (
+                  <button
+                    onClick={() => setBrowseQuery("")}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors p-1 rounded-full hover:bg-slate-100"
+                  >
+                    <X size={14} />
+                  </button>
+                )}
               </div>
 
               <div className="flex items-center gap-2 flex-wrap">
@@ -891,7 +918,7 @@ export default function Aklatan() {
                     <button
                       key={val}
                       onClick={() => setActiveType(val)}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${activeType === val ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 ${activeType === val ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
                       style={activeType === val ? navyBg : {}}
                     >
                       {Icon && <Icon size={11} />}
@@ -906,7 +933,7 @@ export default function Aklatan() {
                     <button
                       key={String(local)}
                       onClick={() => setOnlyLocal(local)}
-                      className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${onlyLocal === local ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
+                      className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 ${onlyLocal === local ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
                       style={onlyLocal === local ? navyBg : {}}
                     >
                       {local ? t.local : t.all}
@@ -929,9 +956,19 @@ export default function Aklatan() {
                       href={db.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex flex-col justify-between rounded-2xl bg-white border p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                      className="group relative flex flex-col justify-between rounded-2xl bg-white border p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20"
                       style={skyBorder}
                     >
+                      {/* Vertical Accent Bar */}
+                      <div
+                        className="absolute left-0 top-0 bottom-0 w-1.5 transition-all duration-300 group-hover:w-2"
+                        style={{
+                          backgroundColor:
+                            db.resourceType === "research"
+                              ? "#06b6d4"
+                              : "#2dd4bf",
+                        }}
+                      />
                       <div>
                         <div className="mb-5 flex items-start justify-between gap-2">
                           <div className="h-8 w-28">
@@ -1021,7 +1058,20 @@ export default function Aklatan() {
                   <p className="text-base font-bold text-slate-400">
                     {t.emptyTitle}
                   </p>
-                  <p className="text-sm text-slate-300 mt-1">{t.emptyDesc}</p>
+                  <p className="text-sm text-slate-300 mt-1 mb-6">
+                    {t.emptyDesc}
+                  </p>
+                  <button
+                    onClick={() => {
+                      setBrowseQuery("");
+                      setActiveType("all");
+                      setOnlyLocal(false);
+                    }}
+                    className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all hover:bg-slate-100 ring-1 ring-slate-200 outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 active:scale-[0.98]"
+                    style={{ color: "#0d2645" }}
+                  >
+                    <X size={14} /> {t.clearFilters}
+                  </button>
                 </div>
               )}
             </div>

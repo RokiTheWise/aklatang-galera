@@ -10,6 +10,8 @@ import {
   Newspaper,
   Star,
   ArrowRight,
+  X,
+  MapPin,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -288,7 +290,7 @@ const categories = [
     key: "egovernment" as Category,
     icon: Landmark,
     color: "#2dd4bf",
-    bg: "rgba(0, 81, 78, 0.3)",
+    bg: "rgba(45,212,191,0.07)",
   },
   {
     key: "scholarships" as Category,
@@ -320,6 +322,13 @@ const categoryBorder: Record<Category, string> = {
   transparency: "rgba(8,145,178,0.15)",
 };
 
+const categoryOrder: Record<Category | "all", number> = {
+  all: 0,
+  egovernment: 1,
+  scholarships: 2,
+  transparency: 3,
+};
+
 export default function PublicServices() {
   const { language, setLanguage } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<Category | "all">("all");
@@ -347,6 +356,7 @@ export default function PublicServices() {
       visit: "Buksan",
       emptyTitle: "Walang nahanap.",
       emptyDesc: "Subukan ang ibang keyword o kategorya.",
+      clearFilters: "I-clear lahat ng filter",
       availableServices: "Mga serbisyo:",
     },
     english: {
@@ -370,6 +380,7 @@ export default function PublicServices() {
       visit: "Open",
       emptyTitle: "No results found.",
       emptyDesc: "Try a different keyword or category.",
+      clearFilters: "Clear all filters",
       availableServices: "Available services:",
     },
   };
@@ -378,15 +389,23 @@ export default function PublicServices() {
   const featuredResource = resources.find((r) => r.featured);
   const nonFeatured = resources.filter((r) => !r.featured);
 
-  const filtered = nonFeatured.filter((r) => {
-    const matchCat = activeCategory === "all" || r.category === activeCategory;
-    const q = searchQuery.toLowerCase();
-    const matchQuery =
-      !q ||
-      r.name.toLowerCase().includes(q) ||
-      r.desc[language].toLowerCase().includes(q);
-    return matchCat && matchQuery;
-  });
+  const filtered = nonFeatured
+    .filter((r) => {
+      const matchCat =
+        activeCategory === "all" || r.category === activeCategory;
+      const q = searchQuery.toLowerCase();
+      const matchQuery =
+        !q ||
+        r.name.toLowerCase().includes(q) ||
+        r.desc[language].toLowerCase().includes(q);
+      return matchCat && matchQuery;
+    })
+    .sort((a, b) => {
+      if (a.category !== b.category) {
+        return categoryOrder[a.category] - categoryOrder[b.category];
+      }
+      return a.name.localeCompare(b.name);
+    });
 
   // When filtering to egovernment, show featured too
   const showFeatured =
@@ -462,33 +481,44 @@ export default function PublicServices() {
             </p>
           </div>
 
-          {/* Category legend */}
+          {/* Category legend - Interactive */}
           <div className="flex flex-col gap-2.5">
             {categories.map((cat) => {
               const count = resources.filter(
                 (r) => r.category === cat.key,
               ).length;
               return (
-                <div key={cat.key} className="flex items-center gap-2.5">
+                <button
+                  key={cat.key}
+                  onClick={() => {
+                    setActiveCategory(cat.key);
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                  className={`flex items-center gap-2.5 w-full text-left p-2 -ml-2 rounded-xl transition-all duration-300 group outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 ${activeCategory === cat.key ? "" : "hover:bg-white/5"}`}
+                  style={
+                    activeCategory === cat.key
+                      ? { backgroundColor: cat.bg.replace("0.07", "0.2") }
+                      : {}
+                  }
+                >
                   <div
-                    className="flex items-center justify-center w-6 h-6 rounded-lg shrink-0"
-                    style={{ backgroundColor: cat.bg.replace("0.07", "0.18") }}
+                    className="flex items-center justify-center w-7 h-7 rounded-lg shrink-0 transition-transform group-hover:scale-110"
+                    style={{ backgroundColor: cat.bg.replace("0.07", "0.15") }}
                   >
-                    <cat.icon size={12} style={{ color: cat.color }} />
+                    <cat.icon size={13} style={{ color: cat.color }} />
                   </div>
                   <span
-                    className="text-xs font-semibold"
-                    style={{ color: "rgba(186,230,253,0.75)" }}
+                    className={`text-xs font-semibold transition-colors ${activeCategory === cat.key ? "text-white" : "text-rgba(186,230,253,0.75)"} group-hover:text-white`}
                   >
                     {t.categories[cat.key]}
                   </span>
                   <span
-                    className="ml-auto text-[10px] font-bold tabular-nums"
+                    className="ml-auto text-[10px] font-bold tabular-nums opacity-60 group-hover:opacity-100"
                     style={{ color: "rgba(186,230,253,0.4)" }}
                   >
                     {count}
                   </span>
-                </div>
+                </button>
               );
             })}
           </div>
@@ -539,28 +569,36 @@ export default function PublicServices() {
           }}
         >
           <div className="flex items-center gap-3">
-            <div className="relative flex-1 max-w-sm">
+            <div className="relative flex-1 max-w-sm group">
               <Search
                 size={14}
-                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none transition-colors group-focus-within:text-cyan-600"
               />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={t.searchPlaceholder}
-                className="w-full rounded-xl border bg-white py-2.5 pl-9 pr-4 text-sm font-medium text-slate-800 placeholder-slate-400 outline-none transition-all"
+                className="w-full rounded-xl border bg-white py-2.5 pl-9 pr-10 text-sm font-medium text-slate-800 placeholder-slate-400 outline-none transition-all shadow-sm focus:ring-4 focus:ring-sky-100"
                 style={{ borderColor: "#bae6fd" }}
                 onFocus={onFocusSky}
                 onBlur={onBlurSky}
               />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-slate-100 text-slate-400 transition-colors"
+                >
+                  <X size={14} />
+                </button>
+              )}
             </div>
-            <div className="flex items-center gap-1 bg-white border border-sky-100 p-1 rounded-xl shrink-0 ml-auto">
+            <div className="flex items-center gap-1 bg-white border border-sky-100 p-1 rounded-xl shrink-0 ml-auto shadow-sm">
               {(["tagalog", "english"] as const).map((lang) => (
                 <button
                   key={lang}
                   onClick={() => setLanguage(lang)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-all ${language === lang ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-all outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 ${language === lang ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
                   style={language === lang ? navyBg : {}}
                 >
                   <span>{lang === "tagalog" ? "🇵🇭" : "🇬🇧"}</span>
@@ -571,10 +609,10 @@ export default function PublicServices() {
           </div>
 
           {/* Category tabs */}
-          <div className="flex items-center gap-2 mt-3 overflow-x-auto pb-0.5">
+          <div className="flex items-center gap-2 mt-3 overflow-x-auto pb-0.5 no-scrollbar">
             <button
               onClick={() => setActiveCategory("all")}
-              className={`shrink-0 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${activeCategory === "all" ? "text-white shadow-sm" : "bg-white text-slate-400 hover:bg-sky-50 border"}`}
+              className={`shrink-0 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 active:scale-[0.98] ${activeCategory === "all" ? "text-white" : "bg-white text-slate-400 hover:bg-sky-50 border"}`}
               style={
                 activeCategory === "all" ? navyBg : { borderColor: "#e0f2fe" }
               }
@@ -585,10 +623,14 @@ export default function PublicServices() {
               <button
                 key={cat.key}
                 onClick={() => setActiveCategory(cat.key)}
-                className={`shrink-0 flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold border transition-all ${activeCategory === cat.key ? "text-white shadow-sm" : "bg-white text-slate-500 hover:bg-sky-50"}`}
+                className={`shrink-0 flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold border transition-all shadow-sm outline-none active:scale-[0.98] ${activeCategory === cat.key ? "text-white focus-visible:ring-2 focus-visible:ring-offset-1" : "bg-white text-slate-500 hover:bg-sky-50"}`}
                 style={
                   activeCategory === cat.key
-                    ? { backgroundColor: cat.color, borderColor: cat.color }
+                    ? {
+                        backgroundColor: cat.color,
+                        borderColor: cat.color,
+                        boxShadow: `0 4px 12px ${cat.bg.replace("0.07", "0.3")}`,
+                      }
                     : { borderColor: "#e0f2fe" }
                 }
               >
@@ -596,21 +638,24 @@ export default function PublicServices() {
                 {t.categories[cat.key]}
               </button>
             ))}
-            <span className="ml-auto shrink-0 text-[11px] font-bold uppercase tracking-widest text-slate-400 whitespace-nowrap">
-              {showFeatured ? filtered.length + 1 : filtered.length} {t.results}
-            </span>
+            <div className="ml-auto shrink-0 px-3 py-1.5 bg-slate-100 rounded-lg">
+              <p className="text-[10px] font-black uppercase tracking-tighter text-slate-500 whitespace-nowrap">
+                {showFeatured ? filtered.length + 1 : filtered.length}{" "}
+                {t.results}
+              </p>
+            </div>
           </div>
         </div>
 
         {/* ── Content ── */}
-        <div className="flex-1 px-6 lg:px-8 py-6 flex flex-col gap-6">
+        <div className="flex-1 px-6 lg:px-8 py-8 flex flex-col gap-8 animate-in slide-in-from-right duration-500">
           {/* ── Featured eLGU Card ── */}
           {showFeatured && featuredResource && (
             <a
               href={featuredResource.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex flex-col md:flex-row gap-6 rounded-3xl p-6 md:p-8 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-0.5 border"
+              className="group relative flex flex-col md:flex-row gap-6 rounded-[32px] p-8 md:p-10 overflow-hidden transition-all duration-500 hover:shadow-[0_20px_50px_rgba(13,38,69,0.15)] hover:-translate-y-1 active:scale-[0.99] border"
               style={{
                 backgroundColor: "#0d2645",
                 borderColor: "rgba(255,255,255,0.07)",
@@ -626,43 +671,43 @@ export default function PublicServices() {
                 style={{ backgroundColor: "rgba(6,182,212,0.08)" }}
               />
 
-              <div className="relative z-10 flex flex-col justify-between flex-1 gap-5">
+              <div className="relative z-10 flex flex-col justify-between flex-1 gap-6">
                 {/* Label */}
                 <div
-                  className="inline-flex items-center gap-1.5 self-start rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest"
+                  className="inline-flex items-center gap-1.5 self-start rounded-full px-4 py-1.5 text-[10px] font-black uppercase tracking-widest shadow-lg shadow-amber-900/20"
                   style={{
                     backgroundColor: "rgba(245,158,11,0.15)",
                     color: "#f59e0b",
                     border: "1px solid rgba(245,158,11,0.25)",
                   }}
                 >
-                  <Star size={9} fill="#f59e0b" /> {t.featuredLabel}
+                  <Star size={10} fill="#f59e0b" /> {t.featuredLabel}
                 </div>
 
                 <div>
                   <h2
-                    className="text-xl md:text-2xl font-extrabold mb-2"
+                    className="text-2xl md:text-3xl font-black mb-3 tracking-tight"
                     style={{ color: "#ffffff" }}
                   >
                     {featuredResource.name}
                   </h2>
                   <p
-                    className="text-sm leading-relaxed mb-4"
-                    style={{ color: "rgba(186,230,253,0.7)" }}
+                    className="text-base leading-relaxed mb-6 font-medium max-w-2xl"
+                    style={{ color: "rgba(186,230,253,0.8)" }}
                   >
                     {t.featuredHint}
                   </p>
 
                   {/* Service tags */}
                   {featuredResource.tags && (
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2.5">
                       {featuredResource.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded-full px-3 py-1 text-[11px] font-bold"
+                          className="rounded-full px-4 py-1.5 text-[11px] font-black uppercase tracking-wider"
                           style={{
                             backgroundColor: "rgba(6,182,212,0.12)",
-                            color: "rgba(186,230,253,0.85)",
+                            color: "rgba(186,230,253,0.9)",
                             border: "1px solid rgba(6,182,212,0.2)",
                           }}
                         >
@@ -675,23 +720,23 @@ export default function PublicServices() {
 
                 {/* CTA */}
                 <div
-                  className="inline-flex items-center gap-2 self-start rounded-full px-5 py-2.5 text-sm font-bold transition-all duration-200 group-hover:gap-3"
+                  className="inline-flex items-center gap-2.5 self-start rounded-2xl px-7 py-3.5 text-sm font-black uppercase tracking-widest transition-all duration-300 group-hover:gap-4 group-hover:shadow-xl group-hover:shadow-amber-500/20 active:scale-95"
                   style={{ backgroundColor: "#f59e0b", color: "#0d2645" }}
                 >
                   {t.featuredBtn}{" "}
                   <ArrowRight
-                    size={14}
+                    size={16}
                     className="transition-transform duration-300 group-hover:translate-x-1"
                   />
                 </div>
               </div>
 
               {/* Right: logo area */}
-              <div className="relative z-10 flex items-center justify-center shrink-0 md:w-40">
+              <div className="relative z-10 flex items-center justify-center shrink-0 md:w-48 filter drop-shadow-2xl">
                 <img
                   src={featuredResource.logoUrl}
                   alt={featuredResource.name}
-                  className="h-16 w-auto object-contain brightness-0 invert opacity-70"
+                  className="h-20 w-auto object-contain brightness-0 invert opacity-80"
                   onError={(e) => {
                     (e.target as HTMLImageElement).style.display = "none";
                   }}
@@ -702,7 +747,7 @@ export default function PublicServices() {
 
           {/* ── Grid ── */}
           {filtered.length > 0 ? (
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
               {filtered.map((resource) => {
                 const color = categoryColor[resource.category];
                 const bg = categoryBg[resource.category];
@@ -717,12 +762,18 @@ export default function PublicServices() {
                     href={resource.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex flex-col justify-between rounded-2xl bg-white border p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                    className="group relative flex flex-col justify-between rounded-3xl bg-white border p-7 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20"
                     style={skyBorder}
                   >
+                    {/* Vertical accent bar */}
+                    <div
+                      className="absolute left-0 top-0 bottom-0 w-1.5 transition-all duration-300 group-hover:w-2"
+                      style={{ backgroundColor: color }}
+                    />
+
                     <div>
-                      <div className="mb-4 flex items-start justify-between gap-2">
-                        <div className="h-8 w-28 shrink-0">
+                      <div className="mb-6 flex items-start justify-between gap-4">
+                        <div className="h-10 w-32 shrink-0">
                           <img
                             src={resource.logoUrl}
                             alt={resource.name}
@@ -734,35 +785,46 @@ export default function PublicServices() {
                           />
                         </div>
                         <span
-                          className="flex items-center gap-1 shrink-0 rounded-full px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider"
+                          className="flex items-center gap-1 shrink-0 rounded-full px-3 py-1 text-[9px] font-black uppercase tracking-widest shadow-sm"
                           style={{
                             backgroundColor: bg,
                             color,
                             border: `1px solid ${border}`,
                           }}
                         >
-                          <CatIcon size={8} />
+                          <CatIcon size={9} />
                           {t.categories[resource.category]}
                         </span>
                       </div>
-                      <h2 className="mb-1.5 text-base font-bold text-slate-900">
+                      <h2 className="mb-2 text-lg font-black text-slate-900 leading-snug">
                         {resource.name}
                       </h2>
-                      <p className="text-xs text-slate-500 leading-relaxed">
+                      <p className="text-sm text-slate-500 leading-relaxed font-medium">
                         {resource.desc[language]}
                       </p>
                     </div>
 
-                    <div className="mt-5 pt-4 border-t" style={skyBorder}>
+                    <div className="mt-6 pt-5 border-t border-slate-50 flex items-center justify-between">
                       <div
-                        className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wide transition-all duration-200 group-hover:gap-2.5"
+                        className="inline-flex items-center gap-2 rounded-2xl px-5 py-2.5 text-xs font-black uppercase tracking-widest transition-all duration-300 group-hover:gap-3 group-hover:shadow-lg group-hover:shadow-sky-900/10 active:scale-95"
                         style={{ backgroundColor: "#0d2645", color: "#ffffff" }}
                       >
                         {t.visit}
                         <ExternalLink
-                          size={11}
-                          className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                          size={12}
+                          className="transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                         />
+                      </div>
+
+                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <div className="flex gap-1">
+                          {[1, 2, 3].map((i) => (
+                            <div
+                              key={i}
+                              className="w-1 h-1 rounded-full bg-slate-200"
+                            />
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </a>
@@ -770,17 +832,34 @@ export default function PublicServices() {
               })}
             </div>
           ) : !showFeatured ? (
-            <div className="flex flex-col items-center justify-center py-32 text-center">
+            <div className="flex flex-col items-center justify-center py-40 text-center animate-in fade-in slide-in-from-bottom duration-700">
               <div
-                className="mb-4 rounded-full p-5"
-                style={{ backgroundColor: "rgba(13,38,69,0.05)" }}
+                className="mb-6 rounded-full p-8 shadow-inner relative overflow-hidden"
+                style={{ backgroundColor: "rgba(13,38,69,0.03)" }}
               >
-                <Search size={28} style={{ color: "#0d2645", opacity: 0.3 }} />
+                <Search
+                  size={40}
+                  className="relative z-10"
+                  style={{ color: "#0d2645", opacity: 0.2 }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-sky-50 to-transparent animate-pulse" />
               </div>
-              <p className="text-base font-bold text-slate-400">
+              <p className="text-xl font-black text-slate-400 tracking-tight">
                 {t.emptyTitle}
               </p>
-              <p className="text-sm text-slate-300 mt-1">{t.emptyDesc}</p>
+              <p className="text-base text-slate-300 mt-2 max-w-xs mx-auto font-medium">
+                {t.emptyDesc}
+              </p>
+              <button
+                onClick={() => {
+                  setSearchQuery("");
+                  setActiveCategory("all");
+                }}
+                className="mt-8 flex items-center gap-2 px-5 py-2.5 rounded-2xl text-xs font-black uppercase tracking-widest transition-all hover:bg-slate-100 ring-1 ring-slate-200 outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 active:scale-[0.98]"
+                style={{ color: "#0d2645" }}
+              >
+                <X size={14} /> {t.clearFilters}
+              </button>
             </div>
           ) : null}
         </div>

@@ -704,7 +704,7 @@ export default function Aklatan() {
         </div>
 
         <div
-          className="relative z-10 hidden md:block pt-6 mt-6 border-t"
+          className="relative z-10 pt-5 mt-5 border-t"
           style={{ borderColor: "rgba(255,255,255,0.07)" }}
         >
           <p className="text-[10px]" style={{ color: "rgba(6,182,212,0.4)" }}>
@@ -735,12 +735,12 @@ export default function Aklatan() {
             borderColor: "#e0f2fe",
           }}
         >
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            {/* ── Mode Slider Toggle ── */}
-            <div className="relative flex items-center rounded-2xl border border-slate-200 bg-white shadow-sm p-1">
+          <div className="flex flex-wrap items-center gap-2">
+            {/* ── Mode Slider Toggle ── full width on mobile, auto on sm+ */}
+            <div className="relative flex items-center rounded-2xl border border-slate-200 bg-white shadow-sm p-1 w-full sm:w-auto">
               <button
                 onClick={() => setSearchMode("semantic")}
-                className="relative z-10 flex items-center gap-1.5 px-4 py-1.5 text-xs font-black uppercase tracking-widest transition-colors duration-200 select-none whitespace-nowrap"
+                className="relative z-10 flex flex-1 justify-center items-center gap-1.5 px-4 py-1.5 text-xs font-black uppercase tracking-widest transition-colors duration-200 select-none whitespace-nowrap"
                 style={{
                   color: searchMode === "semantic" ? "white" : "#94a3b8",
                 }}
@@ -760,7 +760,7 @@ export default function Aklatan() {
                   setSearchMode("browse");
                   setBrowseQuery("");
                 }}
-                className="relative z-10 flex items-center gap-1.5 px-4 py-1.5 text-xs font-black uppercase tracking-widest transition-colors duration-200 select-none whitespace-nowrap"
+                className="relative z-10 flex flex-1 justify-center items-center gap-1.5 px-4 py-1.5 text-xs font-black uppercase tracking-widest transition-colors duration-200 select-none whitespace-nowrap"
                 style={{ color: searchMode === "browse" ? "white" : "#94a3b8" }}
               >
                 {searchMode === "browse" && (
@@ -775,8 +775,8 @@ export default function Aklatan() {
               </button>
             </div>
 
-            {/* ── Language Slider Toggle ── */}
-            <div className="relative flex items-center rounded-full border border-slate-200 bg-white shadow-sm p-1 shrink-0">
+            {/* ── Language Slider Toggle — shrink-0 so it wraps to next line on mobile ── */}
+            <div className="relative flex items-center rounded-full border border-slate-200 bg-white shadow-sm p-1 shrink-0 sm:ml-auto">
               <button
                 onClick={() => setLanguage("tagalog")}
                 className={`relative z-10 flex items-center gap-1.5 px-4 py-1.5 text-[11px] font-black uppercase tracking-widest transition-colors duration-200 select-none ${language === "tagalog" ? "text-white" : "text-slate-400 hover:text-slate-600"}`}
@@ -910,7 +910,7 @@ export default function Aklatan() {
               className="px-4 md:px-6 lg:px-8 pt-4 pb-3 md:pt-5 md:pb-4 flex flex-col sm:flex-row gap-3 items-start sm:items-center border-b"
               style={skyBorder}
             >
-              <div className="relative flex-1 max-w-md">
+              <div className="relative flex-1 w-full max-w-md">
                 <Search
                   size={14}
                   className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
@@ -935,78 +935,80 @@ export default function Aklatan() {
                 )}
               </div>
 
-              <div className="flex items-center gap-2 flex-wrap overflow-x-auto no-scrollbar pb-0.5">
-                {[
-                  {
-                    val: "all" as const,
-                    label: t.typeAll,
-                    icon: null,
-                    color: "#0d2645",
-                    bg: "rgba(13,38,69,0.3)",
-                  },
-                  {
-                    val: "research" as const,
-                    label: t.typeResearch,
-                    icon: Search,
-                    color: "#06b6d4",
-                    bg: "rgba(6,182,212,0.3)",
-                  },
-                  {
-                    val: "ebooks" as const,
-                    label: t.typeEbooks,
-                    icon: BookMarked,
-                    color: "#2dd4bf",
-                    bg: "rgba(45,212,191,0.3)",
-                  },
-                ].map(({ val, label, icon: Icon, color, bg }) => (
-                  <button
-                    key={val}
-                    onClick={() => setActiveType(val)}
-                    className={`shrink-0 flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold border transition-all shadow-sm outline-none active:scale-[0.98] ${activeType === val ? "text-white focus-visible:ring-2 focus-visible:ring-offset-1" : "bg-white text-slate-500 hover:bg-sky-50"}`}
-                    style={
-                      activeType === val
-                        ? {
-                            backgroundColor: color,
-                            borderColor: color,
-                            boxShadow: `0 4px 12px ${bg}`,
-                          }
-                        : { borderColor: "#e0f2fe" }
-                    }
-                  >
-                    {Icon && <Icon size={11} />} {label}
-                  </button>
-                ))}
+              <div className="relative w-full sm:w-auto">
+                <div className="flex flex-wrap items-center gap-2">
+                  {[
+                    {
+                      val: "all" as const,
+                      label: t.typeAll,
+                      icon: null,
+                      color: "#0d2645",
+                      bg: "rgba(13,38,69,0.3)",
+                    },
+                    {
+                      val: "research" as const,
+                      label: t.typeResearch,
+                      icon: Search,
+                      color: "#06b6d4",
+                      bg: "rgba(6,182,212,0.3)",
+                    },
+                    {
+                      val: "ebooks" as const,
+                      label: t.typeEbooks,
+                      icon: BookMarked,
+                      color: "#2dd4bf",
+                      bg: "rgba(45,212,191,0.3)",
+                    },
+                  ].map(({ val, label, icon: Icon, color, bg }) => (
+                    <button
+                      key={val}
+                      onClick={() => setActiveType(val)}
+                      className={`shrink-0 flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold border transition-all shadow-sm outline-none active:scale-[0.98] ${activeType === val ? "text-white focus-visible:ring-2 focus-visible:ring-offset-1" : "bg-white text-slate-500 hover:bg-sky-50"}`}
+                      style={
+                        activeType === val
+                          ? {
+                              backgroundColor: color,
+                              borderColor: color,
+                              boxShadow: `0 4px 12px ${bg}`,
+                            }
+                          : { borderColor: "#e0f2fe" }
+                      }
+                    >
+                      {Icon && <Icon size={11} />} {label}
+                    </button>
+                  ))}
 
-                <div className="h-4 w-px bg-slate-200 mx-1 shrink-0" />
-                {([false, true] as const).map((local) => (
-                  <button
-                    key={String(local)}
-                    onClick={() => setOnlyLocal(local)}
-                    className={`shrink-0 px-3.5 py-1.5 rounded-lg text-xs font-bold border transition-all shadow-sm outline-none active:scale-[0.98] ${onlyLocal === local ? "text-white focus-visible:ring-2 focus-visible:ring-offset-1" : "bg-white text-slate-500 hover:bg-sky-50"}`}
-                    style={
-                      onlyLocal === local
-                        ? {
-                            backgroundColor: "#059669",
-                            borderColor: "#059669",
-                            boxShadow: "0 4px 12px rgba(5,150,105,0.3)",
-                          }
-                        : { borderColor: "#e0f2fe" }
-                    }
-                  >
-                    {local ? (
-                      <span className="flex items-center gap-1">
-                        <MapPin size={11} /> {t.local}
-                      </span>
-                    ) : (
-                      t.all
-                    )}
-                  </button>
-                ))}
+                  <div className="h-4 w-px bg-slate-200 mx-1 shrink-0" />
+                  {([false, true] as const).map((local) => (
+                    <button
+                      key={String(local)}
+                      onClick={() => setOnlyLocal(local)}
+                      className={`shrink-0 px-3.5 py-1.5 rounded-lg text-xs font-bold border transition-all shadow-sm outline-none active:scale-[0.98] ${onlyLocal === local ? "text-white focus-visible:ring-2 focus-visible:ring-offset-1" : "bg-white text-slate-500 hover:bg-sky-50"}`}
+                      style={
+                        onlyLocal === local
+                          ? {
+                              backgroundColor: "#059669",
+                              borderColor: "#059669",
+                              boxShadow: "0 4px 12px rgba(5,150,105,0.3)",
+                            }
+                          : { borderColor: "#e0f2fe" }
+                      }
+                    >
+                      {local ? (
+                        <span className="flex items-center gap-1">
+                          <MapPin size={11} /> {t.local}
+                        </span>
+                      ) : (
+                        t.all
+                      )}
+                    </button>
+                  ))}
 
-                <div className="ml-auto shrink-0 px-3 py-1.5 bg-slate-100 rounded-lg">
-                  <p className="text-[10px] font-black uppercase tracking-tighter text-slate-500 whitespace-nowrap">
-                    {filtered.length} {t.results}
-                  </p>
+                  <div className="ml-auto shrink-0 px-3 py-1.5 bg-slate-100 rounded-lg">
+                    <p className="text-[10px] font-black uppercase tracking-tighter text-slate-500 whitespace-nowrap">
+                      {filtered.length} {t.results}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

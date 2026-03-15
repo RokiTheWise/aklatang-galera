@@ -687,7 +687,7 @@ export default function PublicServices() {
           </div>
         </div>
         <div
-          className="relative z-10 hidden md:block pt-6 mt-6 border-t"
+          className="relative z-10 pt-5 mt-5 border-t"
           style={{ borderColor: "rgba(255,255,255,0.07)" }}
         >
           <p className="text-[10px]" style={{ color: "rgba(6,182,212,0.4)" }}>
@@ -720,7 +720,8 @@ export default function PublicServices() {
           }}
         >
           <div className="flex flex-wrap items-center gap-2">
-            <div className="relative flex-1 min-w-0 max-w-sm group">
+            {/* Search — full width on mobile, flex-1 on sm+ */}
+            <div className="relative w-full sm:flex-1 sm:min-w-0 sm:max-w-sm group">
               <Search
                 size={14}
                 className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none transition-colors group-focus-within:text-cyan-600"
@@ -745,8 +746,8 @@ export default function PublicServices() {
               )}
             </div>
 
-            {/* ── Language Slider Toggle ── */}
-            <div className="relative flex items-center rounded-full border border-slate-200 bg-white shadow-sm p-1 shrink-0 ml-auto">
+            {/* ── Language Slider Toggle — shrinks to next row on mobile ── */}
+            <div className="relative flex items-center rounded-full border border-slate-200 bg-white shadow-sm p-1 shrink-0 sm:ml-auto">
               <button
                 onClick={() => setLanguage("tagalog")}
                 className={`relative z-10 flex items-center gap-1.5 px-4 py-1.5 text-[11px] font-black uppercase tracking-widest transition-colors duration-200 select-none ${language === "tagalog" ? "text-white" : "text-slate-400 hover:text-slate-600"}`}
@@ -772,7 +773,7 @@ export default function PublicServices() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 mt-2 md:mt-3 overflow-x-auto pb-0.5 no-scrollbar">
+          <div className="flex flex-wrap items-center gap-2 mt-2 md:mt-3">
             <button
               onClick={() => setActiveCategory("all")}
               className={`shrink-0 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 active:scale-[0.98] ${activeCategory === "all" ? "text-white" : "bg-white text-slate-400 hover:bg-sky-50 border"}`}

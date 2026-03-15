@@ -9,7 +9,6 @@ import {
   Briefcase,
   GraduationCap,
   Store,
-  Star,
   X,
 } from "lucide-react";
 import { motion } from "framer-motion";
@@ -25,7 +24,6 @@ interface Resource {
   category: Category;
   link: string;
   logoUrl: string;
-  free: boolean;
   desc: { tagalog: string; english: string };
 }
 
@@ -33,7 +31,6 @@ const resources: Resource[] = [
   {
     id: 1,
     category: "entrepreneurship",
-    free: true,
     name: "Canva for Business",
     link: "https://www.canva.com/",
     logoUrl: "canva-logo.png",
@@ -45,7 +42,6 @@ const resources: Resource[] = [
   {
     id: 2,
     category: "skills",
-    free: true,
     name: "Coursera",
     link: "https://www.coursera.org/courses?query=free",
     logoUrl:
@@ -58,7 +54,6 @@ const resources: Resource[] = [
   {
     id: 3,
     category: "entrepreneurship",
-    free: true,
     name: "DTI NEGOSYO Center",
     link: "https://www.dti.gov.ph/",
     logoUrl: "dti-logo.png",
@@ -70,7 +65,6 @@ const resources: Resource[] = [
   {
     id: 4,
     category: "entrepreneurship",
-    free: true,
     name: "DTI Oriental Mindoro",
     link: "https://www.facebook.com/DTI.OrientalMindoro",
     logoUrl: "dti-ormin-logo.jpg",
@@ -83,7 +77,6 @@ const resources: Resource[] = [
   {
     id: 5,
     category: "skills",
-    free: true,
     name: "freeCodeCamp",
     link: "https://www.freecodecamp.org/",
     logoUrl:
@@ -96,7 +89,6 @@ const resources: Resource[] = [
   {
     id: 6,
     category: "entrepreneurship",
-    free: true,
     name: "Google Business Profile",
     link: "https://business.google.com/",
     logoUrl:
@@ -109,7 +101,6 @@ const resources: Resource[] = [
   {
     id: 7,
     category: "skills",
-    free: true,
     name: "Google Digital Garage",
     link: "https://grow.google/intl/en_ph/",
     logoUrl:
@@ -122,7 +113,6 @@ const resources: Resource[] = [
   {
     id: 8,
     category: "jobs",
-    free: true,
     name: "JobStreet Philippines",
     link: "https://www.jobstreet.com.ph/",
     logoUrl: "/jobstreet-logo.png",
@@ -134,7 +124,6 @@ const resources: Resource[] = [
   {
     id: 9,
     category: "jobs",
-    free: true,
     name: "Kalibrr",
     link: "https://www.kalibrr.com/",
     logoUrl: "https://www.kalibrr.com/favicon.ico",
@@ -146,7 +135,6 @@ const resources: Resource[] = [
   {
     id: 10,
     category: "skills",
-    free: true,
     name: "Khan Academy",
     link: "https://www.khanacademy.org/",
     logoUrl: "/khan-logo.png",
@@ -158,7 +146,6 @@ const resources: Resource[] = [
   {
     id: 11,
     category: "entrepreneurship",
-    free: true,
     name: "LinkedIn for Business",
     link: "https://business.linkedin.com/",
     logoUrl:
@@ -171,7 +158,6 @@ const resources: Resource[] = [
   {
     id: 12,
     category: "jobs",
-    free: true,
     name: "LinkedIn Jobs",
     link: "https://www.linkedin.com/jobs/",
     logoUrl:
@@ -184,7 +170,6 @@ const resources: Resource[] = [
   {
     id: 13,
     category: "jobs",
-    free: true,
     name: "OnlineJobs.ph",
     link: "https://www.onlinejobs.ph/",
     logoUrl: "onlinejobs-logo.jpg",
@@ -196,7 +181,6 @@ const resources: Resource[] = [
   {
     id: 14,
     category: "jobs",
-    free: true,
     name: "OrMin Government Careers",
     link: "https://ormindoro.gov.ph/careers/",
     logoUrl: "ormin-logo.png",
@@ -208,7 +192,6 @@ const resources: Resource[] = [
   {
     id: 15,
     category: "jobs",
-    free: true,
     name: "Civil Service Commission Job Opportunities",
     link: "https://csc.gov.ph/career/",
     logoUrl: "csc-logo.png",
@@ -221,7 +204,6 @@ const resources: Resource[] = [
   {
     id: 16,
     category: "jobs",
-    free: true,
     name: "Resume.com",
     link: "https://www.resume.com/",
     logoUrl: "resume-logo.png",
@@ -233,7 +215,6 @@ const resources: Resource[] = [
   {
     id: 17,
     category: "skills",
-    free: true,
     name: "TESDA Online Program",
     link: "https://e-tesda.gov.ph/course/",
     logoUrl: "tesda-logo.jpg",
@@ -245,7 +226,6 @@ const resources: Resource[] = [
   {
     id: 18,
     category: "jobs",
-    free: true,
     name: "PhilJobNet",
     link: "https://philjobnet.gov.ph/",
     logoUrl: "/pej-logo.jpeg",
@@ -257,7 +237,6 @@ const resources: Resource[] = [
   {
     id: 19,
     category: "jobs",
-    free: true,
     name: "Indeed Philippines",
     link: "https://ph.indeed.com/",
     logoUrl: "/indeed-logo.png",
@@ -269,7 +248,6 @@ const resources: Resource[] = [
   {
     id: 22,
     category: "skills",
-    free: true,
     name: "UPOU MODeL",
     link: "https://model.upou.edu.ph/",
     logoUrl: "/up-logo.png",
@@ -281,7 +259,6 @@ const resources: Resource[] = [
   {
     id: 23,
     category: "skills",
-    free: true,
     name: "DICT ICT Trainings",
     link: "https://dict.gov.ph/trainings",
     logoUrl: "/dict-logo.png",
@@ -294,7 +271,6 @@ const resources: Resource[] = [
   {
     id: 24,
     category: "entrepreneurship",
-    free: true,
     name: "SEC Philippines",
     link: "https://www.sec.gov.ph/",
     logoUrl: "/sec-logo.png",
@@ -307,7 +283,6 @@ const resources: Resource[] = [
   {
     id: 25,
     category: "entrepreneurship",
-    free: true,
     name: "BIR for Small Business",
     link: "https://www.bir.gov.ph/",
     logoUrl: "/bir-logo.png",
@@ -320,7 +295,6 @@ const resources: Resource[] = [
   {
     id: 26,
     category: "entrepreneurship",
-    free: true,
     name: "Go Negosyo",
     link: "https://www.gonegosyo.ph/",
     logoUrl: "/gonegosyo-logo.png",
@@ -333,7 +307,6 @@ const resources: Resource[] = [
   {
     id: 27,
     category: "entrepreneurship",
-    free: true,
     name: "IPOPHL",
     link: "https://www.ipophil.gov.ph/",
     logoUrl: "/ipophil-logo.png",
@@ -391,7 +364,6 @@ export default function Hanapbuhay() {
   const { language, setLanguage } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<Category | "all">("all");
   const [searchQuery, setSearchQuery] = useState("");
-  const [freeOnly, setFreeOnly] = useState(false);
 
   const ui = {
     tagalog: {
@@ -407,13 +379,11 @@ export default function Hanapbuhay() {
         entrepreneurship: "Negosyo",
       },
       searchPlaceholder: "Maghanap ng resource...",
-      freeLabel: "Libre lang",
       results: "resulta",
       visit: "Puntahan",
       emptyTitle: "Walang nahanap.",
       emptyDesc: "Subukan ang ibang keyword o kategorya.",
       clearFilters: "I-clear lahat ng filter",
-      freeTag: "Libre",
     },
     english: {
       back: "Back to Home",
@@ -427,13 +397,11 @@ export default function Hanapbuhay() {
         entrepreneurship: "Business",
       },
       searchPlaceholder: "Search resources...",
-      freeLabel: "Free only",
       results: "results",
       visit: "Visit",
       emptyTitle: "No results found.",
       emptyDesc: "Try a different keyword or category.",
       clearFilters: "Clear all filters",
-      freeTag: "Free",
     },
   };
   const t = ui[language];
@@ -442,13 +410,12 @@ export default function Hanapbuhay() {
     .filter((r) => {
       const matchCat =
         activeCategory === "all" || r.category === activeCategory;
-      const matchFree = !freeOnly || r.free;
       const q = searchQuery.toLowerCase();
       const matchQuery =
         !q ||
         r.name.toLowerCase().includes(q) ||
         r.desc[language].toLowerCase().includes(q);
-      return matchCat && matchFree && matchQuery;
+      return matchCat && matchQuery;
     })
     .sort((a, b) => {
       if (a.category !== b.category)
@@ -581,7 +548,7 @@ export default function Hanapbuhay() {
           </div>
         </div>
         <div
-          className="relative z-10 hidden md:block pt-6 mt-6 border-t"
+          className="relative z-10 pt-5 mt-5 border-t"
           style={{ borderColor: "rgba(255,255,255,0.07)" }}
         >
           <p className="text-[10px]" style={{ color: "rgba(6,182,212,0.4)" }}>
@@ -613,8 +580,9 @@ export default function Hanapbuhay() {
             borderColor: "#e0f2fe",
           }}
         >
+          {/* Row 1 on mobile: search full width. On sm+: search + free + lang in one row */}
           <div className="flex flex-wrap items-center gap-2">
-            <div className="relative flex-1 min-w-0 max-w-sm group">
+            <div className="relative flex-1 min-w-0 w-full sm:w-auto max-w-sm group">
               <Search
                 size={14}
                 className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none transition-colors group-focus-within:text-cyan-600"
@@ -639,47 +607,38 @@ export default function Hanapbuhay() {
               )}
             </div>
 
-            <button
-              onClick={() => setFreeOnly((f) => !f)}
-              className={`flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs font-bold border transition-all shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/20 active:scale-[0.98] ${freeOnly ? "text-white" : "bg-white text-slate-400 hover:bg-sky-50"}`}
-              style={
-                freeOnly
-                  ? { backgroundColor: "#059669", borderColor: "#059669" }
-                  : { borderColor: "#e0f2fe" }
-              }
-            >
-              <Star size={11} fill={freeOnly ? "white" : "none"} />{" "}
-              {t.freeLabel}
-            </button>
-
-            {/* ── Language Slider Toggle ── */}
-            <div className="relative flex items-center rounded-full border border-slate-200 bg-white shadow-sm p-1 shrink-0 ml-auto">
-              <button
-                onClick={() => setLanguage("tagalog")}
-                className={`relative z-10 flex items-center gap-1.5 px-4 py-1.5 text-[11px] font-black uppercase tracking-widest transition-colors duration-200 select-none ${language === "tagalog" ? "text-white" : "text-slate-400 hover:text-slate-600"}`}
-              >
-                <span className="text-sm">🇵🇭</span> FIL
-              </button>
-              <button
-                onClick={() => setLanguage("english")}
-                className={`relative z-10 flex items-center gap-1.5 px-4 py-1.5 text-[11px] font-black uppercase tracking-widest transition-colors duration-200 select-none ${language === "english" ? "text-white" : "text-slate-400 hover:text-slate-600"}`}
-              >
-                <span className="text-sm">🇬🇧</span> ENG
-              </button>
-              <div
-                className={`pointer-events-none absolute inset-1 z-0 flex ${language === "english" ? "justify-end" : "justify-start"}`}
-              >
-                <motion.span
-                  layout
-                  transition={{ type: "spring", damping: 18, stiffness: 280 }}
-                  className="h-full w-1/2 rounded-full"
-                  style={{ backgroundColor: "#0d2645" }}
-                />
+            {/* Free toggle + language — pushed to their own row on mobile via basis */}
+            <div className="flex items-center gap-2 w-full sm:w-auto sm:ml-auto">
+              {/* ── Language Slider Toggle ── */}
+              <div className="relative flex items-center rounded-full border border-slate-200 bg-white shadow-sm p-1 ml-auto sm:ml-0 shrink-0">
+                <button
+                  onClick={() => setLanguage("tagalog")}
+                  className={`relative z-10 flex items-center gap-1.5 px-4 py-1.5 text-[11px] font-black uppercase tracking-widest transition-colors duration-200 select-none ${language === "tagalog" ? "text-white" : "text-slate-400 hover:text-slate-600"}`}
+                >
+                  <span className="text-sm">🇵🇭</span> FIL
+                </button>
+                <button
+                  onClick={() => setLanguage("english")}
+                  className={`relative z-10 flex items-center gap-1.5 px-4 py-1.5 text-[11px] font-black uppercase tracking-widest transition-colors duration-200 select-none ${language === "english" ? "text-white" : "text-slate-400 hover:text-slate-600"}`}
+                >
+                  <span className="text-sm">🇬🇧</span> ENG
+                </button>
+                <div
+                  className={`pointer-events-none absolute inset-1 z-0 flex ${language === "english" ? "justify-end" : "justify-start"}`}
+                >
+                  <motion.span
+                    layout
+                    transition={{ type: "spring", damping: 18, stiffness: 280 }}
+                    className="h-full w-1/2 rounded-full"
+                    style={{ backgroundColor: "#0d2645" }}
+                  />
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-2 mt-2 md:mt-3 overflow-x-auto pb-0.5 no-scrollbar">
+          {/* Category tabs with fade-right scroll hint on mobile */}
+          <div className="flex flex-wrap items-center gap-2 mt-2 md:mt-3">
             <button
               onClick={() => setActiveCategory("all")}
               className={`shrink-0 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 active:scale-[0.98] ${activeCategory === "all" ? "text-white" : "bg-white text-slate-400 hover:bg-sky-50 border"}`}
@@ -762,11 +721,6 @@ export default function Hanapbuhay() {
                             <CatIcon size={9} />{" "}
                             {t.categories[resource.category]}
                           </span>
-                          {resource.free && (
-                            <span className="flex items-center gap-1 rounded-full px-3 py-1 text-[9px] font-black uppercase tracking-widest bg-emerald-50 text-emerald-600 border border-emerald-100 shadow-sm">
-                              <Star size={9} fill="currentColor" /> {t.freeTag}
-                            </span>
-                          )}
                         </div>
                       </div>
                       <h2 className="mb-2 text-lg font-black text-slate-900 leading-snug">
@@ -825,7 +779,6 @@ export default function Hanapbuhay() {
                 onClick={() => {
                   setSearchQuery("");
                   setActiveCategory("all");
-                  setFreeOnly(false);
                 }}
                 className="mt-8 flex items-center gap-2 px-5 py-2.5 rounded-2xl text-xs font-black uppercase tracking-widest transition-all hover:bg-slate-100 ring-1 ring-slate-200 outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 active:scale-[0.98]"
                 style={{ color: "#0d2645" }}

@@ -753,7 +753,8 @@ export default function Aklatan() {
                     style={{ backgroundColor: "#0d2645" }}
                   />
                 )}
-                <Search size={12} /> {t.modeSemanticLabel}
+                <Search size={12} className="hidden sm:block" />{" "}
+                {t.modeSemanticLabel}
               </button>
               <button
                 onClick={() => {
@@ -771,7 +772,8 @@ export default function Aklatan() {
                     style={{ backgroundColor: "#0d2645" }}
                   />
                 )}
-                <List size={12} /> {t.modeBrowseLabel}
+                <List size={12} className="hidden sm:block" />{" "}
+                {t.modeBrowseLabel}
               </button>
             </div>
 

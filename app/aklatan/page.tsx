@@ -758,7 +758,7 @@ export default function Aklatan() {
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-all outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 ${language === lang ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
                   style={language === lang ? navyBg : {}}
                 >
-                  <span>{lang === "tagalog" ? "🇵🇭" : "🇺🇸"}</span>
+                  <span>{lang === "tagalog" ? "🇵🇭" : "🇬🇧"}</span>
                   {lang === "tagalog" ? "FIL" : "ENG"}
                 </button>
               ))}

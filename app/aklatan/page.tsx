@@ -157,7 +157,7 @@ const openDatabases = [
     isLocal: true,
     resourceType: "research" as ResourceType,
     link: "https://ejournals.ph/",
-    logoUrl: "/globe.svg",
+    logoUrl: "/pej-logo.jpeg",
     desc: {
       tagalog:
         "Koleksyon ng mga akademikong journal mula sa iba't ibang unibersidad sa Pilipinas.",
@@ -165,27 +165,14 @@ const openDatabases = [
         "A collection of academic journals from various universities and organizations in the Philippines.",
     },
   },
-  {
-    id: 23,
-    name: "PhilJOL",
-    isLocal: true,
-    resourceType: "research" as ResourceType,
-    link: "https://www.philjol.info/",
-    logoUrl: "/globe.svg",
-    desc: {
-      tagalog:
-        "Database ng mga journal na inilalathala sa Pilipinas upang mapataas ang visibility ng lokal na pananaliksik.",
-      english:
-        "A database of journals published in the Philippines to increase the visibility of local research.",
-    },
-  },
+
   {
     id: 24,
     name: "HERDIN Plus",
     isLocal: true,
     resourceType: "research" as ResourceType,
     link: "https://www.herdin.ph/",
-    logoUrl: "/dost-logo.png",
+    logoUrl: "/DOST-PCHRD-logo.png",
     desc: {
       tagalog:
         "Pangunahing database para sa health at medical research sa Pilipinas, pinamamahalaan ng DOST-PCHRD.",
@@ -213,7 +200,7 @@ const openDatabases = [
     isLocal: true,
     resourceType: "research" as ResourceType,
     link: "https://philjournalsci.dost.gov.ph/",
-    logoUrl: "/dost-logo.png",
+    logoUrl: "/pjs-logo.png",
     desc: {
       tagalog:
         "Ang pinakamatandang siyentipikong journal sa bansa, inilalathala ng DOST.",
@@ -226,7 +213,7 @@ const openDatabases = [
     name: "Asia-Pacific Social Science Review",
     isLocal: true,
     resourceType: "research" as ResourceType,
-    link: "https://www.dlsu.edu.ph/research/publishing-house/journals/apssr/",
+    link: "https://animorepository.dlsu.edu.ph/apssr/",
     logoUrl: "/dlsu-logo.png",
     desc: {
       tagalog:
@@ -240,7 +227,7 @@ const openDatabases = [
     isLocal: false,
     resourceType: "research" as ResourceType,
     link: "https://core.ac.uk/",
-    logoUrl: "/globe.svg",
+    logoUrl: "/core-logo.svg",
     desc: {
       tagalog:
         "Ang pinakamalaking aggregator sa mundo ng mga open access na research papers.",
@@ -253,7 +240,7 @@ const openDatabases = [
     isLocal: false,
     resourceType: "research" as ResourceType,
     link: "https://www.base-search.net/",
-    logoUrl: "/globe.svg",
+    logoUrl: "/base-logo.png",
     desc: {
       tagalog:
         "Isa sa mga pinaka-voluminous search engines para sa academic web resources.",
@@ -283,7 +270,7 @@ const openDatabases = [
     isLocal: false,
     resourceType: "ebooks" as ResourceType,
     link: "https://www.doabooks.org/",
-    logoUrl: "/doaj-logo.svg",
+    logoUrl: "/doab-logo.png",
     desc: {
       tagalog:
         "Isang direktoryo ng mga peer-reviewed na open access books mula sa mga akademikong publisher.",
@@ -297,7 +284,7 @@ const openDatabases = [
     isLocal: false,
     resourceType: "ebooks" as ResourceType,
     link: "https://openstax.org/",
-    logoUrl: "/ebook-logo.png",
+    logoUrl: "/openstax-logo.png",
     desc: {
       tagalog:
         "Libreng peer-reviewed na mga textbook para sa kolehiyo mula sa Rice University.",
@@ -310,7 +297,7 @@ const openDatabases = [
     isLocal: false,
     resourceType: "ebooks" as ResourceType,
     link: "https://open.umn.edu/opentextbooks/",
-    logoUrl: "/ebook-logo.png",
+    logoUrl: "/opentext-logo.png",
     desc: {
       tagalog:
         "Koleksyon ng mga textbook na na-review na ng mga faculty para sa iba't ibang kurso.",
@@ -324,7 +311,7 @@ const openDatabases = [
     isLocal: false,
     resourceType: "ebooks" as ResourceType,
     link: "https://www.hathitrust.org/",
-    logoUrl: "/ebook-logo.png",
+    logoUrl: "/hathi-logo.png",
     desc: {
       tagalog:
         "Isang digital library ng milyun-milyong digitized na mga libro mula sa mga research institutions.",
@@ -338,7 +325,7 @@ const openDatabases = [
     isLocal: false,
     resourceType: "ebooks" as ResourceType,
     link: "https://nap.nationalacademies.org/",
-    logoUrl: "/globe.svg",
+    logoUrl: "/natl-academies-logo.jpg",
     desc: {
       tagalog:
         "Libreng PDF ng mahigit 10,000 na publikasyon sa agham, engineering, at medisina.",

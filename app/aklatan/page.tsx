@@ -151,6 +151,117 @@ const openDatabases = [
       english: "The UP System libraries' discovery service.",
     },
   },
+  {
+    id: 22,
+    name: "Philippine E-Journals",
+    isLocal: true,
+    resourceType: "research" as ResourceType,
+    link: "https://ejournals.ph/",
+    logoUrl: "/globe.svg",
+    desc: {
+      tagalog:
+        "Koleksyon ng mga akademikong journal mula sa iba't ibang unibersidad sa Pilipinas.",
+      english:
+        "A collection of academic journals from various universities and organizations in the Philippines.",
+    },
+  },
+  {
+    id: 23,
+    name: "PhilJOL",
+    isLocal: true,
+    resourceType: "research" as ResourceType,
+    link: "https://www.philjol.info/",
+    logoUrl: "/globe.svg",
+    desc: {
+      tagalog:
+        "Database ng mga journal na inilalathala sa Pilipinas upang mapataas ang visibility ng lokal na pananaliksik.",
+      english:
+        "A database of journals published in the Philippines to increase the visibility of local research.",
+    },
+  },
+  {
+    id: 24,
+    name: "HERDIN Plus",
+    isLocal: true,
+    resourceType: "research" as ResourceType,
+    link: "https://www.herdin.ph/",
+    logoUrl: "/dost-logo.png",
+    desc: {
+      tagalog:
+        "Pangunahing database para sa health at medical research sa Pilipinas, pinamamahalaan ng DOST-PCHRD.",
+      english:
+        "The primary database for health and medical research in the Philippines, managed by DOST-PCHRD.",
+    },
+  },
+  {
+    id: 25,
+    name: "Philippine eLib",
+    isLocal: true,
+    resourceType: "research" as ResourceType,
+    link: "http://www.elib.gov.ph/",
+    logoUrl: "/nlp-logo.png",
+    desc: {
+      tagalog:
+        "Isang kolaboratibong proyekto na nagbibigay ng access sa mga digitized na Filipiniana at union catalogs.",
+      english:
+        "A collaborative project providing access to digitized Filipiniana materials and union catalogs.",
+    },
+  },
+  {
+    id: 26,
+    name: "Philippine Journal of Science",
+    isLocal: true,
+    resourceType: "research" as ResourceType,
+    link: "https://philjournalsci.dost.gov.ph/",
+    logoUrl: "/dost-logo.png",
+    desc: {
+      tagalog:
+        "Ang pinakamatandang siyentipikong journal sa bansa, inilalathala ng DOST.",
+      english:
+        "The oldest scientific journal in the country, published by DOST.",
+    },
+  },
+  {
+    id: 27,
+    name: "Asia-Pacific Social Science Review",
+    isLocal: true,
+    resourceType: "research" as ResourceType,
+    link: "https://www.dlsu.edu.ph/research/publishing-house/journals/apssr/",
+    logoUrl: "/dlsu-logo.png",
+    desc: {
+      tagalog:
+        "Isang nangungunang social science journal mula sa De La Salle University.",
+      english: "A leading social science journal from De La Salle University.",
+    },
+  },
+  {
+    id: 28,
+    name: "CORE",
+    isLocal: false,
+    resourceType: "research" as ResourceType,
+    link: "https://core.ac.uk/",
+    logoUrl: "/globe.svg",
+    desc: {
+      tagalog:
+        "Ang pinakamalaking aggregator sa mundo ng mga open access na research papers.",
+      english:
+        "The world's largest aggregator of open access research papers.",
+    },
+  },
+  {
+    id: 29,
+    name: "BASE",
+    isLocal: false,
+    resourceType: "research" as ResourceType,
+    link: "https://www.base-search.net/",
+    logoUrl: "/globe.svg",
+    desc: {
+      tagalog:
+        "Isa sa mga pinaka-voluminous search engines para sa academic web resources.",
+      english:
+        "One of the most voluminous search engines for academic web resources.",
+    },
+  },
 
   // ── E-Books ───────────────────────────────────────────────────────────────
   {
@@ -165,6 +276,75 @@ const openDatabases = [
         "Isang open-access na repository ng mga aklat at pananaliksik na nakasulat sa wikang Filipino mula sa UP Sentro ng Wikang Filipino.",
       english:
         "An open-access repository of books and research papers written in the Filipino language by the UP Sentro ng Wikang Filipino.",
+    },
+  },
+  {
+    id: 30,
+    name: "DOAB",
+    isLocal: false,
+    resourceType: "ebooks" as ResourceType,
+    link: "https://www.doabooks.org/",
+    logoUrl: "/doaj-logo.svg",
+    desc: {
+      tagalog:
+        "Isang direktoryo ng mga peer-reviewed na open access books mula sa mga akademikong publisher.",
+      english:
+        "A directory of peer-reviewed open access books from academic publishers.",
+    },
+  },
+  {
+    id: 31,
+    name: "OpenStax",
+    isLocal: false,
+    resourceType: "ebooks" as ResourceType,
+    link: "https://openstax.org/",
+    logoUrl: "/ebook-logo.png",
+    desc: {
+      tagalog:
+        "Libreng peer-reviewed na mga textbook para sa kolehiyo mula sa Rice University.",
+      english: "Free peer-reviewed college textbooks from Rice University.",
+    },
+  },
+  {
+    id: 32,
+    name: "Open Textbook Library",
+    isLocal: false,
+    resourceType: "ebooks" as ResourceType,
+    link: "https://open.umn.edu/opentextbooks/",
+    logoUrl: "/ebook-logo.png",
+    desc: {
+      tagalog:
+        "Koleksyon ng mga textbook na na-review na ng mga faculty para sa iba't ibang kurso.",
+      english:
+        "A collection of faculty-reviewed textbooks for various courses.",
+    },
+  },
+  {
+    id: 33,
+    name: "HathiTrust Digital Library",
+    isLocal: false,
+    resourceType: "ebooks" as ResourceType,
+    link: "https://www.hathitrust.org/",
+    logoUrl: "/ebook-logo.png",
+    desc: {
+      tagalog:
+        "Isang digital library ng milyun-milyong digitized na mga libro mula sa mga research institutions.",
+      english:
+        "A digital library of millions of digitized books from research institutions.",
+    },
+  },
+  {
+    id: 34,
+    name: "National Academies Press",
+    isLocal: false,
+    resourceType: "ebooks" as ResourceType,
+    link: "https://nap.nationalacademies.org/",
+    logoUrl: "/globe.svg",
+    desc: {
+      tagalog:
+        "Libreng PDF ng mahigit 10,000 na publikasyon sa agham, engineering, at medisina.",
+      english:
+        "Free PDFs of over 10,000 publications in science, engineering, and medicine.",
     },
   },
   {

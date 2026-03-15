@@ -13,11 +13,11 @@ import {
   X,
   MapPin,
 } from "lucide-react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 
-// ─── Types ────────────────────────────────────────────────────────────────────
 type Category = "egovernment" | "scholarships" | "transparency";
 
 interface Resource {
@@ -26,14 +26,12 @@ interface Resource {
   category: Category;
   link: string;
   logoUrl: string;
-  featured?: boolean; // eLGU gets special top treatment
-  tags?: string[]; // e.g. ["BPLS", "Cedula", "Civil Registry"]
+  featured?: boolean;
+  tags?: string[];
   desc: { tagalog: string; english: string };
 }
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
 const resources: Resource[] = [
-  // ── E-Government ──────────────────────────────────────────────────────────
   {
     id: 1,
     category: "egovernment",
@@ -194,8 +192,6 @@ const resources: Resource[] = [
         "Register your sole proprietorship business name online with DTI.",
     },
   },
-
-  // ── Scholarships ──────────────────────────────────────────────────────────
   {
     id: 8,
     category: "scholarships",
@@ -334,7 +330,6 @@ const resources: Resource[] = [
         "Educational assistance program for deserving college students nationwide.",
     },
   },
-
   {
     id: 28,
     category: "scholarships",
@@ -349,8 +344,6 @@ const resources: Resource[] = [
         "Full tuition and allowances for sophomores (88% GWA) in Engineering, Business, and Data Science.",
     },
   },
-
-  // ── Transparency & News ───────────────────────────────────────────────────
   {
     id: 15,
     category: "transparency",
@@ -448,7 +441,6 @@ const resources: Resource[] = [
   },
 ];
 
-// ─── Category config ──────────────────────────────────────────────────────────
 const categories = [
   {
     key: "egovernment" as Category,
@@ -469,7 +461,6 @@ const categories = [
     bg: "rgba(8,145,178,0.07)",
   },
 ];
-
 const categoryColor: Record<Category, string> = {
   egovernment: "#21b8a4",
   scholarships: "#7c3aed",
@@ -485,7 +476,6 @@ const categoryBorder: Record<Category, string> = {
   scholarships: "rgba(124,58,237,0.15)",
   transparency: "rgba(8,145,178,0.15)",
 };
-
 const categoryOrder: Record<Category | "all", number> = {
   all: 0,
   egovernment: 1,
@@ -521,7 +511,6 @@ export default function PublicServices() {
       emptyTitle: "Walang nahanap.",
       emptyDesc: "Subukan ang ibang keyword o kategorya.",
       clearFilters: "I-clear lahat ng filter",
-      availableServices: "Mga serbisyo:",
     },
     english: {
       back: "Back to Home",
@@ -545,7 +534,6 @@ export default function PublicServices() {
       emptyTitle: "No results found.",
       emptyDesc: "Try a different keyword or category.",
       clearFilters: "Clear all filters",
-      availableServices: "Available services:",
     },
   };
   const t = ui[language];
@@ -565,13 +553,11 @@ export default function PublicServices() {
       return matchCat && matchQuery;
     })
     .sort((a, b) => {
-      if (a.category !== b.category) {
+      if (a.category !== b.category)
         return categoryOrder[a.category] - categoryOrder[b.category];
-      }
       return a.name.localeCompare(b.name);
     });
 
-  // When filtering to egovernment, show featured too
   const showFeatured =
     !searchQuery &&
     (activeCategory === "all" || activeCategory === "egovernment");
@@ -585,7 +571,7 @@ export default function PublicServices() {
 
   return (
     <div className="min-h-screen w-screen flex flex-col md:flex-row bg-white">
-      {/* ── LEFT PANEL ─────────────────────────────────────────── */}
+      {/* ── LEFT PANEL ── */}
       <aside
         className="relative flex flex-col w-full md:w-[32%] lg:w-[30%] shrink-0 md:h-screen md:sticky md:top-0 py-8 px-7 md:py-10 md:px-9 overflow-hidden"
         style={{ backgroundColor: "#0d2645" }}
@@ -611,7 +597,6 @@ export default function PublicServices() {
             <ArrowLeft size={14} /> {t.back}
           </Link>
         </div>
-
         <div className="relative z-10 mb-8">
           <a href="/">
             <Image
@@ -645,7 +630,6 @@ export default function PublicServices() {
             </p>
           </div>
 
-          {/* Category legend - Interactive */}
           <div className="flex flex-col gap-2.5">
             {categories.map((cat) => {
               const count = resources.filter(
@@ -672,7 +656,12 @@ export default function PublicServices() {
                     <cat.icon size={13} style={{ color: cat.color }} />
                   </div>
                   <span
-                    className={`text-xs font-semibold transition-colors ${activeCategory === cat.key ? "text-white" : "text-rgba(186,230,253,0.75)"} group-hover:text-white`}
+                    className={`text-xs font-semibold transition-colors ${activeCategory === cat.key ? "text-white" : ""} group-hover:text-white`}
+                    style={
+                      activeCategory !== cat.key
+                        ? { color: "rgba(186,230,253,0.75)" }
+                        : {}
+                    }
                   >
                     {t.categories[cat.key]}
                   </span>
@@ -719,12 +708,11 @@ export default function PublicServices() {
         </div>
       </aside>
 
-      {/* ── RIGHT PANEL ────────────────────────────────────────── */}
+      {/* ── RIGHT PANEL ── */}
       <main
         className="flex-1 flex flex-col min-h-screen"
         style={{ backgroundColor: "#f0f9ff" }}
       >
-        {/* Sticky top bar */}
         <div
           className="sticky top-0 z-40 backdrop-blur-sm border-b px-6 lg:px-8 py-4"
           style={{
@@ -757,22 +745,34 @@ export default function PublicServices() {
                 </button>
               )}
             </div>
-            <div className="flex items-center gap-1 bg-white border border-sky-100 p-1 rounded-xl shrink-0 ml-auto shadow-sm">
-              {(["tagalog", "english"] as const).map((lang) => (
-                <button
-                  key={lang}
-                  onClick={() => setLanguage(lang)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-all outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 ${language === lang ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
-                  style={language === lang ? navyBg : {}}
-                >
-                  <span>{lang === "tagalog" ? "🇵🇭" : "🇬🇧"}</span>
-                  {lang === "tagalog" ? "FIL" : "ENG"}
-                </button>
-              ))}
+
+            {/* ── Language Slider Toggle ── */}
+            <div className="relative flex items-center rounded-full border border-slate-200 bg-white shadow-sm p-1 shrink-0 ml-auto">
+              <button
+                onClick={() => setLanguage("tagalog")}
+                className={`relative z-10 flex items-center gap-1.5 px-4 py-1.5 text-[11px] font-black uppercase tracking-widest transition-colors duration-200 select-none ${language === "tagalog" ? "text-white" : "text-slate-400 hover:text-slate-600"}`}
+              >
+                <span className="text-sm">🇵🇭</span> FIL
+              </button>
+              <button
+                onClick={() => setLanguage("english")}
+                className={`relative z-10 flex items-center gap-1.5 px-4 py-1.5 text-[11px] font-black uppercase tracking-widest transition-colors duration-200 select-none ${language === "english" ? "text-white" : "text-slate-400 hover:text-slate-600"}`}
+              >
+                <span className="text-sm">🇬🇧</span> ENG
+              </button>
+              <div
+                className={`pointer-events-none absolute inset-1 z-0 flex ${language === "english" ? "justify-end" : "justify-start"}`}
+              >
+                <motion.span
+                  layout
+                  transition={{ type: "spring", damping: 18, stiffness: 280 }}
+                  className="h-full w-1/2 rounded-full"
+                  style={{ backgroundColor: "#0d2645" }}
+                />
+              </div>
             </div>
           </div>
 
-          {/* Category tabs */}
           <div className="flex items-center gap-2 mt-3 overflow-x-auto pb-0.5 no-scrollbar">
             <button
               onClick={() => setActiveCategory("all")}
@@ -798,8 +798,7 @@ export default function PublicServices() {
                     : { borderColor: "#e0f2fe" }
                 }
               >
-                <cat.icon size={11} />
-                {t.categories[cat.key]}
+                <cat.icon size={11} /> {t.categories[cat.key]}
               </button>
             ))}
             <div className="ml-auto shrink-0 px-3 py-1.5 bg-slate-100 rounded-lg">
@@ -811,9 +810,7 @@ export default function PublicServices() {
           </div>
         </div>
 
-        {/* ── Content ── */}
-        <div className="flex-1 px-6 lg:px-8 py-8 flex flex-col gap-8 animate-in slide-in-from-right duration-500">
-          {/* ── Featured eLGU Card ── */}
+        <div className="flex-1 px-6 lg:px-8 py-8 flex flex-col gap-8">
           {showFeatured && featuredResource && (
             <a
               href={featuredResource.link}
@@ -825,7 +822,6 @@ export default function PublicServices() {
                 borderColor: "rgba(255,255,255,0.07)",
               }}
             >
-              {/* Glow */}
               <div
                 className="absolute -top-16 -right-16 w-64 h-64 rounded-full pointer-events-none blur-3xl"
                 style={{ backgroundColor: "rgba(45,212,191,0.1)" }}
@@ -836,7 +832,6 @@ export default function PublicServices() {
               />
 
               <div className="relative z-10 flex flex-col justify-between flex-1 gap-6">
-                {/* Label */}
                 <div
                   className="inline-flex items-center gap-1.5 self-start rounded-full px-4 py-1.5 text-[10px] font-black uppercase tracking-widest shadow-lg shadow-amber-900/20"
                   style={{
@@ -847,7 +842,6 @@ export default function PublicServices() {
                 >
                   <Star size={10} fill="#f59e0b" /> {t.featuredLabel}
                 </div>
-
                 <div>
                   <h2
                     className="text-2xl md:text-3xl font-black mb-3 tracking-tight"
@@ -861,8 +855,6 @@ export default function PublicServices() {
                   >
                     {t.featuredHint}
                   </p>
-
-                  {/* Service tags */}
                   {featuredResource.tags && (
                     <div className="flex flex-wrap gap-2.5">
                       {featuredResource.tags.map((tag) => (
@@ -881,8 +873,6 @@ export default function PublicServices() {
                     </div>
                   )}
                 </div>
-
-                {/* CTA */}
                 <div
                   className="inline-flex items-center gap-2.5 self-start rounded-2xl px-7 py-3.5 text-sm font-black uppercase tracking-widest transition-all duration-300 group-hover:gap-4 group-hover:shadow-xl group-hover:shadow-amber-500/20 active:scale-95"
                   style={{ backgroundColor: "#f59e0b", color: "#0d2645" }}
@@ -895,7 +885,6 @@ export default function PublicServices() {
                 </div>
               </div>
 
-              {/* Right: logo area */}
               <div className="relative z-10 flex items-center justify-center shrink-0 md:w-48 filter drop-shadow-2xl">
                 <img
                   src={featuredResource.logoUrl}
@@ -909,7 +898,6 @@ export default function PublicServices() {
             </a>
           )}
 
-          {/* ── Grid ── */}
           {filtered.length > 0 ? (
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
               {filtered.map((resource) => {
@@ -919,7 +907,6 @@ export default function PublicServices() {
                 const CatIcon = categories.find(
                   (c) => c.key === resource.category,
                 )!.icon;
-
                 return (
                   <a
                     key={resource.id}
@@ -929,15 +916,13 @@ export default function PublicServices() {
                     className="group relative flex flex-col justify-between rounded-3xl bg-white border p-7 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20"
                     style={skyBorder}
                   >
-                    {/* Vertical accent bar */}
                     <div
                       className="absolute left-0 top-0 bottom-0 w-1.5 transition-all duration-300 group-hover:w-2"
                       style={{ backgroundColor: color }}
                     />
-
                     <div>
                       <div className="mb-6 flex items-start justify-between gap-4">
-                        <div className="h-10 w-32 shrink-0 ">
+                        <div className="h-10 w-32 shrink-0">
                           <img
                             src={resource.logoUrl}
                             alt={resource.name}
@@ -957,7 +942,7 @@ export default function PublicServices() {
                               border: `1px solid ${border}`,
                             }}
                           >
-                            <CatIcon size={9} />
+                            <CatIcon size={9} />{" "}
                             {t.categories[resource.category]}
                           </span>
                         </div>
@@ -969,19 +954,17 @@ export default function PublicServices() {
                         {resource.desc[language]}
                       </p>
                     </div>
-
                     <div className="mt-6 pt-5 border-t border-slate-50 flex items-center justify-between">
                       <div
                         className="inline-flex items-center gap-2 rounded-2xl px-5 py-2.5 text-xs font-black uppercase tracking-widest transition-all duration-300 group-hover:gap-3 group-hover:shadow-lg group-hover:shadow-sky-900/10 active:scale-95"
                         style={{ backgroundColor: "#0d2645", color: "#ffffff" }}
                       >
-                        {t.visit}
+                        {t.visit}{" "}
                         <ExternalLink
                           size={12}
                           className="transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                         />
                       </div>
-
                       <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                         <div className="flex gap-1">
                           {[1, 2, 3].map((i) => (
@@ -998,7 +981,7 @@ export default function PublicServices() {
               })}
             </div>
           ) : !showFeatured ? (
-            <div className="flex flex-col items-center justify-center py-40 text-center animate-in fade-in slide-in-from-bottom duration-700">
+            <div className="flex flex-col items-center justify-center py-40 text-center">
               <div
                 className="mb-6 rounded-full p-8 shadow-inner relative overflow-hidden"
                 style={{ backgroundColor: "rgba(13,38,69,0.03)" }}

@@ -12,11 +12,11 @@ import {
   Star,
   X,
 } from "lucide-react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 
-// ─── Resource Data ────────────────────────────────────────────────────────────
 type Category = "jobs" | "skills" | "entrepreneurship";
 
 interface Resource {
@@ -25,7 +25,7 @@ interface Resource {
   category: Category;
   link: string;
   logoUrl: string;
-  free: boolean; // whether it's free to use
+  free: boolean;
   desc: { tagalog: string; english: string };
 }
 
@@ -197,7 +197,7 @@ const resources: Resource[] = [
     id: 14,
     category: "jobs",
     free: true,
-    name: "OrMin Goverment Careers",
+    name: "OrMin Government Careers",
     link: "https://ormindoro.gov.ph/careers/",
     logoUrl: "ormin-logo.png",
     desc: {
@@ -209,7 +209,7 @@ const resources: Resource[] = [
     id: 15,
     category: "jobs",
     free: true,
-    name: "Civil Service Commission Jobs Opportunities",
+    name: "Civil Service Commission Job Opportunities",
     link: "https://csc.gov.ph/career/",
     logoUrl: "csc-logo.png",
     desc: {
@@ -345,7 +345,6 @@ const resources: Resource[] = [
   },
 ];
 
-// ─── Category config ──────────────────────────────────────────────────────────
 const categories = [
   {
     key: "jobs" as Category,
@@ -366,7 +365,6 @@ const categories = [
     bg: "rgba(5,150,105,0.07)",
   },
 ];
-
 const categoryColor: Record<Category, string> = {
   jobs: "#0891b2",
   skills: "#7c3aed",
@@ -382,7 +380,6 @@ const categoryBorder: Record<Category, string> = {
   skills: "rgba(8,145,178,0.15)",
   entrepreneurship: "rgba(5,150,105,0.15)",
 };
-
 const categoryOrder: Record<Category | "all", number> = {
   all: 0,
   jobs: 1,
@@ -454,9 +451,8 @@ export default function Hanapbuhay() {
       return matchCat && matchFree && matchQuery;
     })
     .sort((a, b) => {
-      if (a.category !== b.category) {
+      if (a.category !== b.category)
         return categoryOrder[a.category] - categoryOrder[b.category];
-      }
       return a.name.localeCompare(b.name);
     });
 
@@ -469,7 +465,7 @@ export default function Hanapbuhay() {
 
   return (
     <div className="min-h-screen w-screen flex flex-col md:flex-row bg-white">
-      {/* ── LEFT PANEL ─────────────────────────────────────────── */}
+      {/* ── LEFT PANEL ── */}
       <aside
         className="relative flex flex-col w-full md:w-[32%] lg:w-[30%] shrink-0 md:h-screen md:sticky md:top-0 py-8 px-7 md:py-10 md:px-9 overflow-hidden"
         style={{ backgroundColor: "#0d2645" }}
@@ -486,7 +482,6 @@ export default function Hanapbuhay() {
           style={{ backgroundColor: "rgba(45,212,191,0.12)" }}
         />
 
-        {/* Back */}
         <div className="relative z-10 mb-8">
           <Link
             href="/"
@@ -496,8 +491,6 @@ export default function Hanapbuhay() {
             <ArrowLeft size={14} /> {t.back}
           </Link>
         </div>
-
-        {/* Logo */}
         <div className="relative z-10 mb-8">
           <a href="/">
             <Image
@@ -511,7 +504,6 @@ export default function Hanapbuhay() {
           </a>
         </div>
 
-        {/* Identity */}
         <div className="relative z-10 flex-1 flex flex-col justify-center gap-5">
           <div>
             <div
@@ -532,7 +524,6 @@ export default function Hanapbuhay() {
             </p>
           </div>
 
-          {/* Category legend - Interactive */}
           <div className="flex flex-col gap-2.5">
             {categories.map((cat) => {
               const count = resources.filter(
@@ -559,7 +550,12 @@ export default function Hanapbuhay() {
                     <cat.icon size={13} style={{ color: cat.color }} />
                   </div>
                   <span
-                    className={`text-xs font-semibold transition-colors ${activeCategory === cat.key ? "text-white" : "text-rgba(186,230,253,0.75)"} group-hover:text-white`}
+                    className={`text-xs font-semibold transition-colors ${activeCategory === cat.key ? "text-white" : ""} group-hover:text-white`}
+                    style={
+                      activeCategory !== cat.key
+                        ? { color: "rgba(186,230,253,0.75)" }
+                        : {}
+                    }
                   >
                     {t.categories[cat.key]}
                   </span>
@@ -586,7 +582,6 @@ export default function Hanapbuhay() {
           </div>
         </div>
 
-        {/* Dev credit */}
         <div
           className="relative z-10 pt-6 mt-6 border-t"
           style={{ borderColor: "rgba(255,255,255,0.07)" }}
@@ -607,12 +602,11 @@ export default function Hanapbuhay() {
         </div>
       </aside>
 
-      {/* ── RIGHT PANEL ────────────────────────────────────────── */}
+      {/* ── RIGHT PANEL ── */}
       <main
         className="flex-1 flex flex-col min-h-screen"
         style={{ backgroundColor: "#f0f9ff" }}
       >
-        {/* Sticky top bar */}
         <div
           className="sticky top-0 z-40 backdrop-blur-sm border-b px-6 lg:px-8 py-4"
           style={{
@@ -620,7 +614,6 @@ export default function Hanapbuhay() {
             borderColor: "#e0f2fe",
           }}
         >
-          {/* Row 1: Search + Free toggle + Language */}
           <div className="flex items-center gap-3">
             <div className="relative flex-1 max-w-sm group">
               <Search
@@ -647,7 +640,6 @@ export default function Hanapbuhay() {
               )}
             </div>
 
-            {/* Free toggle */}
             <button
               onClick={() => setFreeOnly((f) => !f)}
               className={`flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs font-bold border transition-all shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/20 active:scale-[0.98] ${freeOnly ? "text-white" : "bg-white text-slate-400 hover:bg-sky-50"}`}
@@ -657,27 +649,37 @@ export default function Hanapbuhay() {
                   : { borderColor: "#e0f2fe" }
               }
             >
-              <Star size={11} fill={freeOnly ? "white" : "none"} />
+              <Star size={11} fill={freeOnly ? "white" : "none"} />{" "}
               {t.freeLabel}
             </button>
 
-            {/* Language toggle */}
-            <div className="flex items-center gap-1 bg-white border border-sky-100 p-1 rounded-xl shrink-0 ml-auto shadow-sm">
-              {(["tagalog", "english"] as const).map((lang) => (
-                <button
-                  key={lang}
-                  onClick={() => setLanguage(lang)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-all ${language === lang ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
-                  style={language === lang ? navyBg : {}}
-                >
-                  <span>{lang === "tagalog" ? "🇵🇭" : "🇬🇧"}</span>
-                  {lang === "tagalog" ? "FIL" : "ENG"}
-                </button>
-              ))}
+            {/* ── Language Slider Toggle ── */}
+            <div className="relative flex items-center rounded-full border border-slate-200 bg-white shadow-sm p-1 shrink-0 ml-auto">
+              <button
+                onClick={() => setLanguage("tagalog")}
+                className={`relative z-10 flex items-center gap-1.5 px-4 py-1.5 text-[11px] font-black uppercase tracking-widest transition-colors duration-200 select-none ${language === "tagalog" ? "text-white" : "text-slate-400 hover:text-slate-600"}`}
+              >
+                <span className="text-sm">🇵🇭</span> FIL
+              </button>
+              <button
+                onClick={() => setLanguage("english")}
+                className={`relative z-10 flex items-center gap-1.5 px-4 py-1.5 text-[11px] font-black uppercase tracking-widest transition-colors duration-200 select-none ${language === "english" ? "text-white" : "text-slate-400 hover:text-slate-600"}`}
+              >
+                <span className="text-sm">🇬🇧</span> ENG
+              </button>
+              <div
+                className={`pointer-events-none absolute inset-1 z-0 flex ${language === "english" ? "justify-end" : "justify-start"}`}
+              >
+                <motion.span
+                  layout
+                  transition={{ type: "spring", damping: 18, stiffness: 280 }}
+                  className="h-full w-1/2 rounded-full"
+                  style={{ backgroundColor: "#0d2645" }}
+                />
+              </div>
             </div>
           </div>
 
-          {/* Row 2: Category tabs */}
           <div className="flex items-center gap-2 mt-3 overflow-x-auto pb-0.5 no-scrollbar">
             <button
               onClick={() => setActiveCategory("all")}
@@ -703,11 +705,9 @@ export default function Hanapbuhay() {
                     : { borderColor: "#e0f2fe" }
                 }
               >
-                <cat.icon size={11} />
-                {t.categories[cat.key]}
+                <cat.icon size={11} /> {t.categories[cat.key]}
               </button>
             ))}
-
             <div className="ml-auto shrink-0 px-3 py-1.5 bg-slate-100 rounded-lg">
               <p className="text-[10px] font-black uppercase tracking-tighter text-slate-500 whitespace-nowrap">
                 {filtered.length} {t.results}
@@ -716,8 +716,7 @@ export default function Hanapbuhay() {
           </div>
         </div>
 
-        {/* ── Resource Grid ── */}
-        <div className="flex-1 px-6 lg:px-8 py-8 animate-in slide-in-from-right duration-500">
+        <div className="flex-1 px-6 lg:px-8 py-8">
           {filtered.length > 0 ? (
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
               {filtered.map((resource) => {
@@ -727,7 +726,6 @@ export default function Hanapbuhay() {
                 const CatIcon = categories.find(
                   (c) => c.key === resource.category,
                 )!.icon;
-
                 return (
                   <a
                     key={resource.id}
@@ -737,14 +735,11 @@ export default function Hanapbuhay() {
                     className="group relative flex flex-col justify-between rounded-3xl bg-white border p-7 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20"
                     style={skyBorder}
                   >
-                    {/* Vertical accent bar */}
                     <div
                       className="absolute left-0 top-0 bottom-0 w-1.5 transition-all duration-300 group-hover:w-2"
                       style={{ backgroundColor: color }}
                     />
-
                     <div>
-                      {/* Logo + badges row */}
                       <div className="mb-6 flex items-start justify-between gap-4">
                         <div className="h-10 w-32 shrink-0">
                           <img
@@ -758,7 +753,6 @@ export default function Hanapbuhay() {
                           />
                         </div>
                         <div className="flex flex-col items-end gap-1.5 shrink-0">
-                          {/* Category badge */}
                           <span
                             className="flex items-center gap-1 rounded-full px-3 py-1 text-[9px] font-black uppercase tracking-widest shadow-sm"
                             style={{
@@ -767,19 +761,16 @@ export default function Hanapbuhay() {
                               border: `1px solid ${border}`,
                             }}
                           >
-                            <CatIcon size={9} />
+                            <CatIcon size={9} />{" "}
                             {t.categories[resource.category]}
                           </span>
-                          {/* Free badge */}
                           {resource.free && (
                             <span className="flex items-center gap-1 rounded-full px-3 py-1 text-[9px] font-black uppercase tracking-widest bg-emerald-50 text-emerald-600 border border-emerald-100 shadow-sm">
-                              <Star size={9} fill="currentColor" />
-                              {t.freeTag}
+                              <Star size={9} fill="currentColor" /> {t.freeTag}
                             </span>
                           )}
                         </div>
                       </div>
-
                       <h2 className="mb-2 text-lg font-black text-slate-900 leading-snug">
                         {resource.name}
                       </h2>
@@ -787,20 +778,17 @@ export default function Hanapbuhay() {
                         {resource.desc[language]}
                       </p>
                     </div>
-
-                    {/* CTA */}
                     <div className="mt-6 pt-5 border-t border-slate-50 flex items-center justify-between">
                       <div
                         className="inline-flex items-center gap-2 rounded-2xl px-5 py-2.5 text-xs font-black uppercase tracking-widest transition-all duration-300 group-hover:gap-3 group-hover:shadow-lg group-hover:shadow-sky-900/10 active:scale-95"
                         style={{ backgroundColor: "#0d2645", color: "#ffffff" }}
                       >
-                        {t.visit}
+                        {t.visit}{" "}
                         <ExternalLink
                           size={12}
                           className="transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                         />
                       </div>
-
                       <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                         <div className="flex gap-1">
                           {[1, 2, 3].map((i) => (
@@ -817,7 +805,7 @@ export default function Hanapbuhay() {
               })}
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center py-40 text-center animate-in fade-in slide-in-from-bottom duration-700">
+            <div className="flex flex-col items-center justify-center py-40 text-center">
               <div
                 className="mb-6 rounded-full p-8 shadow-inner relative overflow-hidden"
                 style={{ backgroundColor: "rgba(13,38,69,0.03)" }}

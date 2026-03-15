@@ -11,6 +11,7 @@ import {
   BookMarked,
   X,
 } from "lucide-react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
@@ -166,7 +167,6 @@ const openDatabases = [
         "A collection of academic journals from various universities and organizations in the Philippines.",
     },
   },
-
   {
     id: 24,
     name: "HERDIN Plus",
@@ -532,9 +532,8 @@ export default function Aklatan() {
         (activeType === "all" || db.resourceType === activeType),
     )
     .sort((a, b) => {
-      if (a.resourceType !== b.resourceType) {
+      if (a.resourceType !== b.resourceType)
         return a.resourceType === "research" ? -1 : 1;
-      }
       return a.name.localeCompare(b.name);
     });
 
@@ -622,7 +621,6 @@ export default function Aklatan() {
             </p>
           </div>
 
-          {/* Resource type legend */}
           <div className="flex flex-col gap-2.5">
             {[
               {
@@ -663,7 +661,12 @@ export default function Aklatan() {
                   <item.icon size={13} style={{ color: item.color }} />
                 </div>
                 <span
-                  className={`text-xs font-semibold transition-colors ${activeType === item.type ? "text-white" : "text-rgba(186,230,253,0.75)"} group-hover:text-white`}
+                  className={`text-xs font-semibold transition-colors ${activeType === item.type ? "text-white" : ""} group-hover:text-white`}
+                  style={
+                    activeType !== item.type
+                      ? { color: "rgba(186,230,253,0.75)" }
+                      : {}
+                  }
                 >
                   {item.label}
                 </span>
@@ -725,7 +728,6 @@ export default function Aklatan() {
         className="flex-1 flex flex-col min-h-screen"
         style={{ backgroundColor: "#f0f9ff" }}
       >
-        {/* Sticky top bar */}
         <div
           className="sticky top-0 z-40 backdrop-blur-sm border-b px-6 lg:px-8 py-4"
           style={{
@@ -754,18 +756,30 @@ export default function Aklatan() {
               </button>
             </div>
 
-            <div className="flex items-center gap-1 bg-white border border-sky-100 p-1 rounded-xl shrink-0">
-              {(["tagalog", "english"] as const).map((lang) => (
-                <button
-                  key={lang}
-                  onClick={() => setLanguage(lang)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-all outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 ${language === lang ? "text-white shadow-sm" : "text-slate-400 hover:bg-sky-50"}`}
-                  style={language === lang ? navyBg : {}}
-                >
-                  <span>{lang === "tagalog" ? "🇵🇭" : "🇬🇧"}</span>
-                  {lang === "tagalog" ? "FIL" : "ENG"}
-                </button>
-              ))}
+            {/* ── Language Slider Toggle ── */}
+            <div className="relative flex items-center rounded-full border border-slate-200 bg-white shadow-sm p-1 shrink-0">
+              <button
+                onClick={() => setLanguage("tagalog")}
+                className={`relative z-10 flex items-center gap-1.5 px-4 py-1.5 text-[11px] font-black uppercase tracking-widest transition-colors duration-200 select-none ${language === "tagalog" ? "text-white" : "text-slate-400 hover:text-slate-600"}`}
+              >
+                <span className="text-sm">🇵🇭</span> FIL
+              </button>
+              <button
+                onClick={() => setLanguage("english")}
+                className={`relative z-10 flex items-center gap-1.5 px-4 py-1.5 text-[11px] font-black uppercase tracking-widest transition-colors duration-200 select-none ${language === "english" ? "text-white" : "text-slate-400 hover:text-slate-600"}`}
+              >
+                <span className="text-sm">🇬🇧</span> ENG
+              </button>
+              <div
+                className={`pointer-events-none absolute inset-1 z-0 flex ${language === "english" ? "justify-end" : "justify-start"}`}
+              >
+                <motion.span
+                  layout
+                  transition={{ type: "spring", damping: 18, stiffness: 280 }}
+                  className="h-full w-1/2 rounded-full"
+                  style={{ backgroundColor: "#0d2645" }}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -833,7 +847,6 @@ export default function Aklatan() {
               <p className="text-center text-[11px] text-slate-400 leading-relaxed mt-3">
                 {t.hint}
               </p>
-
               <div className="flex items-center justify-center gap-1.5 mt-2">
                 <span
                   className="text-[10px] font-bold uppercase tracking-widest"
@@ -904,7 +917,6 @@ export default function Aklatan() {
               </div>
 
               <div className="flex items-center gap-2 flex-wrap no-scrollbar pb-0.5">
-                {/* Resource type filter */}
                 {[
                   {
                     val: "all" as const,
@@ -942,12 +954,10 @@ export default function Aklatan() {
                         : { borderColor: "#e0f2fe" }
                     }
                   >
-                    {Icon && <Icon size={11} />}
-                    {label}
+                    {Icon && <Icon size={11} />} {label}
                   </button>
                 ))}
 
-                {/* Local toggle */}
                 <div className="h-4 w-px bg-slate-200 mx-1 shrink-0" />
                 {([false, true] as const).map((local) => (
                   <button
@@ -959,7 +969,7 @@ export default function Aklatan() {
                         ? {
                             backgroundColor: "#059669",
                             borderColor: "#059669",
-                            boxShadow: `0 4px 12px rgba(5,150,105,0.3)`,
+                            boxShadow: "0 4px 12px rgba(5,150,105,0.3)",
                           }
                         : { borderColor: "#e0f2fe" }
                     }
@@ -994,7 +1004,6 @@ export default function Aklatan() {
                       className="group relative flex flex-col justify-between rounded-3xl bg-white border p-7 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20"
                       style={skyBorder}
                     >
-                      {/* Vertical Accent Bar */}
                       <div
                         className="absolute left-0 top-0 bottom-0 w-1.5 transition-all duration-300 group-hover:w-2"
                         style={{
@@ -1068,7 +1077,6 @@ export default function Aklatan() {
                             className="transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                           />
                         </div>
-
                         <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                           <div className="flex gap-1">
                             {[1, 2, 3].map((i) => (

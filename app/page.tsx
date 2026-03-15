@@ -2,11 +2,65 @@
 
 import { Book, Briefcase, Landmark, Sparkles } from "lucide-react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import { MenuCard } from "@/components/MenuCard";
 
-export default function Home() {
+// ─── Slider Language Toggle ───────────────────────────────────────────────────
+const TOGGLE_CLASSES =
+  "relative z-10 flex items-center gap-2 px-5 py-2 text-[11px] font-black uppercase tracking-widest transition-colors duration-200 select-none";
+
+function LanguageToggle() {
   const { language, setLanguage } = useLanguage();
+
+  return (
+    <div className="relative flex w-fit items-center rounded-full border border-slate-200 bg-white shadow-sm p-1">
+      {/* Filipino button */}
+      <button
+        onClick={() => setLanguage("tagalog")}
+        className={`${TOGGLE_CLASSES} ${
+          language === "tagalog"
+            ? "text-white"
+            : "text-slate-400 hover:text-slate-600"
+        }`}
+      >
+        <span className="text-sm">🇵🇭</span>
+        <span>FIL</span>
+      </button>
+
+      {/* English button */}
+      <button
+        onClick={() => setLanguage("english")}
+        className={`${TOGGLE_CLASSES} ${
+          language === "english"
+            ? "text-white"
+            : "text-slate-400 hover:text-slate-600"
+        }`}
+      >
+        <span className="text-sm">🇬🇧</span>
+        <span>ENG</span>
+      </button>
+
+      {/* Sliding navy pill */}
+      <div
+        className={`pointer-events-none absolute inset-1 z-0 flex ${
+          language === "english" ? "justify-end" : "justify-start"
+        }`}
+      >
+        <motion.span
+          layout
+          transition={{ type: "spring", damping: 18, stiffness: 280 }}
+          className="h-full w-1/2 rounded-full"
+          style={{ backgroundColor: "#0d2645" }}
+        />
+      </div>
+    </div>
+  );
+}
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
+export default function Home() {
+  const { language } = useLanguage();
 
   const content = {
     tagalog: {
@@ -69,7 +123,6 @@ export default function Home() {
         className="relative flex flex-col w-full md:w-[32%] lg:w-[30%] shrink-0 py-8 px-7 md:py-10 md:px-9 overflow-hidden border-r border-white/5"
         style={navyBg}
       >
-        {/* Wave texture overlay */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -77,8 +130,6 @@ export default function Home() {
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}
         />
-
-        {/* Decorative glows */}
         <div
           className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full pointer-events-none blur-3xl opacity-20"
           style={{ backgroundColor: "#06b6d4" }}
@@ -88,7 +139,6 @@ export default function Home() {
           style={{ backgroundColor: "#7c3aed" }}
         />
 
-        {/* Logo area */}
         <div className="relative z-10 mb-10">
           <Image
             src="/aklatang-galera-logo.png"
@@ -100,7 +150,6 @@ export default function Home() {
           />
         </div>
 
-        {/* Identity block */}
         <div className="relative z-10 flex-1 flex flex-col justify-center gap-8">
           <div>
             <div
@@ -130,23 +179,19 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Color pips */}
           <div className="flex gap-2">
             {["#1a56db", "#06b6d4", "#2dd4bf", "#4ade80", "#f59e0b"].map(
-              (color, i) => (
+              (color) => (
                 <div
                   key={color}
                   className="w-2.5 h-2.5 rounded-full shadow-lg"
-                  style={{
-                    backgroundColor: color,
-                  }}
+                  style={{ backgroundColor: color }}
                 />
               ),
             )}
           </div>
         </div>
 
-        {/* Developer credit */}
         <div className="relative z-10 pt-8 mt-8 border-t border-white/10">
           <p
             className="text-[11px] font-bold"
@@ -173,33 +218,14 @@ export default function Home() {
 
       {/* ── RIGHT PANEL ────────────────────────────────────────── */}
       <main className="relative flex-1 flex flex-col overflow-y-auto md:overflow-hidden bg-[#f8fafc]">
-        {/* Decorative background wash */}
         <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-sky-100/40 to-transparent pointer-events-none" />
 
         {/* Header: Language Toggle */}
         <div className="relative z-30 shrink-0 flex justify-end pt-6 px-6 lg:px-10 pb-4">
-          <div className="flex items-center gap-1.5 bg-white border-2 border-slate-100 p-1.5 rounded-2xl shadow-sm">
-            {(["tagalog", "english"] as const).map((lang) => (
-              <button
-                key={lang}
-                onClick={() => setLanguage(lang)}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 active:scale-[0.98] ${
-                  language === lang
-                    ? "text-white shadow-xl shadow-sky-900/20"
-                    : "text-slate-400 hover:text-slate-600 hover:bg-slate-50"
-                }`}
-                style={language === lang ? navyBg : {}}
-              >
-                <span className="text-base">
-                  {lang === "tagalog" ? "🇵🇭" : "🇬🇧"}
-                </span>
-                {lang === "tagalog" ? "Filipino" : "English"}
-              </button>
-            ))}
-          </div>
+          <LanguageToggle />
         </div>
 
-        {/* Content Area: Cards Grid */}
+        {/* Cards */}
         <div className="flex-1 min-h-0 flex flex-col px-6 lg:px-10 pt-2 pb-8 gap-4 overflow-y-auto no-scrollbar md:overflow-hidden">
           <div className="flex-[1.3] min-h-0">
             <MenuCard

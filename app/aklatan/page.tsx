@@ -650,7 +650,11 @@ export default function Aklatan() {
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
                 className={`flex items-center gap-2.5 w-full text-left p-2 -ml-2 rounded-xl transition-all duration-300 group outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 ${activeType === item.type ? "" : "hover:bg-white/5"}`}
-                style={activeType === item.type ? { backgroundColor: item.bg.replace("0.15", "0.2") } : {}}
+                style={
+                  activeType === item.type
+                    ? { backgroundColor: item.bg.replace("0.15", "0.2") }
+                    : {}
+                }
               >
                 <div
                   className="flex items-center justify-center w-7 h-7 rounded-lg shrink-0 transition-transform group-hover:scale-110"
@@ -711,7 +715,7 @@ export default function Aklatan() {
             >
               Dexter Jethro Enriquez
             </a>{" "}
-            · Puerto Galera Public Library
+            · Made by a Galeran, for Galerans
           </p>
         </div>
       </aside>
@@ -902,20 +906,26 @@ export default function Aklatan() {
               <div className="flex items-center gap-2 flex-wrap no-scrollbar pb-0.5">
                 {/* Resource type filter */}
                 {[
-                  { val: "all" as const, label: t.typeAll, icon: null, color: "#0d2645", bg: "rgba(13,38,69,0.3)" },
+                  {
+                    val: "all" as const,
+                    label: t.typeAll,
+                    icon: null,
+                    color: "#0d2645",
+                    bg: "rgba(13,38,69,0.3)",
+                  },
                   {
                     val: "research" as const,
                     label: t.typeResearch,
                     icon: Search,
                     color: "#06b6d4",
-                    bg: "rgba(6,182,212,0.3)"
+                    bg: "rgba(6,182,212,0.3)",
                   },
                   {
                     val: "ebooks" as const,
                     label: t.typeEbooks,
                     icon: BookMarked,
                     color: "#2dd4bf",
-                    bg: "rgba(45,212,191,0.3)"
+                    bg: "rgba(45,212,191,0.3)",
                   },
                 ].map(({ val, label, icon: Icon, color, bg }) => (
                   <button
@@ -955,8 +965,12 @@ export default function Aklatan() {
                     }
                   >
                     {local ? (
-                      <span className="flex items-center gap-1"><MapPin size={11} /> {t.local}</span>
-                    ) : t.all}
+                      <span className="flex items-center gap-1">
+                        <MapPin size={11} /> {t.local}
+                      </span>
+                    ) : (
+                      t.all
+                    )}
                   </button>
                 ))}
 

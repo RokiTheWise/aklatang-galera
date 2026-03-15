@@ -28,66 +28,85 @@ export function MenuCard({
   featured = false,
 }: MenuCardProps) {
   return (
-    <Link href={href} className={cn("group block w-full", className)}>
+    <Link href={href} className={cn("group block w-full h-full", className)}>
       <div
         className={cn(
-          "relative h-full w-full overflow-hidden shadow-md transition-all duration-500",
-          "hover:scale-[1.015] hover:shadow-2xl",
-          featured ? "rounded-[1.75rem]" : "rounded-[1.5rem]",
+          "relative h-full w-full overflow-hidden shadow-sm transition-all duration-500",
+          "hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(13,38,69,0.15)] active:scale-[0.99]",
+          featured ? "rounded-[2.5rem]" : "rounded-[2rem]",
         )}
       >
         {/* Background Image */}
         <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110"
           style={{ backgroundImage: `url(${bgImage})` }}
         />
 
-        {/* Color Overlay */}
+        {/* Dynamic Color Overlay with Gradient for Depth */}
         <div
           className={cn(
-            "absolute inset-0 transition-opacity duration-300",
+            "absolute inset-0 transition-all duration-500",
             baseColorClass,
             featured
-              ? "opacity-[0.72] group-hover:opacity-[0.62]"
-              : "opacity-[0.78] group-hover:opacity-[0.68]",
+              ? "opacity-[0.82] group-hover:opacity-[0.75]"
+              : "opacity-[0.85] group-hover:opacity-[0.78]",
           )}
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0d2645]/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
 
         {/* Content */}
         <div
           className={cn(
             "relative z-20 h-full flex flex-col justify-between text-white",
-            featured ? "p-7" : "p-5",
+            featured ? "p-8 md:p-10" : "p-7 md:p-8",
           )}
         >
-          <div className="inline-flex items-center justify-center self-start rounded-xl bg-white/20 p-2.5 backdrop-blur-md">
-            <Icon size={featured ? 22 : 18} strokeWidth={2} />
+          {/* Icon Badge */}
+          <div className="inline-flex items-center justify-center self-start rounded-2xl bg-white/10 p-3.5 backdrop-blur-xl border border-white/10 shadow-xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+            <Icon
+              size={featured ? 28 : 22}
+              strokeWidth={2.5}
+              className="drop-shadow-lg"
+            />
           </div>
 
           <div>
             <h2
               className={cn(
-                "font-bold tracking-tight mb-1",
-                featured ? "text-2xl" : "text-lg",
+                "font-black tracking-tight mb-2 leading-tight drop-shadow-sm transition-transform duration-500 group-hover:translate-x-1",
+                featured ? "text-3xl md:text-4xl" : "text-xl md:text-2xl",
               )}
             >
               {title}
             </h2>
-            <p className="text-xs font-medium text-white/80 leading-snug mb-3 line-clamp-2">
+            <p
+              className={cn(
+                "font-medium text-white/90 leading-relaxed mb-6 line-clamp-2 transition-all duration-500 group-hover:text-white group-hover:translate-x-1",
+                featured ? "text-base max-w-xl" : "text-sm",
+              )}
+            >
               {description}
             </p>
 
-            {/* CTA — white pill, navy text */}
-            <div className="inline-flex items-center gap-2 bg-white rounded-full px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wide transition-all duration-200 shadow-sm group-hover:shadow-md group-hover:gap-3">
+            {/* CTA — Standardized with Portal Buttons */}
+            <div
+              className={cn(
+                "inline-flex items-center gap-2 bg-white rounded-2xl font-black uppercase tracking-widest transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 group-hover:gap-4",
+                featured ? "px-7 py-3.5 text-xs" : "px-5 py-2.5 text-[10px]",
+              )}
+            >
               <span style={{ color: "#0d2645" }}>{ctaLabel}</span>
               <ArrowRight
-                size={11}
-                style={{ color: "#0d2645", opacity: 0.7 }}
-                className="transition-transform duration-300 group-hover:translate-x-0.5"
+                size={featured ? 14 : 12}
+                style={{ color: "#0d2645" }}
+                className="transition-transform duration-500 group-hover:translate-x-1"
               />
             </div>
           </div>
         </div>
+
+        {/* Shine Effect on Hover */}
+        <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
       </div>
     </Link>
   );

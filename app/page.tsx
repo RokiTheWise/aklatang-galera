@@ -1,6 +1,6 @@
 "use client";
 
-import { Book, Briefcase, Landmark } from "lucide-react";
+import { Book, Briefcase, Landmark, Sparkles } from "lucide-react";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { MenuCard } from "@/components/MenuCard";
@@ -14,6 +14,7 @@ export default function Home() {
       missionLabel: "Aming Misyon",
       mission:
         "Ang Aklatang Galera ay naglalayong ilapit ang kaalaman, oportunidad, at serbisyong pampubliko sa bawat mamamayan ng Puerto Galera — libre, digital, at palaging bukas.",
+      partnerNote: "Mula sa isang Galera para sa mga Galeran",
       sections: {
         aklatan: {
           title: "Digital na Aklatan",
@@ -37,6 +38,7 @@ export default function Home() {
       missionLabel: "Our Mission",
       mission:
         "Aklatang Galera aims to make knowledge, opportunity, and public services accessible to every citizen of Puerto Galera — free, digital, and always open.",
+      partnerNote: "Made by a Galeran for Galerans",
       sections: {
         aklatan: {
           title: "Digital Library",
@@ -58,190 +60,187 @@ export default function Home() {
   };
 
   const t = content[language];
+  const navyBg = { backgroundColor: "#0d2645" } as const;
 
   return (
-    <div className="min-h-screen w-screen flex flex-col md:flex-row md:h-screen md:overflow-hidden bg-white">
-      {/* =============================================
-          LEFT PANEL — deep navy from logo
-          ============================================= */}
+    <div className="min-h-screen w-screen flex flex-col md:flex-row md:h-screen md:overflow-hidden bg-white selection:bg-cyan-100 selection:text-cyan-900">
+      {/* ── LEFT PANEL ─────────────────────────────────────────── */}
       <aside
-        className="relative flex flex-col w-full md:w-[32%] lg:w-[30%] shrink-0 py-8 px-7 md:py-10 md:px-9 overflow-hidden"
-        style={{ backgroundColor: "#0d2645" }}
+        className="relative flex flex-col w-full md:w-[32%] lg:w-[30%] shrink-0 py-8 px-7 md:py-10 md:px-9 overflow-hidden border-r border-white/5"
+        style={navyBg}
       >
-        {/* Wave texture overlay — echoes the logo waves */}
+        {/* Wave texture overlay */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            opacity: 0.045,
+            opacity: 0.04,
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}
         />
 
-        {/* Decorative bottom-left glow — teal, like the logo's mid-wave */}
+        {/* Decorative glows */}
         <div
-          className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full pointer-events-none blur-3xl"
-          style={{ backgroundColor: "rgba(45,212,191,0.12)" }}
+          className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full pointer-events-none blur-3xl opacity-20"
+          style={{ backgroundColor: "#06b6d4" }}
+        />
+        <div
+          className="absolute -top-24 -right-24 w-60 h-60 rounded-full pointer-events-none blur-3xl opacity-10"
+          style={{ backgroundColor: "#7c3aed" }}
         />
 
-        {/* Logo */}
-        <div className="relative z-10 mb-8">
+        {/* Logo area */}
+        <div className="relative z-10 mb-10 animate-in fade-in slide-in-from-top duration-700">
           <Image
             src="/aklatang-galera-logo.png"
-            alt="Aklatang Galera Logo"
+            alt="Logo"
             width={180}
             height={82}
             priority
-            className="drop-shadow-md brightness-0 invert opacity-95"
+            className="drop-shadow-2xl brightness-0 invert opacity-95 transition-transform hover:scale-105 duration-500"
           />
         </div>
 
         {/* Identity block */}
-        <div className="relative z-10 flex-1 flex flex-col justify-center gap-6">
-          <div>
-            {/* Gold divider — from the star in the logo */}
+        <div className="relative z-10 flex-1 flex flex-col justify-center gap-8">
+          <div className="animate-in fade-in slide-in-from-left duration-700 delay-150">
             <div
-              className="w-7 h-0.5 mb-5 rounded-full"
+              className="w-10 h-1 mb-6 rounded-full"
               style={{ backgroundColor: "#f59e0b" }}
             />
-            <h2
-              className="text-2xl lg:text-3xl font-extrabold leading-tight tracking-tight"
-              style={{ color: "#ffffff" }}
-            >
+            <h2 className="text-3xl lg:text-4xl font-black leading-[1.1] tracking-tight text-white">
               {t.headline}
             </h2>
           </div>
 
-          <div>
+          <div className="animate-in fade-in slide-in-from-left duration-700 delay-300">
+            <div className="flex items-center gap-2 mb-3">
+              <Sparkles size={14} className="text-cyan-400" />
+              <p
+                className="text-[10px] font-black uppercase tracking-[0.25em]"
+                style={{ color: "rgba(6,182,212,0.8)" }}
+              >
+                {t.missionLabel}
+              </p>
+            </div>
             <p
-              className="text-[9px] font-bold uppercase tracking-[0.2em] mb-3"
-              style={{ color: "rgba(6,182,212,0.7)" }} /* cyan from splashes */
-            >
-              {t.missionLabel}
-            </p>
-            <p
-              className="text-sm leading-relaxed"
-              style={{ color: "rgba(186,230,253,0.7)" }}
+              className="text-base leading-relaxed font-medium"
+              style={{ color: "rgba(186,230,253,0.75)" }}
             >
               {t.mission}
             </p>
           </div>
 
-          {/* Colour pip row — a subtle nod to the wave layers */}
-          <div className="flex gap-1.5">
-            <div
-              className="w-2 h-2 rounded-full"
-              style={{ backgroundColor: "#1a56db" }}
-            />
-            <div
-              className="w-2 h-2 rounded-full"
-              style={{ backgroundColor: "#06b6d4" }}
-            />
-            <div
-              className="w-2 h-2 rounded-full"
-              style={{ backgroundColor: "#2dd4bf" }}
-            />
-            <div
-              className="w-2 h-2 rounded-full"
-              style={{ backgroundColor: "#4ade80" }}
-            />
-            <div
-              className="w-2 h-2 rounded-full"
-              style={{ backgroundColor: "#f59e0b" }}
-            />
+          {/* Color pips */}
+          <div className="flex gap-2 animate-in fade-in slide-in-from-bottom duration-700 delay-500">
+            {["#1a56db", "#06b6d4", "#2dd4bf", "#4ade80", "#f59e0b"].map(
+              (color, i) => (
+                <div
+                  key={color}
+                  className="w-2.5 h-2.5 rounded-full shadow-lg"
+                  style={{
+                    backgroundColor: color,
+                    animationDelay: `${600 + i * 100}ms`,
+                  }}
+                />
+              ),
+            )}
           </div>
         </div>
 
         {/* Developer credit */}
-        <div
-          className="relative z-10 pt-6 mt-6 border-t"
-          style={{ borderColor: "rgba(255,255,255,0.07)" }}
-        >
-          <p className="text-[10px]" style={{ color: "rgba(6,182,212,0.4)" }}>
+        <div className="relative z-10 pt-8 mt-8 border-t border-white/10 animate-in fade-in slide-in-from-bottom duration-700 delay-700">
+          <p
+            className="text-[11px] font-bold"
+            style={{ color: "rgba(6,182,212,0.5)" }}
+          >
+            {t.partnerNote}
+          </p>
+          <p
+            className="text-[10px] mt-2 opacity-40 hover:opacity-100 transition-opacity duration-300"
+            style={{ color: "#ffffff" }}
+          >
             Built by{" "}
             <a
               href="https://djenriquez.dev/"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline underline-offset-2 transition-opacity hover:opacity-80"
-              style={{ color: "rgba(6,182,212,0.6)" }}
+              className="underline underline-offset-4 decoration-cyan-500/30"
             >
               Dexter Jethro Enriquez
-            </a>{" "}
-            · In partnership with the Puerto Galera Public Library
+            </a>
           </p>
         </div>
       </aside>
 
-      {/* =============================================
-          RIGHT PANEL — soft sky wash
-          ============================================= */}
-      <main
-        className="relative flex-1 flex flex-col overflow-y-auto md:overflow-hidden"
-        style={{
-          backgroundColor: "#f0f9ff",
-        }} /* sky-50 — light, airy, coastal */
-      >
-        {/* Language Toggle */}
-        <div className="shrink-0 flex justify-end pt-5 px-6 lg:px-8">
-          <div className="flex items-center gap-1 bg-white border border-sky-100 p-1 rounded-xl shadow-sm">
+      {/* ── RIGHT PANEL ────────────────────────────────────────── */}
+      <main className="relative flex-1 flex flex-col overflow-y-auto md:overflow-hidden bg-[#f8fafc]">
+        {/* Decorative background wash */}
+        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-sky-100/40 to-transparent pointer-events-none" />
+
+        {/* Header: Language Toggle */}
+        <div className="relative z-30 shrink-0 flex justify-end pt-6 px-6 lg:px-10 pb-4">
+          <div className="flex items-center gap-1.5 bg-white border-2 border-slate-100 p-1.5 rounded-2xl shadow-sm animate-in fade-in slide-in-from-right duration-700">
             {(["tagalog", "english"] as const).map((lang) => (
               <button
                 key={lang}
                 onClick={() => setLanguage(lang)}
-                className={`flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-all ${
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 active:scale-[0.98] ${
                   language === lang
-                    ? "text-white shadow-md"
-                    : "text-slate-400 hover:bg-sky-50"
+                    ? "text-white shadow-xl shadow-sky-900/20"
+                    : "text-slate-400 hover:text-slate-600 hover:bg-slate-50"
                 }`}
-                style={language === lang ? { backgroundColor: "#0d2645" } : {}}
+                style={language === lang ? navyBg : {}}
               >
-                <span>{lang === "tagalog" ? "🇵🇭" : "🇬🇧"}</span>
+                <span className="text-base">
+                  {lang === "tagalog" ? "🇵🇭" : "🇬🇧"}
+                </span>
                 {lang === "tagalog" ? "Filipino" : "English"}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Cards */}
-        <div className="flex-1 min-h-0 flex flex-col px-6 lg:px-8 pt-4 pb-6 gap-3">
-          {/* Library — royal blue (main wave color) */}
-          <MenuCard
-            featured
-            className="flex-[1.4] min-h-0"
-            title={t.sections.aklatan.title}
-            description={t.sections.aklatan.desc}
-            ctaLabel={t.sections.aklatan.cta}
-            icon={Book}
-            href="/aklatan"
-            baseColorClass="bg-blue-700"
-            buttonText="Open"
-            bgImage="https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=1000"
-          />
-          <div className="flex gap-3 flex-1 min-h-0">
-            {/* Livelihood — green (GALERA text + bottom wave) */}
+        {/* Content Area: Cards Grid */}
+        <div className="flex-1 min-h-0 flex flex-col px-6 lg:px-10 pt-2 pb-8 gap-4 overflow-y-auto no-scrollbar md:overflow-hidden">
+          <div className="flex-[1.3] min-h-0 animate-in fade-in slide-in-from-bottom duration-700 delay-300">
             <MenuCard
-              className="flex-1 min-h-0"
-              title={t.sections.hanapbuhay.title}
-              description={t.sections.hanapbuhay.desc}
-              ctaLabel={t.sections.hanapbuhay.cta}
-              icon={Briefcase}
-              href="/hanapbuhay"
-              baseColorClass="bg-emerald-600"
+              featured
+              title={t.sections.aklatan.title}
+              description={t.sections.aklatan.desc}
+              ctaLabel={t.sections.aklatan.cta}
+              icon={Book}
+              href="/aklatan"
+              baseColorClass="bg-blue-700"
               buttonText="Open"
-              bgImage="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1000"
+              bgImage="https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=1000"
             />
-            {/* Public Services — cyan (splash highlights) */}
-            <MenuCard
-              className="flex-1 min-h-0"
-              title={t.sections.serbisyo.title}
-              description={t.sections.serbisyo.desc}
-              ctaLabel={t.sections.serbisyo.cta}
-              icon={Landmark}
-              href="/public-services"
-              baseColorClass="bg-cyan-600"
-              buttonText="Open"
-              bgImage="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000"
-            />
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-4 flex-1 min-h-0">
+            <div className="flex-1 min-h-0 animate-in fade-in slide-in-from-left duration-700 delay-500">
+              <MenuCard
+                title={t.sections.hanapbuhay.title}
+                description={t.sections.hanapbuhay.desc}
+                ctaLabel={t.sections.hanapbuhay.cta}
+                icon={Briefcase}
+                href="/hanapbuhay"
+                baseColorClass="bg-emerald-600"
+                buttonText="Open"
+                bgImage="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1000"
+              />
+            </div>
+            <div className="flex-1 min-h-0 animate-in fade-in slide-in-from-right duration-700 delay-500">
+              <MenuCard
+                title={t.sections.serbisyo.title}
+                description={t.sections.serbisyo.desc}
+                ctaLabel={t.sections.serbisyo.cta}
+                icon={Landmark}
+                href="/public-services"
+                baseColorClass="bg-cyan-600"
+                buttonText="Open"
+                bgImage="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000"
+              />
+            </div>
           </div>
         </div>
       </main>

@@ -714,7 +714,7 @@ export default function PublicServices() {
             >
               Dexter Jethro Enriquez
             </a>{" "}
-            · Puerto Galera Public Library
+            · Made by a Galeran, for Galerans
           </p>
         </div>
       </aside>

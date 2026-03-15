@@ -2,7 +2,9 @@
 
 > _Kaalaman para sa bawat Galeran._ — Knowledge for every Galeran.
 
-Aklatang Galera is a localized digital portal designed to bridge the gap between knowledge, opportunity, and public services for the people of Puerto Galera. It serves as a unified dashboard that simplifies access to educational resources, livelihood programs, and government services — ensuring that what every Galeran needs is just a click away.
+**Aklatang Galera** is a localized digital portal designed to bridge the gap between knowledge, opportunity, and public services for the people of Puerto Galera. It serves as a unified dashboard that simplifies access to educational resources, livelihood programs, and government services — ensuring that what every Galeran needs is just a click away.
+
+**🌐 Live at: [aklatang-galera.djenriquez.dev](https://aklatang-galera.djenriquez.dev)**
 
 ---
 
@@ -18,16 +20,6 @@ Aklatang Galera centralizes these resources to:
 
 ---
 
-## 🎨 Branding & Identity
-
-The logo represents the spirit of Puerto Galera:
-
-- **The Galleon** — Symbolizing the heritage of the town and the journey toward progress.
-- **The Waves** — Representing the vibrant coastal environment and the free flow of information.
-- **The Star** — A guiding light toward a better future through digital literacy.
-
----
-
 ## ✨ Features
 
 ### 1. Dual-Language Support (Filipino / English)
@@ -36,41 +28,38 @@ A persistent language toggle lets users switch between Filipino and English, ens
 
 ### 2. E-Aklatan — Digital Library
 
-- Access to 20+ peer-reviewed, open-access, and e-book resources.
-- **Research / E-Books filter** to separate scholarly databases from readable books.
-- **Local filter** to toggle between global repositories (arXiv, Project Gutenberg) and Philippine-specific resources (Archīum Ateneo, Aklatang Bayan, Filipinas Heritage Library).
-- **Smart Search** — redirects directly to Semantic Scholar with your query.
+- **Smart Search** — Powered by Semantic Scholar for direct access to millions of scholarly papers.
+- **Curated Databases** — 30+ peer-reviewed, open-access, and e-book resources.
+- **Categorized Discovery** — Toggle between **Research** (arXiv, DOAJ, Google Scholar) and **E-Books** (Project Gutenberg, Open Library, National Academies Press).
+- **Local Spotlight** — Quick filter for Philippine-specific repositories like **Archīum Ateneo**, **Aklatang Bayan**, **Tuklas**, and **Filipinas Heritage Library**.
 
 ### 3. Hanapbuhay — Livelihood
 
-- Job portals including PhilJobNet (DOLE), JobStreet, Kalibrr, and OnlineJobs.ph.
-- Skills development via TESDA Online, freeCodeCamp, Google Digital Garage, and more.
-- Entrepreneurship support through DTI Negosyo Center, Google Business Profile, and Canva.
-- **Local Spotlight** — highlights opportunities specific to Puerto Galera and Oriental Mindoro.
-- Category tabs and free-only filter for quick navigation.
+- **Job Portals** — Quick access to PhilJobNet (DOLE), JobStreet, OnlineJobs.ph, and Civil Service Commission opportunities.
+- **Skills Development** — Training from **TESDA Online**, **UPOU MODeL**, **freeCodeCamp**, and **Google Digital Garage**.
+- **Entrepreneurship Hub** — Resources for small businesses, including **DTI Negosyo Center**, **SEC**, **BIR**, and **Go Negosyo**.
+- **Local Careers** — Direct links to government careers in **Oriental Mindoro**.
 
 ### 4. Serbisyong Pampubliko — Public Services
 
-- **Featured eLGU portal** for Puerto Galera — business permits, civil registry, and cedula in one click.
-- E-Government links: SSS, Pag-IBIG, PhilHealth, LTO, PhilSys, and eSEC.
-- **Scholarship Hub** — centralized directory covering DOST-SEI, CHED UniFAST, OWWA, and major university scholarships (UP, Ateneo, DLSU, UST).
-- **Transparency & News** — direct links to the Puerto Galera PIO, Sangguniang Bayan, COA, and PhilGEPS.
+- **Featured eLGU Portal** — One-click access to Puerto Galera's local government services (Business Permits, Civil Registry, Cedula).
+- **Scholarship Hub** — Centralized directory for **DOST-SEI**, **CHED UniFAST**, **OWWA**, and major university scholarships (UP, Ateneo, DLSU, UST, SM Foundation).
+- **Transparency & News** — Direct feeds to the **PIO Puerto Galera**, **Sangguniang Bayan**, **Official Gazette**, and **PhilGEPS**.
 
-### 5. Mobile-First Design
+### 5. Mobile-First & Accessible Design
 
-The UI is fully responsive, recognizing that many community members access the internet primarily through smartphones.
+Built with a "mobile-first" philosophy, ensuring that community members accessing the web primarily via smartphones have a smooth, high-performance experience.
 
 ---
 
 ## 🛠️ Tech Stack
 
-|                  |                      |
-| ---------------- | -------------------- |
-| **Framework**    | Next.js (App Router) |
-| **Language**     | TypeScript           |
-| **Styling**      | Tailwind CSS         |
-| **Icons**        | Lucide React         |
-| **Localization** | React Context API    |
+- **Framework:** [Next.js 16](https://nextjs.org/) (App Router)
+- **Library:** [React 19](https://react.dev/)
+- **Styling:** [Tailwind CSS 4](https://tailwindcss.com/)
+- **Animations:** [Framer Motion](https://www.framer.com/motion/)
+- **Icons:** [Lucide React](https://lucide.dev/)
+- **SEO & Metadata:** Automated Sitemap and Robots.txt generation for optimized discovery.
 
 ---
 
@@ -78,7 +67,7 @@ The UI is fully responsive, recognizing that many community members access the i
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/yourusername/aklatang-galera.git
+git clone https://github.com/RokiTheWise/aklatang-galera.git
 
 # 2. Install dependencies
 npm install

@@ -329,6 +329,19 @@ const resources: Resource[] = [
         "Free online courses on farming, livestock, and fisheries from the Dept. of Agriculture.",
     },
   },
+  {
+    id: 29,
+    category: "skills",
+    name: "Harvard University - Free Online Courses",
+    link: "https://pll.harvard.edu/catalog/free",
+    logoUrl: "/harvard-logo.png",
+    desc: {
+      tagalog:
+        "Libreng online courses mula sa Harvard University sa programming, data science, humanities, at iba pa.",
+      english:
+        "Free online courses from Harvard University covering programming, data science, humanities, and more.",
+    },
+  },
 ];
 
 const categories = [

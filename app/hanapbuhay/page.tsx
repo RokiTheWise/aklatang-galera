@@ -342,6 +342,19 @@ const resources: Resource[] = [
         "Free online courses from Harvard University covering programming, data science, humanities, and more.",
     },
   },
+  {
+    id: 30,
+    category: "skills",
+    name: "Alison Free Online Courses",
+    link: "https://alison.com/",
+    logoUrl: "/alison-logo.png",
+    desc: {
+      tagalog:
+        "Higit sa 6,000 libreng kurso sa IT, Health, Business, at Hospitality Management. Ang mga sertipiko ay may bayad pero libre ang mga kurso.",
+      english:
+        "Over 6,000 free courses in IT, Health, Business, and Hospitality Management. Certificates are paid but courses are free to complete.",
+    },
+  },
 ];
 
 const categories = [

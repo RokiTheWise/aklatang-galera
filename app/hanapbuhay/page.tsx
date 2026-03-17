@@ -316,6 +316,19 @@ const resources: Resource[] = [
       english: "Protect your brand or invention through Trademark and Patents.",
     },
   },
+  {
+    id: 28,
+    category: "skills",
+    name: "ATI eLearning for Agriculture & Fisheries",
+    link: "https://elearn.e-extension.gov.ph/",
+    logoUrl: "/eaf-logo.png",
+    desc: {
+      tagalog:
+        "Libreng online courses sa pagsasaka, pag-aalaga ng hayop, at pangingisda mula sa Dept. of Agriculture.",
+      english:
+        "Free online courses on farming, livestock, and fisheries from the Dept. of Agriculture.",
+    },
+  },
 ];
 
 const categories = [

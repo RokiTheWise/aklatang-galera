@@ -142,7 +142,7 @@ export default function Home() {
         <div className="relative z-10 mb-10">
           <Image
             src="/aklatang-galera-logo.png"
-            alt="Logo"
+            alt="Aklatang Galera Logo"
             width={180}
             height={82}
             priority
@@ -156,9 +156,9 @@ export default function Home() {
               className="w-10 h-1 mb-6 rounded-full"
               style={{ backgroundColor: "#f59e0b" }}
             />
-            <h2 className="text-3xl lg:text-4xl font-black leading-[1.1] tracking-tight text-white">
+            <h1 className="text-3xl lg:text-4xl font-black leading-[1.1] tracking-tight text-white">
               {t.headline}
-            </h2>
+            </h1>
           </div>
 
           <div>

@@ -27,21 +27,20 @@ export const metadata: Metadata = {
 
   keywords: [
     "Aklatang Galera",
-    "Puerto Galera",
-    "Oriental Mindoro",
-    "digital library Philippines",
-    "e-government Puerto Galera",
-    "scholarships Philippines",
-    "TESDA online",
-    "Phil-JobNet",
-    "eLGU Puerto Galera",
-    "public services Philippines",
-    "hanapbuhay",
-    "livelihood Philippines",
-    "free ebooks Philippines",
-    "related literature Puerto Galera",
-    "public library Puerto Galera",
-    "community resources Puerto Galera",
+    "Puerto Galera Digital Portal",
+    "Oriental Mindoro E-Library",
+    "Digital Library Philippines",
+    "Puerto Galera Public Services",
+    "Scholarships Philippines 2026",
+    "TESDA Online Courses Puerto Galera",
+    "Jobs in Puerto Galera",
+    "eLGU Puerto Galera Online",
+    "Philippine Research Databases",
+    "Free E-books Philippines",
+    "Ateneo de Manila Scholarships",
+    "UP Scholarships",
+    "DOST Scholarships",
+    "Philippine Government Portals",
   ],
 
   authors: [{ name: "Dexter Jethro Enriquez", url: "https://djenriquez.dev" }],
@@ -108,11 +107,39 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Aklatang Galera",
+    "url": BASE_URL,
+    "description": "A free digital portal for Puerto Galera — providing easy access to knowledge, livelihood resources, and public services.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Aklatang Galera",
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${BASE_URL}/aklatang-galera-logo.png`
+      }
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${BASE_URL}/aklatan?q={search_term_string}`
+      },
+      "query-input": "required name=search_term_string"
+    }
+  };
+
   return (
     <html lang="fil-PH">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>

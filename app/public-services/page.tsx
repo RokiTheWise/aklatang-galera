@@ -439,6 +439,20 @@ const resources: Resource[] = [
         "Initiative for a more open, accountable, and transparent governance.",
     },
   },
+  {
+    id: 32,
+    category: "scholarships",
+    featured: false,
+    name: "National University Manila Scholarships",
+    link: "https://www.national-u.edu.ph/nu-manila/scholarships/",
+    logoUrl: "nu-logo.svg",
+    desc: {
+      tagalog:
+        "Mga scholarship at financial aid programs ng National University Manila.",
+      english:
+        "Scholarship and financial aid programs of National University Manila.",
+    },
+  },
 ];
 
 const categories = [

@@ -453,6 +453,20 @@ const resources: Resource[] = [
         "Scholarship and financial aid programs of National University Manila.",
     },
   },
+  {
+    id: 33,
+    category: "scholarships",
+    featured: false,
+    name: "Far Eastern University Scholarships",
+    link: "https://www.feu.edu.ph/cost-and-aid/scholarship-grants/",
+    logoUrl: "feu-logo.png",
+    desc: {
+      tagalog:
+        "Mga scholarship at financial aid programs ng Far Eastern University.",
+      english:
+        "Scholarship and financial aid programs of Far Eastern University.",
+    },
+  },
 ];
 
 const categories = [

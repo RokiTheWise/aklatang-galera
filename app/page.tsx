@@ -77,7 +77,7 @@ export default function Home() {
         },
         hanapbuhay: {
           title: "Hanapbuhay",
-          desc: "Skills training, community projects, at mga trabaho.",
+          desc: "Skills training, business development, at mga trabaho.",
           cta: "Tingnan",
         },
         serbisyo: {
@@ -101,7 +101,7 @@ export default function Home() {
         },
         hanapbuhay: {
           title: "Livelihood",
-          desc: "Skills training, community projects, and jobs.",
+          desc: "Skills training, business development, and jobs.",
           cta: "View",
         },
         serbisyo: {

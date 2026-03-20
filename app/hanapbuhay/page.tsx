@@ -33,7 +33,7 @@ const resources: Resource[] = [
     category: "entrepreneurship",
     name: "Canva for Business",
     link: "https://www.canva.com/",
-    logoUrl: "canva-logo.png",
+    logoUrl: "/canva-logo.png",
     desc: {
       tagalog: "Libreng marketing materials para sa iyong negosyo.",
       english: "Free marketing materials and graphics for your business.",
@@ -649,7 +649,7 @@ export default function Hanapbuhay() {
             {/* Free toggle + language — pushed to their own row on mobile via basis */}
             <div className="flex items-center gap-2 w-full sm:w-auto sm:ml-auto">
               {/* ── Language Slider Toggle ── */}
-              <div className="relative flex items-center rounded-full border border-slate-200 bg-white shadow-sm p-1 ml-auto sm:ml-0 shrink-0">
+              <div className="relative flex items-center rounded-full border border-slate-200 bg-white shadow-sm p-1 ml-0 sm:ml-auto shrink-0">
                 <button
                   onClick={() => setLanguage("tagalog")}
                   className={`relative z-10 flex items-center gap-1.5 px-4 py-1.5 text-[11px] font-black uppercase tracking-widest transition-colors duration-200 select-none ${language === "tagalog" ? "text-white" : "text-slate-400 hover:text-slate-600"}`}

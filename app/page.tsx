@@ -117,7 +117,7 @@ export default function Home() {
   const navyBg = { backgroundColor: "#0d2645" } as const;
 
   return (
-    <div className="min-h-screen w-screen flex flex-col md:flex-row md:h-screen md:overflow-hidden bg-white selection:bg-cyan-100 selection:text-cyan-900">
+    <div className="min-h-screen w-full flex flex-col md:flex-row md:h-screen md:overflow-hidden bg-white selection:bg-cyan-100 selection:text-cyan-900">
       {/* ── LEFT PANEL ─────────────────────────────────────────── */}
       <aside
         className="relative flex flex-col w-full md:w-[32%] lg:w-[30%] shrink-0 py-8 px-7 md:py-10 md:px-9 overflow-hidden border-r border-white/5"

@@ -598,7 +598,7 @@ export default function PublicServices() {
     (e.currentTarget.style.borderColor = "#bae6fd");
 
   return (
-    <div className="min-h-screen w-screen flex flex-col md:flex-row bg-white">
+    <div className="min-h-screen w-full flex flex-col md:flex-row bg-white">
       {/* ── LEFT PANEL ── */}
       <aside
         className="relative flex flex-col w-full md:w-[32%] lg:w-[30%] shrink-0 md:h-screen md:sticky md:top-0 py-8 px-7 md:py-10 md:px-9 overflow-hidden"

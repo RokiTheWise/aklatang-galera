@@ -490,6 +490,8 @@ export default function Aklatan() {
       typeAll: "Lahat",
       typeResearch: "Pananaliksik",
       typeEbooks: "E-Books",
+      semanticDisclaimer:
+        "Mahusay ang Smart Search para sa global na agham, ngunit maaaring hindi nito mahanap ang mga lokal o hindi digital na pananaliksik sa Pilipinas (tulad ng mga pag-aaral sa Mindoro). Inirerekomenda naming gamitin ang 'Browse Databases' para sa mga lokal na materyales.",
     },
     english: {
       back: "Back to Home",
@@ -517,6 +519,8 @@ export default function Aklatan() {
       typeAll: "All",
       typeResearch: "Research",
       typeEbooks: "E-Books",
+      semanticDisclaimer:
+        "Smart Search is great for global science but may miss local, niche, or non-digitized Filipino research (like specific Mindoro studies). We recommend using 'Browse Databases' for local materials.",
     },
   };
   const t = ui[language];
@@ -868,7 +872,21 @@ export default function Aklatan() {
               <p className="text-center text-[11px] text-slate-400 leading-relaxed mt-3">
                 {t.hint}
               </p>
-              <div className="flex items-center justify-center gap-1.5 mt-2">
+
+              <div
+                className="mt-6 rounded-2xl p-4 text-[11px] leading-relaxed border"
+                style={{
+                  backgroundColor: "rgba(245,158,11,0.03)",
+                  borderColor: "rgba(245,158,11,0.15)",
+                  color: "#92400e",
+                }}
+              >
+                <p>
+                  <span className="font-bold">Note:</span> {t.semanticDisclaimer}
+                </p>
+              </div>
+
+              <div className="flex items-center justify-center gap-1.5 mt-4">
                 <span
                   className="text-[10px] font-bold uppercase tracking-widest"
                   style={{ color: "rgba(13,38,69,0.3)" }}

@@ -27,6 +27,7 @@ interface Resource {
   link: string;
   logoUrl: string;
   featured?: boolean;
+  isLocal?: boolean;
   tags?: string[];
   desc: { tagalog: string; english: string };
 }
@@ -36,6 +37,7 @@ const resources: Resource[] = [
     id: 1,
     category: "egovernment",
     featured: true,
+    isLocal: true,
     name: "eLGU Puerto Galera",
     link: "https://elgu-puerto-galera-oriental-mindoro.e.gov.ph/elgu-service",
     logoUrl: "/elgu-logo.png",
@@ -375,6 +377,7 @@ const resources: Resource[] = [
     id: 17,
     category: "transparency",
     featured: false,
+    isLocal: true,
     name: "PIO Puerto Galera",
     link: "https://www.facebook.com/PIOPuertoGalera",
     logoUrl: "piopg-logo.jpg",
@@ -389,6 +392,7 @@ const resources: Resource[] = [
     id: 18,
     category: "transparency",
     featured: false,
+    isLocal: true,
     name: "Sangguniang Bayan ng Puerto Galera",
     link: "https://www.facebook.com/SangguniangBayanPuertoGalera",
     logoUrl: "sbpg-logo.jpeg",
@@ -515,6 +519,7 @@ export default function PublicServices() {
   const { language, setLanguage } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<Category | "all">("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [onlyLocal, setOnlyLocal] = useState(false);
 
   const ui = {
     tagalog: {
@@ -535,6 +540,8 @@ export default function PublicServices() {
       },
       searchPlaceholder: "Maghanap ng serbisyo...",
       results: "resulta",
+      all: "Lahat",
+      local: "Puerto Galera",
       visit: "Buksan",
       emptyTitle: "Walang nahanap.",
       emptyDesc: "Subukan ang ibang keyword o kategorya.",
@@ -558,6 +565,8 @@ export default function PublicServices() {
       },
       searchPlaceholder: "Search services...",
       results: "results",
+      all: "All",
+      local: "Puerto Galera",
       visit: "Open",
       emptyTitle: "No results found.",
       emptyDesc: "Try a different keyword or category.",
@@ -578,7 +587,8 @@ export default function PublicServices() {
         !q ||
         r.name.toLowerCase().includes(q) ||
         r.desc[language].toLowerCase().includes(q);
-      return matchCat && matchQuery;
+      const matchLocal = !onlyLocal || r.isLocal;
+      return matchCat && matchQuery && matchLocal;
     })
     .sort((a, b) => {
       if (a.category !== b.category)
@@ -588,7 +598,8 @@ export default function PublicServices() {
 
   const showFeatured =
     !searchQuery &&
-    (activeCategory === "all" || activeCategory === "egovernment");
+    (activeCategory === "all" || activeCategory === "egovernment") &&
+    (!onlyLocal || featuredResource?.isLocal);
 
   const navyBg = { backgroundColor: "#0d2645" } as const;
   const skyBorder = { borderColor: "#e0f2fe" } as const;
@@ -626,7 +637,7 @@ export default function PublicServices() {
           </Link>
         </div>
         <div className="relative z-10 mb-8">
-          <a href="/">
+          <Link href="/">
             <Image
               src="/aklatang-galera-logo.png"
               alt="Aklatang Galera Logo"
@@ -635,7 +646,7 @@ export default function PublicServices() {
               priority
               className="drop-shadow-md brightness-0 invert opacity-95"
             />
-          </a>
+          </Link>
         </div>
         <div className="relative z-10 flex-1 flex flex-col justify-start md:justify-center gap-4 md:gap-5 py-4 md:py-0">
           <div>
@@ -829,6 +840,33 @@ export default function PublicServices() {
                 <cat.icon size={11} /> {t.categories[cat.key]}
               </button>
             ))}
+
+            <div className="h-4 w-px bg-slate-200 mx-1 shrink-0" />
+            {([false, true] as const).map((local) => (
+              <button
+                key={String(local)}
+                onClick={() => setOnlyLocal(local)}
+                className={`shrink-0 px-3.5 py-1.5 rounded-lg text-xs font-bold border transition-all shadow-sm outline-none active:scale-[0.98] ${onlyLocal === local ? "text-white focus-visible:ring-2 focus-visible:ring-offset-1" : "bg-white text-slate-500 hover:bg-sky-50"}`}
+                style={
+                  onlyLocal === local
+                    ? {
+                        backgroundColor: "#059669",
+                        borderColor: "#059669",
+                        boxShadow: "0 4px 12px rgba(5,150,105,0.3)",
+                      }
+                    : { borderColor: "#e0f2fe" }
+                }
+              >
+                {local ? (
+                  <span className="flex items-center gap-1">
+                    <MapPin size={11} /> {t.local}
+                  </span>
+                ) : (
+                  t.all
+                )}
+              </button>
+            ))}
+
             <div className="ml-auto shrink-0 px-3 py-1.5 bg-slate-100 rounded-lg">
               <p className="text-[10px] font-black uppercase tracking-tighter text-slate-500 whitespace-nowrap">
                 {showFeatured ? filtered.length + 1 : filtered.length}{" "}
@@ -972,6 +1010,11 @@ export default function PublicServices() {
                             <CatIcon size={9} />{" "}
                             {t.categories[resource.category]}
                           </span>
+                          {resource.isLocal && (
+                            <span className="flex items-center gap-1 rounded-full px-3 py-1 text-[9px] font-black uppercase tracking-widest bg-emerald-50 text-emerald-600 border border-emerald-100 shadow-sm">
+                              <MapPin size={9} /> {t.local}
+                            </span>
+                          )}
                         </div>
                       </div>
                       <h2 className="mb-2 text-lg font-black text-slate-900 leading-snug">
@@ -1030,6 +1073,7 @@ export default function PublicServices() {
                 onClick={() => {
                   setSearchQuery("");
                   setActiveCategory("all");
+                  setOnlyLocal(false);
                 }}
                 className="mt-8 flex items-center gap-2 px-5 py-2.5 rounded-2xl text-xs font-black uppercase tracking-widest transition-all hover:bg-slate-100 ring-1 ring-slate-200 outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/20 active:scale-[0.98]"
                 style={{ color: "#0d2645" }}

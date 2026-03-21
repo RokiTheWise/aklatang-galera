@@ -24,7 +24,7 @@ const openDatabases = [
     name: "Archīum Ateneo",
     isLocal: true,
     resourceType: "research" as ResourceType,
-    link: "https://archium.ateneo.edu",
+    link: "https://archium.ateneo.edu/",
     logoUrl: "/ateneo-logo.png",
     desc: {
       tagalog: "Institutional repository ng Ateneo de Manila University.",
@@ -61,7 +61,7 @@ const openDatabases = [
     name: "BISIG (PUP)",
     isLocal: true,
     resourceType: "research" as ResourceType,
-    link: "https://publishing.pup.edu.ph/ojs/index.php/BSG",
+    link: "https://publishing.pup.edu.ph/ojs/index.php/BSG/search",
     logoUrl: "/pup-logo.png",
     desc: {
       tagalog: "PUP Journal ng Negosyo at Gobyerno.",
@@ -97,7 +97,7 @@ const openDatabases = [
     name: "Philippine Social Science Journal",
     isLocal: true,
     resourceType: "research" as ResourceType,
-    link: "https://philssj.org/index.php/main",
+    link: "https://philssj.org/index.php/main/search/search",
     logoUrl: "phil-ssj-logo.png",
     desc: {
       tagalog: "Philippine Social Science Journal para sa mga mananaliksik.",
@@ -217,8 +217,9 @@ const openDatabases = [
     logoUrl: "/dlsu-logo.png",
     desc: {
       tagalog:
-        "Isang nangungunang social science journal mula sa De La Salle University.",
-      english: "A leading social science journal from De La Salle University.",
+        "Isang nangungunang social science journal mula sa De La Salle University (DLSU).",
+      english:
+        "A leading social science journal from De La Salle University (DLSU).",
     },
   },
   {
@@ -448,6 +449,160 @@ const openDatabases = [
     desc: {
       tagalog: "Digital na koleksyon ng Pambansang Aklatan ng Pilipinas.",
       english: "National Library of the Philippines digital collection.",
+    },
+  },
+  {
+    id: 35,
+    name: "Mountain Journal of Science (MJSIR)",
+    isLocal: true,
+    resourceType: "research" as ResourceType,
+    link: "http://journals.bsu.edu.ph/index.php/BRJ/index",
+    logoUrl: "/Benguet-logo.jpg",
+    desc: {
+      tagalog:
+        "Open-access journal ng Benguet State University para sa agrikultura, forestry, at indigenous knowledge.",
+      english:
+        "Open-access journal by Benguet State University covering agriculture, forestry, and indigenous knowledge.",
+    },
+  },
+  {
+    id: 36,
+    name: "Journal for Medicine, UST (JMUST)",
+    isLocal: true,
+    resourceType: "research" as ResourceType,
+    link: "https://jmust.org/",
+    logoUrl: "/ust-logo.svg",
+    desc: {
+      tagalog:
+        "Opisyal na open-access medical journal ng UST para sa clinical studies, health research, at medical education.",
+      english:
+        "The official open-access medical journal of UST for clinical studies, health research, and medical education.",
+    },
+  },
+  {
+    id: 37,
+    name: "Hasaan (UST Filipino Journal)",
+    isLocal: true,
+    resourceType: "research" as ResourceType,
+    link: "https://hasaan.ust.edu.ph/",
+    logoUrl: "/ust-logo.svg",
+    desc: {
+      tagalog:
+        "Interdisiplinaryong refereed journal sa Filipino ng UST na nakatuon sa wikang Filipino bílang larang ng kaalaman.",
+      english:
+        "An interdisciplinary refereed journal in Filipino from UST focusing on the Filipino language as a field of knowledge.",
+    },
+  },
+  {
+    id: 38,
+    name: "U.P. Los Baños Journal",
+    isLocal: true,
+    resourceType: "research" as ResourceType,
+    link: "https://www.ukdr.uplb.edu.ph/uplb-journal/",
+    logoUrl: "/uplb-logo.png",
+    desc: {
+      tagalog:
+        "Isang multi-disciplinaryong journal mula sa UP Los Baños na sumasaklaw sa agrikultura, edukasyon, at sining.",
+      english:
+        "A multi-disciplinary journal from UP Los Baños featuring research in agriculture, education, and social sciences.",
+    },
+  },
+  {
+    id: 39,
+    name: "Phil. Journal of Health Research (PJHRD)",
+    isLocal: true,
+    resourceType: "research" as ResourceType,
+    link: "https://journals.lww.com/pjhrd/pages/default.aspx",
+    logoUrl: "/upm-logo.png",
+    desc: {
+      tagalog:
+        "Pangunahing journal para sa health research, disaster resilience, at public health policy sa Pilipinas mula sa UP Manila.",
+      english:
+        "A premier journal for health research, disaster resilience, and public health policy in the Philippines by UP Manila.",
+    },
+  },
+  {
+    id: 40,
+    name: "Scientific Research Publishing (SCIRP)",
+    isLocal: false,
+    resourceType: "research" as ResourceType,
+    link: "https://www.scirp.org/",
+    logoUrl: "/scirp-logo.png",
+    desc: {
+      tagalog:
+        "Koleksyon ng mga open-access na journal sa iba't ibang larangan gaya ng Computer Science, Medicine, at Social Sciences.",
+      english:
+        "A massive collection of open access journals across fields like Computer Science, Medicine, and Social Sciences.",
+    },
+  },
+  {
+    id: 41,
+    name: "Malay (DLSU Filipino Journal)",
+    isLocal: true,
+    resourceType: "research" as ResourceType,
+    link: "https://animorepository.dlsu.edu.ph/malay/",
+    logoUrl: "/dlsu-logo.png",
+    desc: {
+      tagalog:
+        "Isang internationally refereed at open-access journal sa Araling Filipino na nakatuon sa wika, kultura, at midya.",
+      english:
+        "An internationally refereed and open-access journal on Filipino Studies focusing on language, culture, and media.",
+    },
+  },
+  {
+    id: 42,
+    name: "Dalumat (Multicultural Filipino Journal)",
+    isLocal: true,
+    resourceType: "research" as ResourceType,
+    link: "https://animorepository.dlsu.edu.ph/dalumat/",
+    logoUrl: "/dlsu-logo.png",
+    desc: {
+      tagalog:
+        "Isang multidisciplinaryong e-journal ng De La Salle University (DLSU) na nagtatampok ng mga pananaliksik sa wika, kultura, at lipunang Filipino.",
+      english:
+        "A multidisciplinary e-journal from De La Salle University (DLSU) featuring research on Filipino language, culture, and society.",
+    },
+  },
+  {
+    id: 43,
+    name: "ASEAN Journal of Engineering Education (AJEE)",
+    isLocal: false,
+    resourceType: "research" as ResourceType,
+    link: "https://ajee.utm.my/index.php/ajee",
+    logoUrl: "/utm-logo.png", // Published by Universiti Teknologi Malaysia (UTM)
+    desc: {
+      tagalog:
+        "Isang journal ng Universiti Teknologi Malaysia (UTM) na nakatuon sa engineering education sa ASEAN, kabilang ang AI readiness, digital transformation, at modernong teknolohiya sa pagtuturo.",
+      english:
+        "A journal of Universiti Teknologi Malaysia (UTM)focusing on engineering education in ASEAN, covering topics like AI readiness, digital transformation, and modern teaching technologies.",
+    },
+  },
+  {
+    id: 44,
+    name: "Cambridge University Press (Open Access)",
+    isLocal: false,
+    resourceType: "research" as ResourceType,
+    link: "https://www.cambridge.org/core/publications/open-access",
+    logoUrl: "/cambridge-logo.png", // Recommended: Cambridge University Press shield or wordmark
+    desc: {
+      tagalog:
+        "Isang prestihiyosong koleksyon ng mahigit 400 open-access na journal at 600+ na aklat mula sa Cambridge sa iba't ibang larangan.",
+      english:
+        "A prestigious collection of over 400 open-access journals and 600+ books from Cambridge University Press across various disciplines.",
+    },
+  },
+  {
+    id: 45,
+    name: "Civil Engineering Dimension (CED)",
+    isLocal: false,
+    resourceType: "research" as ResourceType,
+    link: "https://ced.petra.ac.id/index.php/civ/search",
+    logoUrl: "/pcu-logo.svg", // Recommended: Use the Petra Christian University or CED logo
+    desc: {
+      tagalog:
+        "Isang Scopus-indexed journal mula sa Indonesia para sa civil engineering, structural design, at machine learning applications.",
+      english:
+        "A Scopus-indexed journal from Indonesia focusing on civil engineering, structural design, and machine learning applications.",
     },
   },
 ];

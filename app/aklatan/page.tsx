@@ -736,9 +736,8 @@ export default function Aklatan() {
         >
           <div className="flex flex-wrap items-center gap-2">
             {/* ── Mode Slider Toggle ── full width on mobile, auto on sm+ */}
-            <div className="relative flex items-center rounded-2xl border border-slate-200 bg-white shadow-sm p-1 w-full sm:w-auto">
-              {/* CSS pill — slides left (semantic) or right (browse) */}
-              <div className="pointer-events-none absolute inset-1 z-0 overflow-hidden rounded-2xl">
+            <div className="relative flex items-center rounded-2xl border border-slate-200 bg-white shadow-sm p-1 w-full sm:w-auto overflow-hidden">
+              <div className="pointer-events-none absolute inset-0 z-0 p-1">
                 <div
                   className="h-full w-1/2 rounded-xl transition-transform duration-300 ease-in-out"
                   style={{
@@ -752,42 +751,34 @@ export default function Aklatan() {
               </div>
               <button
                 onClick={() => setSearchMode("semantic")}
-                className="relative z-10 flex flex-1 justify-center items-center gap-1.5 px-4 py-1.5 text-xs font-black uppercase tracking-widest transition-colors duration-200 select-none whitespace-nowrap"
+                className="relative z-10 flex w-1/2 justify-center items-center gap-1.5 px-4 py-1.5 text-xs font-black uppercase tracking-widest transition-colors duration-200 select-none whitespace-nowrap"
                 style={{
                   color: searchMode === "semantic" ? "white" : "#94a3b8",
                 }}
               >
-                <Search size={12} className="hidden sm:block" />{" "}
-                {t.modeSemanticLabel}
+                <span className="relative z-10 flex items-center gap-1.5">
+                  <Search size={12} className="hidden sm:block" />{" "}
+                  {t.modeSemanticLabel}
+                </span>
               </button>
               <button
                 onClick={() => {
                   setSearchMode("browse");
                   setBrowseQuery("");
                 }}
-                className="relative z-10 flex flex-1 justify-center items-center gap-1.5 px-4 py-1.5 text-xs font-black uppercase tracking-widest transition-colors duration-200 select-none whitespace-nowrap"
+                className="relative z-10 flex w-1/2 justify-center items-center gap-1.5 px-4 py-1.5 text-xs font-black uppercase tracking-widest transition-colors duration-200 select-none whitespace-nowrap"
                 style={{ color: searchMode === "browse" ? "white" : "#94a3b8" }}
               >
-                <List size={12} className="hidden sm:block" />{" "}
-                {t.modeBrowseLabel}
+                <span className="relative z-10 flex items-center gap-1.5">
+                  <List size={12} className="hidden sm:block" />{" "}
+                  {t.modeBrowseLabel}
+                </span>
               </button>
             </div>
 
             {/* ── Language Slider Toggle ── */}
-            <div className="relative flex items-center rounded-full border border-slate-200 bg-white shadow-sm p-1 shrink-0 sm:ml-auto">
-              <button
-                onClick={() => setLanguage("tagalog")}
-                className={`relative z-10 flex items-center gap-1.5 px-4 py-1.5 text-[11px] font-black uppercase tracking-widest transition-colors duration-200 select-none ${language === "tagalog" ? "text-white" : "text-slate-400 hover:text-slate-600"}`}
-              >
-                <span className="text-sm">🇵🇭</span> FIL
-              </button>
-              <button
-                onClick={() => setLanguage("english")}
-                className={`relative z-10 flex items-center gap-1.5 px-4 py-1.5 text-[11px] font-black uppercase tracking-widest transition-colors duration-200 select-none ${language === "english" ? "text-white" : "text-slate-400 hover:text-slate-600"}`}
-              >
-                <span className="text-sm">🇬🇧</span> ENG
-              </button>
-              <div className="pointer-events-none absolute inset-1 z-0">
+            <div className="relative flex items-center rounded-full border border-slate-200 bg-white shadow-sm p-1 shrink-0 sm:ml-auto overflow-hidden">
+              <div className="pointer-events-none absolute inset-0 z-0 p-1">
                 <div
                   className="h-full w-1/2 rounded-full transition-transform duration-300 ease-in-out"
                   style={{
@@ -799,6 +790,18 @@ export default function Aklatan() {
                   }}
                 />
               </div>
+              <button
+                onClick={() => setLanguage("tagalog")}
+                className={`relative z-10 flex w-1/2 justify-center items-center gap-1.5 px-4 py-1.5 text-[11px] font-black uppercase tracking-widest transition-colors duration-200 select-none ${language === "tagalog" ? "text-white" : "text-slate-400 hover:text-slate-600"}`}
+              >
+                <span className="text-sm">🇵🇭</span> FIL
+              </button>
+              <button
+                onClick={() => setLanguage("english")}
+                className={`relative z-10 flex w-1/2 justify-center items-center gap-1.5 px-4 py-1.5 text-[11px] font-black uppercase tracking-widest transition-colors duration-200 select-none ${language === "english" ? "text-white" : "text-slate-400 hover:text-slate-600"}`}
+              >
+                <span className="text-sm">🇬🇧</span> ENG
+              </button>
             </div>
           </div>
         </div>

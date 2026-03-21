@@ -11,7 +11,6 @@ import {
   Store,
   X,
 } from "lucide-react";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
@@ -662,14 +661,16 @@ export default function Hanapbuhay() {
                 >
                   <span className="text-sm">🇬🇧</span> ENG
                 </button>
-                <div
-                  className={`pointer-events-none absolute inset-1 z-0 flex ${language === "english" ? "justify-end" : "justify-start"}`}
-                >
-                  <motion.span
-                    layout
-                    transition={{ type: "spring", damping: 18, stiffness: 280 }}
-                    className="h-full w-1/2 rounded-full"
-                    style={{ backgroundColor: "#0d2645" }}
+                <div className="pointer-events-none absolute inset-1 z-0">
+                  <div
+                    className="h-full w-1/2 rounded-full transition-transform duration-300 ease-in-out"
+                    style={{
+                      backgroundColor: "#0d2645",
+                      transform:
+                        language === "english"
+                          ? "translateX(100%)"
+                          : "translateX(0%)",
+                    }}
                   />
                 </div>
               </div>

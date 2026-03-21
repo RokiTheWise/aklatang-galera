@@ -11,7 +11,6 @@ import {
   BookMarked,
   X,
 } from "lucide-react";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
@@ -490,8 +489,6 @@ export default function Aklatan() {
       typeAll: "Lahat",
       typeResearch: "Pananaliksik",
       typeEbooks: "E-Books",
-      semanticDisclaimer:
-        "Mahusay ang Smart Search para sa global na agham, ngunit maaaring hindi nito mahanap ang mga lokal o hindi digital na pananaliksik sa Pilipinas (tulad ng mga pag-aaral sa Mindoro). Inirerekomenda naming gamitin ang 'Browse Databases' para sa mga lokal na materyales.",
     },
     english: {
       back: "Back to Home",
@@ -519,8 +516,6 @@ export default function Aklatan() {
       typeAll: "All",
       typeResearch: "Research",
       typeEbooks: "E-Books",
-      semanticDisclaimer:
-        "Smart Search is great for global science but may miss local, niche, or non-digitized Filipino research (like specific Mindoro studies). We recommend using 'Browse Databases' for local materials.",
     },
   };
   const t = ui[language];
@@ -564,7 +559,7 @@ export default function Aklatan() {
   ).length;
 
   return (
-    <div className="min-h-screen w-full flex flex-col md:flex-row bg-white">
+    <div className="min-h-screen w-screen flex flex-col md:flex-row bg-white">
       {/* ── LEFT PANEL ── */}
       <aside
         className="relative flex flex-col w-full md:w-[32%] lg:w-[30%] shrink-0 md:h-screen md:sticky md:top-0 py-8 px-7 md:py-10 md:px-9 overflow-hidden"
@@ -742,6 +737,19 @@ export default function Aklatan() {
           <div className="flex flex-wrap items-center gap-2">
             {/* ── Mode Slider Toggle ── full width on mobile, auto on sm+ */}
             <div className="relative flex items-center rounded-2xl border border-slate-200 bg-white shadow-sm p-1 w-full sm:w-auto">
+              {/* CSS pill — slides left (semantic) or right (browse) */}
+              <div className="pointer-events-none absolute inset-1 z-0 overflow-hidden rounded-2xl">
+                <div
+                  className="h-full w-1/2 rounded-xl transition-transform duration-300 ease-in-out"
+                  style={{
+                    backgroundColor: "#0d2645",
+                    transform:
+                      searchMode === "browse"
+                        ? "translateX(100%)"
+                        : "translateX(0%)",
+                  }}
+                />
+              </div>
               <button
                 onClick={() => setSearchMode("semantic")}
                 className="relative z-10 flex flex-1 justify-center items-center gap-1.5 px-4 py-1.5 text-xs font-black uppercase tracking-widest transition-colors duration-200 select-none whitespace-nowrap"
@@ -749,14 +757,6 @@ export default function Aklatan() {
                   color: searchMode === "semantic" ? "white" : "#94a3b8",
                 }}
               >
-                {searchMode === "semantic" && (
-                  <motion.div
-                    layoutId="modePill"
-                    transition={{ type: "spring", damping: 18, stiffness: 280 }}
-                    className="absolute inset-0 rounded-xl -z-10"
-                    style={{ backgroundColor: "#0d2645" }}
-                  />
-                )}
                 <Search size={12} className="hidden sm:block" />{" "}
                 {t.modeSemanticLabel}
               </button>
@@ -768,20 +768,12 @@ export default function Aklatan() {
                 className="relative z-10 flex flex-1 justify-center items-center gap-1.5 px-4 py-1.5 text-xs font-black uppercase tracking-widest transition-colors duration-200 select-none whitespace-nowrap"
                 style={{ color: searchMode === "browse" ? "white" : "#94a3b8" }}
               >
-                {searchMode === "browse" && (
-                  <motion.div
-                    layoutId="modePill"
-                    transition={{ type: "spring", damping: 18, stiffness: 280 }}
-                    className="absolute inset-0 rounded-xl -z-10"
-                    style={{ backgroundColor: "#0d2645" }}
-                  />
-                )}
                 <List size={12} className="hidden sm:block" />{" "}
                 {t.modeBrowseLabel}
               </button>
             </div>
 
-            {/* ── Language Slider Toggle — shrink-0 so it wraps to next line on mobile ── */}
+            {/* ── Language Slider Toggle ── */}
             <div className="relative flex items-center rounded-full border border-slate-200 bg-white shadow-sm p-1 shrink-0 sm:ml-auto">
               <button
                 onClick={() => setLanguage("tagalog")}
@@ -795,14 +787,16 @@ export default function Aklatan() {
               >
                 <span className="text-sm">🇬🇧</span> ENG
               </button>
-              <div
-                className={`pointer-events-none absolute inset-1 z-0 flex ${language === "english" ? "justify-end" : "justify-start"}`}
-              >
-                <motion.span
-                  layout
-                  transition={{ type: "spring", damping: 18, stiffness: 280 }}
-                  className="h-full w-1/2 rounded-full"
-                  style={{ backgroundColor: "#0d2645" }}
+              <div className="pointer-events-none absolute inset-1 z-0">
+                <div
+                  className="h-full w-1/2 rounded-full transition-transform duration-300 ease-in-out"
+                  style={{
+                    backgroundColor: "#0d2645",
+                    transform:
+                      language === "english"
+                        ? "translateX(100%)"
+                        : "translateX(0%)",
+                  }}
                 />
               </div>
             </div>
@@ -872,21 +866,7 @@ export default function Aklatan() {
               <p className="text-center text-[11px] text-slate-400 leading-relaxed mt-3">
                 {t.hint}
               </p>
-
-              <div
-                className="mt-6 rounded-2xl p-4 text-[11px] leading-relaxed border"
-                style={{
-                  backgroundColor: "rgba(245,158,11,0.03)",
-                  borderColor: "rgba(245,158,11,0.15)",
-                  color: "#92400e",
-                }}
-              >
-                <p>
-                  <span className="font-bold">Note:</span> {t.semanticDisclaimer}
-                </p>
-              </div>
-
-              <div className="flex items-center justify-center gap-1.5 mt-4">
+              <div className="flex items-center justify-center gap-1.5 mt-2">
                 <span
                   className="text-[10px] font-bold uppercase tracking-widest"
                   style={{ color: "rgba(13,38,69,0.3)" }}
@@ -927,8 +907,11 @@ export default function Aklatan() {
         {searchMode === "browse" && (
           <>
             <div
-              className="px-4 md:px-6 lg:px-8 pt-4 pb-3 md:pt-5 md:pb-4 flex flex-col sm:flex-row gap-3 items-start sm:items-center border-b"
-              style={skyBorder}
+              className="sticky top-[65px] z-30 backdrop-blur-sm px-4 md:px-6 lg:px-8 pt-4 pb-3 md:pt-5 md:pb-4 flex flex-col sm:flex-row gap-3 items-start sm:items-center border-b"
+              style={{
+                ...skyBorder,
+                backgroundColor: "rgba(240,249,255,0.95)",
+              }}
             >
               <div className="relative flex-1 w-full max-w-md">
                 <Search

@@ -13,7 +13,6 @@ import {
   X,
   MapPin,
 } from "lucide-react";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
@@ -347,6 +346,34 @@ const resources: Resource[] = [
     },
   },
   {
+    id: 32,
+    category: "scholarships",
+    featured: false,
+    name: "National University Manila Scholarships",
+    link: "https://www.national-u.edu.ph/nu-manila/scholarships/",
+    logoUrl: "nu-logo.svg",
+    desc: {
+      tagalog:
+        "Mga scholarship at financial aid programs ng National University Manila.",
+      english:
+        "Scholarship and financial aid programs of National University Manila.",
+    },
+  },
+  {
+    id: 33,
+    category: "scholarships",
+    featured: false,
+    name: "Far Eastern University Scholarships",
+    link: "https://www.feu.edu.ph/cost-and-aid/scholarship-grants/",
+    logoUrl: "feu-logo.png",
+    desc: {
+      tagalog:
+        "Mga scholarship at financial aid programs ng Far Eastern University.",
+      english:
+        "Scholarship and financial aid programs of Far Eastern University.",
+    },
+  },
+  {
     id: 15,
     category: "transparency",
     featured: false,
@@ -441,34 +468,6 @@ const resources: Resource[] = [
       tagalog: "Inisyatibo para sa mas bukas at tapat na pamamahala sa bansa.",
       english:
         "Initiative for a more open, accountable, and transparent governance.",
-    },
-  },
-  {
-    id: 32,
-    category: "scholarships",
-    featured: false,
-    name: "National University Manila Scholarships",
-    link: "https://www.national-u.edu.ph/nu-manila/scholarships/",
-    logoUrl: "nu-logo.svg",
-    desc: {
-      tagalog:
-        "Mga scholarship at financial aid programs ng National University Manila.",
-      english:
-        "Scholarship and financial aid programs of National University Manila.",
-    },
-  },
-  {
-    id: 33,
-    category: "scholarships",
-    featured: false,
-    name: "Far Eastern University Scholarships",
-    link: "https://www.feu.edu.ph/cost-and-aid/scholarship-grants/",
-    logoUrl: "feu-logo.png",
-    desc: {
-      tagalog:
-        "Mga scholarship at financial aid programs ng Far Eastern University.",
-      english:
-        "Scholarship and financial aid programs of Far Eastern University.",
     },
   },
 ];
@@ -615,7 +614,6 @@ export default function PublicServices() {
         className="relative flex flex-col w-full md:w-[32%] lg:w-[30%] shrink-0 md:h-screen md:sticky md:top-0 py-8 px-7 md:py-10 md:px-9 overflow-hidden"
         style={{ backgroundColor: "#0d2645" }}
       >
-        {" "}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -627,6 +625,7 @@ export default function PublicServices() {
           className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full pointer-events-none blur-3xl"
           style={{ backgroundColor: "rgba(45,212,191,0.12)" }}
         />
+
         <div className="relative z-10 mb-8">
           <Link
             href="/"
@@ -648,6 +647,7 @@ export default function PublicServices() {
             />
           </Link>
         </div>
+
         <div className="relative z-10 flex-1 flex flex-col justify-start md:justify-center gap-4 md:gap-5 py-4 md:py-0">
           <div>
             <div
@@ -725,6 +725,7 @@ export default function PublicServices() {
             {t.sideNote}
           </div>
         </div>
+
         <div
           className="relative z-10 pt-5 mt-5 border-t"
           style={{ borderColor: "rgba(255,255,255,0.07)" }}
@@ -750,7 +751,6 @@ export default function PublicServices() {
         className="flex-1 flex flex-col min-h-screen"
         style={{ backgroundColor: "#f0f9ff" }}
       >
-        {" "}
         <div
           className="sticky top-0 z-40 backdrop-blur-sm border-b px-6 lg:px-8 py-4"
           style={{
@@ -759,7 +759,7 @@ export default function PublicServices() {
           }}
         >
           <div className="flex flex-wrap items-center gap-2">
-            {/* Search — full width on mobile, flex-1 on sm+ */}
+            {/* Search */}
             <div className="relative w-full sm:flex-1 sm:min-w-0 sm:max-w-sm group">
               <Search
                 size={14}
@@ -785,7 +785,7 @@ export default function PublicServices() {
               )}
             </div>
 
-            {/* ── Language Slider Toggle — shrinks to next row on mobile ── */}
+            {/* ── Language Slider Toggle ── */}
             <div className="relative flex items-center rounded-full border border-slate-200 bg-white shadow-sm p-1 shrink-0 sm:ml-auto">
               <button
                 onClick={() => setLanguage("tagalog")}
@@ -799,14 +799,16 @@ export default function PublicServices() {
               >
                 <span className="text-sm">🇬🇧</span> ENG
               </button>
-              <div
-                className={`pointer-events-none absolute inset-1 z-0 flex ${language === "english" ? "justify-end" : "justify-start"}`}
-              >
-                <motion.span
-                  layout
-                  transition={{ type: "spring", damping: 18, stiffness: 280 }}
-                  className="h-full w-1/2 rounded-full"
-                  style={{ backgroundColor: "#0d2645" }}
+              <div className="pointer-events-none absolute inset-1 z-0">
+                <div
+                  className="h-full w-1/2 rounded-full transition-transform duration-300 ease-in-out"
+                  style={{
+                    backgroundColor: "#0d2645",
+                    transform:
+                      language === "english"
+                        ? "translateX(100%)"
+                        : "translateX(0%)",
+                  }}
                 />
               </div>
             </div>
@@ -875,6 +877,7 @@ export default function PublicServices() {
             </div>
           </div>
         </div>
+
         <div className="flex-1 px-4 md:px-6 lg:px-8 py-5 md:py-8 flex flex-col gap-6 md:gap-8">
           {showFeatured && featuredResource && (
             <a

@@ -489,6 +489,8 @@ export default function Aklatan() {
       typeAll: "Lahat",
       typeResearch: "Pananaliksik",
       typeEbooks: "E-Books",
+      semanticDisclaimer:
+        "Ang Smart Search ay pangunahing sumasaklaw sa computer science, biomedical, at neurosciences — limitado ang coverage sa ibang larangan, literaturang di-Ingles, at mga lumang archive. Para sa mga lokal na pananaliksik, mas inirerekomenda ang 'Browse Databases'.",
     },
     english: {
       back: "Back to Home",
@@ -516,6 +518,8 @@ export default function Aklatan() {
       typeAll: "All",
       typeResearch: "Research",
       typeEbooks: "E-Books",
+      semanticDisclaimer:
+        "Smart Search primarily covers computer science, biomedical, and neurosciences — coverage is limited in other disciplines, non-English literature, and older archives. For local Philippine research, we recommend using 'Browse Databases' instead.",
     },
   };
   const t = ui[language];
@@ -869,6 +873,21 @@ export default function Aklatan() {
               <p className="text-center text-[11px] text-slate-400 leading-relaxed mt-3">
                 {t.hint}
               </p>
+
+              <div
+                className="mt-4 rounded-2xl p-4 text-[11px] leading-relaxed border"
+                style={{
+                  backgroundColor: "rgba(245,158,11,0.03)",
+                  borderColor: "rgba(245,158,11,0.2)",
+                  color: "#92400e",
+                }}
+              >
+                <p>
+                  <span className="font-bold">⚠ Note:</span>{" "}
+                  {t.semanticDisclaimer}
+                </p>
+              </div>
+
               <div className="flex items-center justify-center gap-1.5 mt-2">
                 <span
                   className="text-[10px] font-bold uppercase tracking-widest"

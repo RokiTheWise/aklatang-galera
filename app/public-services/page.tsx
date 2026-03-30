@@ -476,7 +476,7 @@ const resources: Resource[] = [
     featured: false,
     name: "PPA Online Reservation Assistance System (ORAS)",
     link: "https://oras.ppa.com.ph/",
-    logoUrl: "ppa-logo.png",
+    logoUrl: "oras-logo.png",
     desc: {
       tagalog:
         "Libreng digital system ng PPA para sa pag-schedule ng biyahe at pag-iwas sa mahabang pila sa Batangas at Puerto Galera Port.",

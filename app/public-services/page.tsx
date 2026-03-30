@@ -470,6 +470,20 @@ const resources: Resource[] = [
         "Initiative for a more open, accountable, and transparent governance.",
     },
   },
+  {
+    id: 34,
+    category: "egovernment",
+    featured: false,
+    name: "PPA Online Reservation Assistance System (ORAS)",
+    link: "https://oras.ppa.com.ph/",
+    logoUrl: "ppa-logo.png",
+    desc: {
+      tagalog:
+        "Libreng digital system ng PPA para sa pag-schedule ng biyahe at pag-iwas sa mahabang pila sa Batangas at Puerto Galera Port.",
+      english:
+        "A free digital system by the PPA to schedule port trips and avoid long queues in Batangas, Puerto Galera, and other major ports.",
+    },
+  },
 ];
 
 const categories = [

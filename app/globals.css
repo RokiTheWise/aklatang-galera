@@ -1184,20 +1184,98 @@ button:disabled {
     height: 36px;
   }
 }
-/* The shared shell stays mounted, so the logo only enters on page load. */
-@keyframes logo-arrive {
+/* Optional first-session welcome; the page is rendered underneath throughout. */
+.page-entrance {
+  display: none;
+}
+html[data-entrance="play"] .page-entrance {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  width: 100%;
+  height: 100dvh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  overflow: hidden;
+  color: white;
+  background:
+    radial-gradient(ellipse at 50% 75%, #06b6d41c, transparent 65%), #0d2645;
+  cursor: pointer;
+  animation: entrance-reveal 1500ms cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+.entrance-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.entrance-content img {
+  width: clamp(160px, 24vw, 240px);
+  height: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  animation: entrance-mark 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.entrance-line {
+  width: 48px;
+  height: 3px;
+  margin: 24px 0;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #2563eb, #10b981, #06b6d4);
+  animation: entrance-mark 600ms 100ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.entrance-tagline {
+  font-size: clamp(15px, 2vw, 20px);
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  line-height: 1.6;
+  text-align: center;
+  color: #c0d8ee;
+  animation: entrance-mark 600ms 150ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.entrance-skip {
+  position: absolute;
+  top: max(24px, env(safe-area-inset-top));
+  right: 24px;
+  padding: 10px 16px;
+  border: 1px solid #ffffff30;
+  border-radius: 24px;
+  font-size: 12px;
+  color: #e2edf7;
+}
+.entrance-hint {
+  position: absolute;
+  bottom: max(32px, env(safe-area-inset-bottom));
+  font-size: 11px;
+  color: #bad0e3;
+}
+@keyframes entrance-mark {
   from {
-    opacity: 0.65;
-    transform: translateY(6px) scale(0.96);
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
   }
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
 }
-.brand img,
-.mobile-brand img {
-  animation: logo-arrive 520ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+@keyframes entrance-reveal {
+  0%,
+  58% {
+    transform: translateY(0);
+    visibility: visible;
+  }
+  100% {
+    transform: translateY(-100%);
+    visibility: hidden;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-entrance="play"] .page-entrance {
+    display: none;
+  }
 }
 
 /* Content is immediately readable; motion only softens its arrival. */

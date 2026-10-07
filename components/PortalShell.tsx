@@ -13,6 +13,7 @@ import {
   Landmark,
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { PageEntrance } from "./PageEntrance";
 
 const navigation = [
   {
@@ -69,6 +70,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
   );
   return (
     <div className={`portal-shell${home ? " is-home" : ""}`}>
+      <PageEntrance />
       <a href="#main-content" className="skip-link">
         {fil ? "Pumunta sa nilalaman" : "Skip to content"}
       </a>

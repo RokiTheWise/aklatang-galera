@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { PortalShell } from "@/components/PortalShell";
+import { entranceBootstrap } from "@/lib/entrance";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -134,10 +135,11 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en-PH">
+    <html lang="en-PH" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <script dangerouslySetInnerHTML={{ __html: entranceBootstrap }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

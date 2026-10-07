@@ -24,7 +24,7 @@ Aklatang Galera centralizes these resources to:
 
 The three main choices come from the simple shortcut screen in Barangay Bagong Silangan's library that inspired the project. Keep those paths familiar for returning users and easy to understand on public computers. Use conversational Filipino and Taglish where a formal translation would make a label harder to understand.
 
-Design for a phone on 4G or a weak signal: essential content should render immediately, the research search should explain its limits, and local curated resources should remain easy to reach. Motion is brief and uses CSS only: sliding selection indicators and gentle entrances, with no waiting for JavaScript or images and no motion when reduced motion is requested.
+Design for a phone on 4G or a weak signal: essential content should render immediately, the research search should explain its limits, and local curated resources should remain easy to reach. Motion uses lightweight CSS: sliding selection indicators and gentle content entrances. A skippable, 1.5-second fullscreen welcome introduces the homepage once per tab session; the page renders underneath it and a timeout dismisses it even when hydration is slow. Returning visits, direct resource links, and reduced-motion preferences bypass the welcome.
 
 ## Features
 

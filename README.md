@@ -1,14 +1,14 @@
-# 🚢 Aklatang Galera
+# Aklatang Galera
 
 > _Kaalaman para sa bawat Galeran._ — Knowledge for every Galeran.
 
 **Aklatang Galera** is a localized digital portal designed to bridge the gap between knowledge, opportunity, and public services for the people of Puerto Galera. It serves as a unified dashboard that simplifies access to educational resources, livelihood programs, and government services — ensuring that what every Galeran needs is just a click away.
 
-**🌐 Live at: [aklatang-galera.djenriquez.dev](https://aklatang-galera.djenriquez.dev)**
+**Live at: [aklatang-galera.djenriquez.dev](https://aklatang-galera.djenriquez.dev)**
 
 ---
 
-## 💡 The Motive
+## The Motive
 
 The project was born out of a desire to modernize civic participation and educational access in my hometown. In many localities, digital resources are scattered across government websites and social media pages, making them difficult for the average citizen to navigate.
 
@@ -26,7 +26,7 @@ The three main choices come from the simple shortcut screen in Barangay Bagong S
 
 Design for a phone on 4G or a weak signal: essential content should render immediately, the research search should explain its limits, and local curated resources should remain easy to reach. Motion is brief and uses CSS only: sliding selection indicators and gentle entrances, with no waiting for JavaScript or images and no motion when reduced motion is requested.
 
-## ✨ Features
+## Features
 
 ### 1. Clear Navigation & Dual-Language Support (Filipino / English)
 
@@ -58,7 +58,7 @@ Responsive layouts support phones, tablets, and desktops, with readable descript
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Framework:** [Next.js 16](https://nextjs.org/) (App Router)
 - **Library:** [React 19](https://react.dev/)
@@ -69,7 +69,7 @@ Responsive layouts support phones, tablets, and desktops, with readable descript
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ```bash
 # 1. Clone the repository
@@ -86,4 +86,4 @@ Open [http://localhost:3000](http://localhost:3000) to view the result.
 
 ---
 
-Built with 💙 by [Dexter Jethro Enriquez](https://djenriquez.dev) · In partnership with the Puerto Galera Public Library
+Built by [Dexter Jethro Enriquez](https://djenriquez.dev)

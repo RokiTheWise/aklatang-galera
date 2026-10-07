@@ -1,5 +1,12 @@
 import { ResourceDirectory } from "@/components/ResourceDirectory";
+import { StructuredData } from "@/components/StructuredData";
+import { directoryStructuredData } from "@/lib/structured-data";
 
 export default function Page() {
-  return <ResourceDirectory section="library" />;
+  return (
+    <>
+      <StructuredData data={directoryStructuredData("library")} />
+      <ResourceDirectory section="library" />
+    </>
+  );
 }

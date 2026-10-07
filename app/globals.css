@@ -209,6 +209,22 @@ button:disabled {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+.help-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.help-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.sidebar-footer .help-link {
+  color: #e2edf7;
+  min-height: 36px;
+  margin-bottom: 8px;
+}
 .workspace {
   margin-left: var(--sidebar-width);
   min-height: 100dvh;
@@ -291,11 +307,114 @@ button:disabled {
   padding: 14px 0 20px;
   color: #526278;
   font-size: 11px;
+  align-items: center;
+  gap: 8px 20px;
+  flex-wrap: wrap;
 }
 .page-footer a {
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+.about-help {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+.about-help .page-intro p {
+  max-width: 760px;
+  line-height: 1.75;
+}
+.about-help .about-summary {
+  margin-top: 16px;
+  color: var(--ink);
+}
+.help-doors {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 28px 0;
+}
+.help-door {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  color: var(--accent);
+}
+.help-door span {
+  flex: 1;
+}
+.help-door svg {
+  flex-shrink: 0;
+}
+.help-door strong {
+  display: block;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.help-door small {
+  font-size: 12px;
+  color: var(--muted);
+}
+.help-door:hover {
+  border-color: var(--accent);
+  background: var(--tint);
+}
+.help-answers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.help-answers section {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 24px;
+}
+.help-answers h2 {
+  margin: 0 0 12px;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.025em;
+}
+.help-answers p {
+  margin: 10px 0;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+.help-answers a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+}
+.help-answers a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (max-width: 760px) {
+  .help-doors, .help-answers {
+    grid-template-columns: 1fr;
+  }
+  .help-doors {
+    margin: 22px 0;
+    gap: 10px;
+  }
+  .help-answers section {
+    padding: 20px;
+  }
 }
 
 .home-portals {

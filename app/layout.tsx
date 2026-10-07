@@ -5,6 +5,7 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import { PortalShell } from "@/components/PortalShell";
 import { entranceBootstrap } from "@/lib/entrance";
 import { BASE_URL } from "@/lib/seo";
+import { StructuredData } from "@/components/StructuredData";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -111,8 +112,20 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${BASE_URL}/#website`,
     name: "Aklatang Galera",
     url: BASE_URL,
+    inLanguage: ["en-PH", "fil-PH"],
+    about: {
+      "@type": "Place",
+      name: "Puerto Galera, Oriental Mindoro, Philippines",
+    },
+    creator: {
+      "@type": "Person",
+      "@id": "https://djenriquez.dev/#person",
+      name: "Dexter Jethro Enriquez",
+      url: "https://djenriquez.dev/",
+    },
     description:
       "A free digital portal for Puerto Galera — providing easy access to knowledge, livelihood resources, and public services.",
     publisher: {
@@ -131,10 +144,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <script dangerouslySetInnerHTML={{ __html: entranceBootstrap }} />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <StructuredData data={jsonLd} />
         <LanguageProvider>
           <PortalShell>{children}</PortalShell>
         </LanguageProvider>

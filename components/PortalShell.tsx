@@ -56,6 +56,15 @@ export function PortalShell({ children }: { children: ReactNode }) {
   const fil = language === "tagalog";
   const home = pathname === "/";
   const guidance = pageGuidance[pathname]?.[language];
+  const helpLink = (
+    <Link
+      href="/about"
+      className="help-link"
+      aria-current={pathname === "/about" ? "page" : undefined}
+    >
+      {fil ? "Tungkol at gabay" : "About & help"}
+    </Link>
+  );
   const creatorCredit = (
     <a
       href="https://djenriquez.dev/"
@@ -130,6 +139,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
           </>
         )}
         <div className="sidebar-footer">
+          {helpLink}
           <p>
             {fil
               ? "Mula sa isang Galeran, para sa mga Galeran."
@@ -185,7 +195,10 @@ export function PortalShell({ children }: { children: ReactNode }) {
         <main id="main-content" className="main-content" tabIndex={-1}>
           {children}
         </main>
-        <footer className="page-footer">{creatorCredit}</footer>
+        <footer className="page-footer">
+          {helpLink}
+          {creatorCredit}
+        </footer>
       </div>
       {!home && (
         <nav

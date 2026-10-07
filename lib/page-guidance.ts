@@ -1,6 +1,10 @@
 import type { Language } from "./resources";
 
 export const pageGuidance: Record<string, Record<Language, string>> = {
+  "/about": {
+    english: "Learn what Aklatang Galera offers and how to use its three sections.",
+    tagalog: "Alamin ang tungkol sa Aklatang Galera at kung paano gamitin ang tatlong seksyon nito.",
+  },
   "/": {
     english: "Choose one of the three sections to get started.",
     tagalog: "Pumili ng isa sa tatlong seksyon para makapagsimula.",

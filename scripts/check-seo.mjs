@@ -7,12 +7,15 @@ const routes = [
   ["/aklatan", "aklatan", 44],
   ["/hanapbuhay", "hanapbuhay", 28],
   ["/public-services", "public-services", 33],
+  ["/about", "about", 0],
 ];
 const decode = (value) =>
   value
     .replace(/&amp;/g, "&")
     .replace(/&#x27;|&#39;/g, "'")
-    .replace(/&quot;/g, '"');
+    .replace(/&quot;/g, '"')
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">");
 const attribute = (tag, name) =>
   tag.match(new RegExp(`\\b${name}="([^"]*)"`))?.[1];
 function meta(html, name) {
@@ -90,6 +93,37 @@ for (const [path, file, resourceCount] of routes) {
     schemas.every((schema) => !schema.potentialAction),
     `${path}: obsolete search schema`,
   );
+  const site = schemas.find((schema) => schema["@type"] === "WebSite");
+  assert.equal(site["@id"], `${origin}/#website`, `${path}: stable site identity`);
+  assert.equal(site.creator.name, "Dexter Jethro Enriquez", `${path}: creator`);
+  if (resourceCount) {
+    const collection = schemas.find((schema) => schema["@type"] === "CollectionPage");
+    assert.equal(collection?.url, origin + path, `${path}: collection URL`);
+    assert.equal(collection.isPartOf["@id"], site["@id"], `${path}: collection identity`);
+    const list = collection.mainEntity;
+    assert.equal(list.numberOfItems, resourceCount, `${path}: structured resource count`);
+    assert.equal(list.itemListElement.length, resourceCount, `${path}: structured list size`);
+    const visibleResources = [...html.matchAll(/<a\b[^>]*>[\s\S]*?<\/a>/g)]
+      .filter(([tag]) => /^(resource-card |featured-service$)/.test(attribute(tag, "class") ?? ""))
+      .map(([tag]) => ({
+        url: decode(attribute(tag, "href") ?? ""),
+        name: decode(tag.match(/<h[23]>([^<]*)<\/h[23]>/)?.[1] ?? ""),
+      }));
+    assert.deepEqual(
+      list.itemListElement.map(({ name, url }) => ({ name, url })),
+      visibleResources,
+      `${path}: schema matches resource names, destinations, and order`,
+    );
+    list.itemListElement.forEach((item, index) => {
+      assert.equal(item.position, index + 1, `${path}: list position`);
+    });
+  }
+  assert.ok(html.includes('href="/about"'), `${path}: discoverable help page`);
+  if (path === "/about") {
+    assert.ok(schemas.some((schema) => schema["@type"] === "AboutPage" && schema.url === origin + path), "About page schema");
+    assert.equal([...html.matchAll(/<h2\b/g)].length, 6, "Six crawlable help answers");
+    assert.ok(html.includes("independent civic project") && html.includes("does not cover every source"), "Clear identity and search limits");
+  }
   console.log(
     `${path}: canonical, metadata, heading, and ${resourceCount} resources OK`,
   );

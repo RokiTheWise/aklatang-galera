@@ -56,6 +56,12 @@ A persistent language toggle remembers Filipino or English across pages and visi
 
 Responsive layouts support phones, tablets, and desktops, with readable descriptions, large search inputs, keyboard focus indicators, skip navigation, reduced-motion support, and clear new-tab labels. Category, keyword, and local filters stay in the URL so filtered views can be bookmarked or shared. Resource descriptions and destinations are maintained in `lib/data/`; reusable navigation, directory, and card components live in `components/`.
 
+### 6. About & Help
+
+A bilingual `/about` page answers common questions about research, business support, local services, fees, language settings, and the portal’s independent status. Quiet footer links keep it discoverable while the homepage still starts with three choices. Answers are rendered in the initial HTML.
+
+Search and answer engines can read the portal’s identity, creator, and directory listings through standard WebSite, AboutPage, CollectionPage, and ItemList structured data. Directory lists are generated from the same data as the visible cards. This supplements crawlable content; it does not guarantee rankings, rich results, or AI citations. Follow [Google’s guidance for AI features](https://developers.google.com/search/docs/appearance/ai-features): useful content, internal links, crawlability, and structured data consistent with the page.
+
 ---
 
 ## Tech Stack
@@ -86,7 +92,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the result.
 
 ## Validation
 
-Run `npm run lint`, `npm run build`, and `npm run check:seo` before publishing. The SEO check inspects the production HTML for section-specific canonical URLs, titles and sharing images, crawlable headings and all 105 resources, sitemap and robots declarations, site structured data, and a non-indexable 404 page. URL filters canonicalize to their base section.
+Run `npm run lint`, `npm run build`, and `npm run check:seo` before publishing. The SEO check inspects the production HTML for page-specific canonical URLs, titles and sharing images, crawlable headings and all 105 resources, sitemap and robots declarations, site identity, directory structured data matching card destinations and order, six help answers, and a non-indexable 404 page. URL filters canonicalize to their base section.
 
 ---
 

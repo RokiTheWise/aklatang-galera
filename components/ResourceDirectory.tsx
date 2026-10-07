@@ -123,6 +123,7 @@ export function ResourceDirectory({ section }: { section: Section }) {
         {section === "library" && (
           <div
             className="view-switch"
+            data-selection={paperMode ? "first" : "second"}
             role="group"
             aria-label={fil ? "Paraan ng paghahanap" : "Library view"}
           >

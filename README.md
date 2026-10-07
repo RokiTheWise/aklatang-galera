@@ -20,6 +20,12 @@ Aklatang Galera centralizes these resources to:
 
 ---
 
+## Design principles
+
+The three main choices come from the simple shortcut screen in Barangay Bagong Silangan's library that inspired the project. Keep those paths familiar for returning users and easy to understand on public computers. Use conversational Filipino and Taglish where a formal translation would make a label harder to understand.
+
+Design for a phone on 4G or a weak signal: essential content should render immediately, the research search should explain its limits, and local curated resources should remain easy to reach. Motion is brief and uses CSS only: sliding selection indicators and gentle entrances, with no waiting for JavaScript or images and no motion when reduced motion is requested.
+
 ## ✨ Features
 
 ### 1. Clear Navigation & Dual-Language Support (Filipino / English)
@@ -57,7 +63,7 @@ Responsive layouts support phones, tablets, and desktops, with readable descript
 - **Framework:** [Next.js 16](https://nextjs.org/) (App Router)
 - **Library:** [React 19](https://react.dev/)
 - **Styling:** [Tailwind CSS 4](https://tailwindcss.com/)
-- **Animations:** [Framer Motion](https://www.framer.com/motion/)
+- **Animations:** Lightweight CSS transitions and keyframes with reduced-motion support.
 - **Icons:** [Lucide React](https://lucide.dev/)
 - **SEO & Metadata:** Automated Sitemap and Robots.txt generation for optimized discovery.
 

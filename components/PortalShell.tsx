@@ -154,6 +154,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
           )}
           <div
             className="language-toggle"
+            data-selection={fil ? "first" : "second"}
             role="group"
             aria-label={fil ? "Wika" : "Language"}
           >

@@ -301,11 +301,10 @@ button:disabled {
 .home-portals {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: 1.12fr 1fr;
+  grid-template-rows: minmax(min-content, 1.12fr) minmax(min-content, 1fr);
   gap: 20px;
-  height: calc(100dvh - 124px);
-  min-height: 480px;
-  max-height: 850px;
+  /* Fill roomy windows, but grow when wrapped text needs more space. */
+  min-height: clamp(480px, calc(100dvh - 124px), 850px);
 }
 .portal-card {
   position: relative;
@@ -1004,8 +1003,7 @@ button:disabled {
     color: #0d2645;
   }
   .home-portals {
-    min-height: 480px;
-    height: calc(100dvh - 180px);
+    min-height: clamp(480px, calc(100dvh - 180px), 850px);
   }
   .resource-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));

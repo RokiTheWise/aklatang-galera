@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Digital Library",
-  description: "Free access to research papers, scholarly articles, and digital ebooks for every Galeran.",
+  description:
+    "Free access to research papers, scholarly articles, and digital ebooks for every Galeran.",
+  path: "/aklatan",
   keywords: [
     "Digital Library Puerto Galera",
     "Research Papers Philippines",
@@ -13,12 +16,7 @@ export const metadata: Metadata = {
     "Ateneo Archium",
     "DLSU Animo Repository",
   ],
-  openGraph: {
-    title: "Digital Library | Aklatang Galera",
-    description: "Search scholarly articles and browse free digital databases — from academic papers to classic literature.",
-    url: "https://aklatang-galera.djenriquez.dev/aklatan",
-  },
-};
+});
 
 export default function AklatanLayout({
   children,

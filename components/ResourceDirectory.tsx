@@ -1,7 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { useSearchParams, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
+import {
+  notifyDirectoryParams,
+  useDirectoryParams,
+} from "@/lib/directory-params";
 import {
   AlertTriangle,
   ArrowRight,
@@ -63,7 +67,7 @@ const pageContent = {
 export function ResourceDirectory({ section }: { section: Section }) {
   const { language } = useLanguage();
   const fil = language === "tagalog";
-  const params = useSearchParams();
+  const params = useDirectoryParams();
   const pathname = usePathname();
   const config = pageContent[section];
   const t = config[language];
@@ -78,7 +82,8 @@ export function ResourceDirectory({ section }: { section: Section }) {
     params.get("mode") !== "browse" &&
     !params.get("category") &&
     !params.get("local");
-  const [paperQuery, setPaperQuery] = useState(query);
+  const [paperQuery, setPaperQuery] = useState<string>();
+  const researchQuery = paperQuery ?? query;
   function updateFilters(updates: Record<string, string>) {
     const next = new URLSearchParams(params.toString());
     for (const [key, value] of Object.entries(updates)) {
@@ -90,6 +95,7 @@ export function ResourceDirectory({ section }: { section: Section }) {
       "",
       `${pathname}${next.size ? `?${next}` : ""}`,
     );
+    notifyDirectoryParams();
   }
   const sectionResources = resources.filter(
     (resource) => resource.section === section,
@@ -156,8 +162,8 @@ export function ResourceDirectory({ section }: { section: Section }) {
           </div>
         )}
       </div>
-      {paperMode ? (
-        <section className="paper-search">
+      {section === "library" && (
+        <section className="paper-search" hidden={!paperMode}>
           <h2>
             {fil ? "Ano ang iyong paksa?" : "What is your research topic?"}
           </h2>
@@ -174,7 +180,7 @@ export function ResourceDirectory({ section }: { section: Section }) {
               <input
                 id="paper-query"
                 name="q"
-                value={paperQuery}
+                value={researchQuery}
                 onChange={(e) => setPaperQuery(e.target.value)}
                 placeholder={
                   fil
@@ -183,7 +189,10 @@ export function ResourceDirectory({ section }: { section: Section }) {
                 }
                 required
               />
-              <button className="primary-button" disabled={!paperQuery.trim()}>
+              <button
+                className="primary-button"
+                disabled={!researchQuery.trim()}
+              >
                 {fil ? "Maghanap" : "Search papers"}
                 <ArrowUpRight size={17} />
               </button>
@@ -220,175 +229,168 @@ export function ResourceDirectory({ section }: { section: Section }) {
             </div>
           </div>
         </section>
-      ) : (
-        <>
-          <section
-            className="directory-controls"
-            aria-label={
-              fil ? "Hanapin at salain" : "Search and filter resources"
-            }
-          >
-            <div className="search-field">
-              <Search size={19} />
-              <input
-                aria-label={t.placeholder}
-                type="search"
-                value={query}
-                onChange={(e) => updateFilters({ q: e.target.value })}
-                placeholder={t.placeholder}
-              />
-              {query && (
-                <button
-                  aria-label={fil ? "Burahin ang paghahanap" : "Clear search"}
-                  onClick={() => updateFilters({ q: "" })}
-                >
-                  <X size={17} />
-                </button>
-              )}
-            </div>
-            <div className="filters-row">
-              <div
-                className="category-filters"
-                role="group"
-                aria-label={fil ? "Kategorya" : "Category"}
-              >
-                {["all", ...config.categories].map((key) => (
-                  <button
-                    key={key}
-                    aria-pressed={category === key}
-                    className={
-                      category === key ? "filter-chip selected" : "filter-chip"
-                    }
-                    onClick={() => updateFilters({ category: key })}
-                  >
-                    {key === "all"
-                      ? fil
-                        ? "Lahat"
-                        : "All resources"
-                      : categoryNames[key][language]}
-                  </button>
-                ))}
-              </div>
-              {section !== "livelihood" && (
-                <button
-                  className={
-                    onlyLocal ? "local-filter selected" : "local-filter"
-                  }
-                  aria-pressed={onlyLocal}
-                  onClick={() => updateFilters({ local: String(!onlyLocal) })}
-                >
-                  {onlyLocal ? <Check size={14} /> : <MapPin size={14} />}
-                  {section === "library"
-                    ? fil
-                      ? "Mula sa Pilipinas"
-                      : "From the Philippines"
-                    : "Puerto Galera"}
-                </button>
-              )}
-            </div>
-          </section>
-          <div className="results-heading">
-            <h2>
-              {hasFilters
-                ? fil
-                  ? "Mga resulta"
-                  : "Results"
-                : fil
-                  ? "Mga sanggunian"
-                  : "Resources"}{" "}
-              <span>({filtered.length})</span>
-            </h2>
-            {hasFilters && (
+      )}
+      <div hidden={paperMode}>
+        <section
+          className="directory-controls"
+          aria-label={fil ? "Hanapin at salain" : "Search and filter resources"}
+        >
+          <div className="search-field">
+            <Search size={19} />
+            <input
+              aria-label={t.placeholder}
+              type="search"
+              value={query}
+              onChange={(e) => updateFilters({ q: e.target.value })}
+              placeholder={t.placeholder}
+            />
+            {query && (
               <button
-                className="text-button"
-                onClick={() =>
-                  updateFilters({ q: "", category: "all", local: "false" })
-                }
+                aria-label={fil ? "Burahin ang paghahanap" : "Clear search"}
+                onClick={() => updateFilters({ q: "" })}
               >
-                <X size={14} />
-                {fil ? "Alisin ang mga filter" : "Reset filters"}
+                <X size={17} />
               </button>
             )}
           </div>
-          <div role="status" aria-live="polite" className="sr-only">
-            {filtered.length} {fil ? "resulta" : "resources found"}
-          </div>
-          {showFeature && (
-            <a
-              className="featured-service"
-              href={feature.link}
-              target="_blank"
-              rel="noopener noreferrer"
+          <div className="filters-row">
+            <div
+              className="category-filters"
+              role="group"
+              aria-label={fil ? "Kategorya" : "Category"}
             >
-              <div>
-                <h2>eLGU Puerto Galera</h2>
-                <p>
-                  {fil
-                    ? "Business permit, cedula, at civil registry."
-                    : "Business permits, cedula, and civil registry."}
-                </p>
-              </div>
-              <span className="feature-cta">
-                {fil ? "Buksan ang portal" : "Open local portal"}
-                <ArrowUpRight size={18} />
-                <small>
-                  {fil ? "Bubukas sa bagong tab" : "Opens in a new tab"}
-                </small>
-              </span>
-            </a>
-          )}
-          {filtered.length ? (
-            <div className="resource-grid">
-              {filtered
-                .filter((resource) => !showFeature || !resource.featured)
-                .map((resource) => (
-                  <ResourceCard key={resource.id} resource={resource} />
-                ))}
+              {["all", ...config.categories].map((key) => (
+                <button
+                  key={key}
+                  aria-pressed={category === key}
+                  className={
+                    category === key ? "filter-chip selected" : "filter-chip"
+                  }
+                  onClick={() => updateFilters({ category: key })}
+                >
+                  {key === "all"
+                    ? fil
+                      ? "Lahat"
+                      : "All resources"
+                    : categoryNames[key][language]}
+                </button>
+              ))}
             </div>
-          ) : (
-            <div className="empty-state">
-              <span className="large-icon">
-                <Search size={27} />
-              </span>
-              <h3>{fil ? "Wala pang tugma." : "No matches just yet."}</h3>
+            {section !== "livelihood" && (
+              <button
+                className={onlyLocal ? "local-filter selected" : "local-filter"}
+                aria-pressed={onlyLocal}
+                onClick={() => updateFilters({ local: String(!onlyLocal) })}
+              >
+                {onlyLocal ? <Check size={14} /> : <MapPin size={14} />}
+                {section === "library"
+                  ? fil
+                    ? "Mula sa Pilipinas"
+                    : "From the Philippines"
+                  : "Puerto Galera"}
+              </button>
+            )}
+          </div>
+        </section>
+        <div className="results-heading">
+          <h2>
+            {hasFilters
+              ? fil
+                ? "Mga resulta"
+                : "Results"
+              : fil
+                ? "Mga sanggunian"
+                : "Resources"}{" "}
+            <span>({filtered.length})</span>
+          </h2>
+          {hasFilters && (
+            <button
+              className="text-button"
+              onClick={() =>
+                updateFilters({ q: "", category: "all", local: "false" })
+              }
+            >
+              <X size={14} />
+              {fil ? "Alisin ang mga filter" : "Reset filters"}
+            </button>
+          )}
+        </div>
+        <div role="status" aria-live="polite" className="sr-only">
+          {filtered.length} {fil ? "resulta" : "resources found"}
+        </div>
+        {showFeature && (
+          <a
+            className="featured-service"
+            href={feature.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div>
+              <h2>eLGU Puerto Galera</h2>
               <p>
                 {fil
-                  ? "Subukan ang mas maikling salita o alisin ang mga filter."
-                  : "Try a shorter keyword or clear your filters to see more resources."}
+                  ? "Business permit, cedula, at civil registry."
+                  : "Business permits, cedula, and civil registry."}
               </p>
-              {section === "library" && query.trim() && (
-                <a
-                  className="primary-button"
-                  href={`https://www.semanticscholar.org/search?q=${encodeURIComponent(query.trim())}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {fil
-                    ? "Maghanap ng research paper"
-                    : "Search research papers"}
-                  <ArrowUpRight size={16} />
-                  <span className="sr-only">
-                    {fil ? " (bagong tab)" : " (opens in a new tab)"}
-                  </span>
-                </a>
-              )}
-              <button
-                className={
-                  section === "library" && query.trim()
-                    ? "text-button"
-                    : "primary-button"
-                }
-                onClick={() =>
-                  updateFilters({ q: "", category: "all", local: "false" })
-                }
-              >
-                {fil ? "Ipakita ang lahat" : "Show all resources"}
-                <ArrowRight size={16} />
-              </button>
             </div>
-          )}
-        </>
-      )}
+            <span className="feature-cta">
+              {fil ? "Buksan ang portal" : "Open local portal"}
+              <ArrowUpRight size={18} />
+              <small>
+                {fil ? "Bubukas sa bagong tab" : "Opens in a new tab"}
+              </small>
+            </span>
+          </a>
+        )}
+        {filtered.length ? (
+          <div className="resource-grid">
+            {filtered
+              .filter((resource) => !showFeature || !resource.featured)
+              .map((resource) => (
+                <ResourceCard key={resource.id} resource={resource} />
+              ))}
+          </div>
+        ) : (
+          <div className="empty-state">
+            <span className="large-icon">
+              <Search size={27} />
+            </span>
+            <h3>{fil ? "Wala pang tugma." : "No matches just yet."}</h3>
+            <p>
+              {fil
+                ? "Subukan ang mas maikling salita o alisin ang mga filter."
+                : "Try a shorter keyword or clear your filters to see more resources."}
+            </p>
+            {section === "library" && query.trim() && (
+              <a
+                className="primary-button"
+                href={`https://www.semanticscholar.org/search?q=${encodeURIComponent(query.trim())}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {fil ? "Maghanap ng research paper" : "Search research papers"}
+                <ArrowUpRight size={16} />
+                <span className="sr-only">
+                  {fil ? " (bagong tab)" : " (opens in a new tab)"}
+                </span>
+              </a>
+            )}
+            <button
+              className={
+                section === "library" && query.trim()
+                  ? "text-button"
+                  : "primary-button"
+              }
+              onClick={() =>
+                updateFilters({ q: "", category: "all", local: "false" })
+              }
+            >
+              {fil ? "Ipakita ang lahat" : "Show all resources"}
+              <ArrowRight size={16} />
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

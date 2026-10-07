@@ -4,6 +4,7 @@ import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { PortalShell } from "@/components/PortalShell";
 import { entranceBootstrap } from "@/lib/entrance";
+import { BASE_URL } from "@/lib/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +15,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-const BASE_URL = "https://aklatang-galera.djenriquez.dev";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -123,14 +122,6 @@ export default function RootLayout({
         "@type": "ImageObject",
         url: `${BASE_URL}/aklatang-galera-logo.png`,
       },
-    },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${BASE_URL}/aklatan?q={search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
     },
   };
 

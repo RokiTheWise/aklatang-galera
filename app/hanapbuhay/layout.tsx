@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Livelihood (Hanapbuhay)",
-  description: "Opportunities for skills development, jobs, and entrepreneurship in Puerto Galera and beyond.",
+  description:
+    "Opportunities for skills development, jobs, and entrepreneurship in Puerto Galera and beyond.",
+  path: "/hanapbuhay",
   keywords: [
     "Jobs Puerto Galera",
     "Skills training Philippines",
@@ -12,12 +15,7 @@ export const metadata: Metadata = {
     "Entrepreneurship resources",
     "DTI Negosyo Center Puerto Galera",
   ],
-  openGraph: {
-    title: "Livelihood & Skills | Aklatang Galera",
-    description: "Connect to livelihood opportunities — skills training, job boards, and business support for every Galeran.",
-    url: "https://aklatang-galera.djenriquez.dev/hanapbuhay",
-  },
-};
+});
 
 export default function HanapbuhayLayout({
   children,

@@ -84,6 +84,10 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) to view the result.
 
+## Validation
+
+Run `npm run lint`, `npm run build`, and `npm run check:seo` before publishing. The SEO check inspects the production HTML for section-specific canonical URLs, titles and sharing images, crawlable headings and all 105 resources, sitemap and robots declarations, site structured data, and a non-indexable 404 page. URL filters canonicalize to their base section.
+
 ---
 
 Built by [Dexter Jethro Enriquez](https://djenriquez.dev)

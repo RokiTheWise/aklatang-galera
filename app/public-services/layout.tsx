@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Public Services",
-  description: "E-government portals, scholarships, and official news resources for every Galeran.",
+  description:
+    "E-government portals, scholarships, and official news resources for every Galeran.",
+  path: "/public-services",
   keywords: [
     "Public Services Puerto Galera",
     "eLGU Puerto Galera",
@@ -13,12 +16,7 @@ export const metadata: Metadata = {
     "Philippine National ID PhilSys",
     "DFA Passport appointment online",
   ],
-  openGraph: {
-    title: "Public Services | Aklatang Galera",
-    description: "Official government portals, scholarships, and transparency resources for every citizen of Puerto Galera.",
-    url: "https://aklatang-galera.djenriquez.dev/public-services",
-  },
-};
+});
 
 export default function PublicServicesLayout({
   children,

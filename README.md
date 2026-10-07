@@ -22,16 +22,16 @@ Aklatang Galera centralizes these resources to:
 
 ## ✨ Features
 
-### 1. Dual-Language Support (Filipino / English)
+### 1. Clear Navigation & Dual-Language Support (Filipino / English)
 
-A persistent language toggle lets users switch between Filipino and English, ensuring the portal is accessible to all residents regardless of language preference.
+A persistent language toggle remembers Filipino or English across pages and visits. Shared desktop navigation and a four-tab mobile bar keep the library, livelihood, and public services easy to reach. The homepage keeps the original three choices: Digital Library, Livelihood, and Public Services. It uses the original navy, blue, emerald, cyan, and Geist typography with concise labels.
 
 ### 2. E-Aklatan — Digital Library
 
-- **Smart Search** — Powered by Semantic Scholar for direct access to millions of scholarly papers.
-- **Curated Databases** — 30+ peer-reviewed, open-access, and e-book resources.
+- **Research Search** — A separate, clearly labeled search opens results on Semantic Scholar. The library starts with research search, with a second view for browsing books and resources.
+- **Curated Databases** — 44 research and e-book resources, with bilingual keyword search.
 - **Categorized Discovery** — Toggle between **Research** (arXiv, DOAJ, Google Scholar) and **E-Books** (Project Gutenberg, Open Library, National Academies Press).
-- **Local Spotlight** — Quick filter for Philippine-specific repositories like **Archīum Ateneo**, **Aklatang Bayan**, **Tuklas**, and **Filipinas Heritage Library**.
+- **Philippine Resources** — Quick filter for Philippine-specific repositories like **Archīum Ateneo**, **Aklatang Bayan**, **Tuklas**, and **Filipinas Heritage Library**.
 
 ### 3. Hanapbuhay — Livelihood
 
@@ -48,7 +48,7 @@ A persistent language toggle lets users switch between Filipino and English, ens
 
 ### 5. Mobile-First & Accessible Design
 
-Built with a "mobile-first" philosophy, ensuring that community members accessing the web primarily via smartphones have a smooth, high-performance experience.
+Responsive layouts support phones, tablets, and desktops, with readable descriptions, large search inputs, keyboard focus indicators, skip navigation, reduced-motion support, and clear new-tab labels. Category, keyword, and local filters stay in the URL so filtered views can be bookmarked or shared. Resource descriptions and destinations are maintained in `lib/data/`; reusable navigation, directory, and card components live in `components/`.
 
 ---
 

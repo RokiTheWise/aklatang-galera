@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { PortalShell } from "@/components/PortalShell";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -110,29 +111,30 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Aklatang Galera",
-    "url": BASE_URL,
-    "description": "A free digital portal for Puerto Galera — providing easy access to knowledge, livelihood resources, and public services.",
-    "publisher": {
+    name: "Aklatang Galera",
+    url: BASE_URL,
+    description:
+      "A free digital portal for Puerto Galera — providing easy access to knowledge, livelihood resources, and public services.",
+    publisher: {
       "@type": "Organization",
-      "name": "Aklatang Galera",
-      "logo": {
+      name: "Aklatang Galera",
+      logo: {
         "@type": "ImageObject",
-        "url": `${BASE_URL}/aklatang-galera-logo.png`
-      }
-    },
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": `${BASE_URL}/aklatan?q={search_term_string}`
+        url: `${BASE_URL}/aklatang-galera-logo.png`,
       },
-      "query-input": "required name=search_term_string"
-    }
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${BASE_URL}/aklatan?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   };
 
   return (
-    <html lang="fil-PH">
+    <html lang="en-PH">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -140,7 +142,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          <PortalShell>{children}</PortalShell>
+        </LanguageProvider>
       </body>
     </html>
   );

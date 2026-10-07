@@ -53,6 +53,20 @@ export function PortalShell({ children }: { children: ReactNode }) {
   const { language, setLanguage } = useLanguage();
   const fil = language === "tagalog";
   const home = pathname === "/";
+  const creatorCredit = (
+    <a
+      href="https://djenriquez.dev/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="creator-credit"
+    >
+      <span>{fil ? "Ginawa ni" : "Made by"} Dexter Jethro Enriquez</span>
+      <ArrowUpRight size={12} aria-hidden="true" />
+      <span className="sr-only">
+        {fil ? " (bagong tab)" : " (opens in a new tab)"}
+      </span>
+    </a>
+  );
   return (
     <div className={`portal-shell${home ? " is-home" : ""}`}>
       <a href="#main-content" className="skip-link">
@@ -108,9 +122,12 @@ export function PortalShell({ children }: { children: ReactNode }) {
           </nav>
         )}
         <div className="sidebar-footer">
-          {fil
-            ? "Mula sa isang Galeran, para sa mga Galeran."
-            : "Made by a Galeran, for Galerans."}
+          <p>
+            {fil
+              ? "Mula sa isang Galeran, para sa mga Galeran."
+              : "Made by a Galeran, for Galerans."}
+          </p>
+          {creatorCredit}
         </div>
       </aside>
       <div className="workspace">
@@ -159,19 +176,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
         <main id="main-content" className="main-content" tabIndex={-1}>
           {children}
         </main>
-        <footer className="page-footer">
-          <a
-            href="https://djenriquez.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {fil ? "Ginawa ni" : "Built by"} Dexter Jethro Enriquez
-            <ArrowUpRight size={12} />
-            <span className="sr-only">
-              {fil ? " (bagong tab)" : " (opens in a new tab)"}
-            </span>
-          </a>
-        </footer>
+        <footer className="page-footer">{creatorCredit}</footer>
       </div>
       {!home && (
         <nav

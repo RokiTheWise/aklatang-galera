@@ -115,36 +115,42 @@ export function ResourceDirectory({ section }: { section: Section }) {
   const hasFilters = Boolean(query || category !== "all" || onlyLocal);
   return (
     <div className={`directory theme-${section}`}>
-      <div className="page-intro">
-        <h1>{sectionNames[section][language]}</h1>
-        <p>{t.description}</p>
-      </div>
-      {section === "library" && (
-        <div
-          className="view-switch"
-          role="group"
-          aria-label={fil ? "Paraan ng paghahanap" : "Library view"}
-        >
-          <button
-            aria-pressed={paperMode}
-            className={paperMode ? "active" : ""}
-            onClick={() =>
-              updateFilters({ mode: "papers", category: "all", local: "false" })
-            }
-          >
-            <Search size={17} />
-            {fil ? "Maghanap ng research" : "Search research"}
-          </button>
-          <button
-            aria-pressed={!paperMode}
-            className={!paperMode ? "active" : ""}
-            onClick={() => updateFilters({ mode: "browse" })}
-          >
-            <BookOpen size={17} />
-            {fil ? "Mga libro at sanggunian" : "Books & resources"}
-          </button>
+      <div className="directory-heading">
+        <div className="page-intro">
+          <h1>{sectionNames[section][language]}</h1>
+          <p>{t.description}</p>
         </div>
-      )}
+        {section === "library" && (
+          <div
+            className="view-switch"
+            role="group"
+            aria-label={fil ? "Paraan ng paghahanap" : "Library view"}
+          >
+            <button
+              aria-pressed={paperMode}
+              className={paperMode ? "active" : ""}
+              onClick={() =>
+                updateFilters({
+                  mode: "papers",
+                  category: "all",
+                  local: "false",
+                })
+              }
+            >
+              <Search size={17} />
+              {fil ? "Maghanap ng research" : "Search research"}
+            </button>
+            <button
+              aria-pressed={!paperMode}
+              className={!paperMode ? "active" : ""}
+              onClick={() => updateFilters({ mode: "browse" })}
+            >
+              <BookOpen size={17} />
+              {fil ? "Mga libro at sanggunian" : "Books & resources"}
+            </button>
+          </div>
+        )}
+      </div>
       {paperMode ? (
         <section className="paper-search">
           <h2>

@@ -32,8 +32,8 @@ export function ResourceCard({ resource }: { resource: PortalResource }) {
             />
           )}
         </div>
-        <ArrowUpRight className="resource-arrow" size={19} aria-hidden="true" />
       </div>
+      <h3>{resource.name}</h3>
       <div className="resource-badges">
         <span className="category-badge">
           {categoryNames[resource.category][language]}
@@ -49,14 +49,13 @@ export function ResourceCard({ resource }: { resource: PortalResource }) {
           </span>
         )}
       </div>
-      <h3>{resource.name}</h3>
       <p>{resource.desc[language]}</p>
       <div className="resource-card-bottom">
-        <span>{fil ? "Buksan ang website" : "Open website"}</span>
-        <span>
-          {fil ? "Bagong tab" : "New tab"}
-          <ArrowUpRight size={12} />
+        <span className="resource-open">
+          {fil ? "Buksan ang website" : "Open website"}
+          <ArrowUpRight size={15} aria-hidden="true" />
         </span>
+        <span>{fil ? "Bagong tab" : "New tab"}</span>
       </div>
     </a>
   );

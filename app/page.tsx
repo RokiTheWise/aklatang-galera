@@ -8,6 +8,7 @@ import {
   Landmark,
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { pageGuidance } from "@/lib/page-guidance";
 
 const portals = [
   {
@@ -97,6 +98,9 @@ export default function Home() {
           );
         })}
       </div>
+      <p className="mobile-page-guide home-page-guide">
+        {pageGuidance["/"][language]}
+      </p>
     </div>
   );
 }

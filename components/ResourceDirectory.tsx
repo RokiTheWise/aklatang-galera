@@ -21,6 +21,7 @@ import {
   sectionNames,
 } from "@/lib/resources";
 import { ResourceCard } from "./ResourceCard";
+import { pageGuidance } from "@/lib/page-guidance";
 
 const pageContent = {
   library: {
@@ -118,7 +119,10 @@ export function ResourceDirectory({ section }: { section: Section }) {
       <div className="directory-heading">
         <div className="page-intro">
           <h1>{sectionNames[section][language]}</h1>
-          <p>{t.description}</p>
+          <p className="page-description">{t.description}</p>
+          <p className="mobile-page-guide">
+            {pageGuidance[pathname]?.[language] ?? t.description}
+          </p>
         </div>
         {section === "library" && (
           <div

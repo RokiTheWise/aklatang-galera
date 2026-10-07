@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { PageEntrance } from "./PageEntrance";
+import { pageGuidance } from "@/lib/page-guidance";
 
 const navigation = [
   {
@@ -54,6 +55,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
   const { language, setLanguage } = useLanguage();
   const fil = language === "tagalog";
   const home = pathname === "/";
+  const guidance = pageGuidance[pathname]?.[language];
   const creatorCredit = (
     <a
       href="https://djenriquez.dev/"
@@ -97,6 +99,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
                 ? "Isang libreng digital na gabay sa kaalaman, oportunidad, at serbisyo para sa mga mamamayan ng Puerto Galera."
                 : "A free digital guide to knowledge, opportunity, and public services for the people of Puerto Galera."}
             </p>
+            <p className="home-guide">{guidance}</p>
             <span className="mission-colors" aria-hidden="true">
               <i />
               <i />
@@ -106,22 +109,25 @@ export function PortalShell({ children }: { children: ReactNode }) {
             </span>
           </div>
         ) : (
-          <nav
-            aria-label={fil ? "Pangunahing menu" : "Main navigation"}
-            className="desktop-nav"
-          >
-            {navigation.map(({ href, icon: Icon, ...item }) => (
-              <Link
-                key={href}
-                href={href}
-                aria-current={pathname === href ? "page" : undefined}
-                className={pathname === href ? "nav-link active" : "nav-link"}
-              >
-                <Icon size={20} />
-                <span>{item[language]}</span>
-              </Link>
-            ))}
-          </nav>
+          <>
+            {guidance && <p className="sidebar-guide">{guidance}</p>}
+            <nav
+              aria-label={fil ? "Pangunahing menu" : "Main navigation"}
+              className="desktop-nav"
+            >
+              {navigation.map(({ href, icon: Icon, ...item }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  aria-current={pathname === href ? "page" : undefined}
+                  className={pathname === href ? "nav-link active" : "nav-link"}
+                >
+                  <Icon size={20} />
+                  <span>{item[language]}</span>
+                </Link>
+              ))}
+            </nav>
+          </>
         )}
         <div className="sidebar-footer">
           <p>
